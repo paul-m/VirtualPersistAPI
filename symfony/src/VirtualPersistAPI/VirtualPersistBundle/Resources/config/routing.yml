@@ -1,0 +1,3 @@
+virtual_persist_api_virtual_persist_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: VirtualPersistAPIVirtualPersistBundle:Default:index }
