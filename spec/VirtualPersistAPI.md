@@ -29,4 +29,20 @@ Data POSTed will be a urlencoded form submission, in the form:
 
 GET will return the URI contents as text/plain. Initially.
 
+The endpoint will be configurable per instance of the application. We'll arbitrarily say that 'vpa' is a good choice of endpoint name.
+
 All content type restrictions will be dictated by the Second Life http request system. http://wiki.secondlife.com/wiki/LlHTTPRequest
+
+Authentication
+--------------
+
+Second Life has very limited scripting capabilities and those capabilities shift frequently. This means it's unlikely we'll come up with something like an OAuth or even session-based security solution for SL support.
+
+Instead we'll use a password on a per-user, per-request basis. This will be adequate for a first milestone.
+
+The user is signified by the UUID portion of the URI.
+
+POST requests will include a `pw=[password]` form element.
+
+GET and DELETE requests will have to add `?pw=[password]` to the request URL.
+
