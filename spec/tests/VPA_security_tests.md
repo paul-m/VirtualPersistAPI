@@ -1,6 +1,9 @@
 VirtualPersistAPI Security Testing Notes
 ===
 
+Authentication
+----
+
 VPA instance with no configured salt returns 500 for any requests.
 
 Any API request which fails authentication returns 401.
