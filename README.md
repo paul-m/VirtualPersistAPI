@@ -12,6 +12,14 @@ Specifically, VPA is designed for use by scripting systems which, even though th
 
 I'm talking about Second Life.
 
+This is a mistake. Woot.
+
+And another one!
+
+What's with all these error lines?????
+
+Wow we're really pushing it.
+
 License
 -------
 
