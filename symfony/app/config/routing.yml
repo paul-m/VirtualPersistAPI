@@ -1,6 +1,3 @@
-virtual_persist_api_virtual_persist:
-    resource: "@VirtualPersistAPIVirtualPersistBundle/Resources/config/routing.yml"
-    prefix:   /
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
