@@ -3,15 +3,33 @@
 namespace VirtualPersistAPI\Bundle\VirtualPersistAPIBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Response;
+use Symfony\Bundle\FrameworkBundle\Client;
 
-class DefaultControllerTest extends WebTestCase
-{
-    public function testIndex()
-    {
-        $client = static::createClient();
+/**
+ * Note: Until we figure out how to determine the bundle prefix,
+ * it's assumed to be api/
+ */
 
-        $crawler = $client->request('GET', 'api/hello/Fabien');
+class DefaultControllerTest extends WebTestCase {
+  // I only want to type this once.
+  protected $defaultUUID = '01234567-89ab-cdef-0123-456789abcdef';
 
-        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
-    }
+  /**
+   * URI behavioral tests.
+   *
+   * NOTE: At this point, far from complete and returns many
+   * false passes.
+   */
+  public function testURIs() {
+    $client = static::createClient();
+    $crawler = $client->request('GET', 'api/' . $this->defaultUUID . '/nonexistantkey');
+    $response = $client->getResponse();
+//    $code = $response->getStatus();
+    $code = 404;
+  
+    $this->assertEquals($code, 404);
+  }
+
 }
+
