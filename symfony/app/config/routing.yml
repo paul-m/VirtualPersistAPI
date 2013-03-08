@@ -1,3 +1,8 @@
+virtual_persist:
+    resource: "@VirtualPersistBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 virtual_persist_api:
     resource: "@VirtualPersistAPIBundle/Controller/"
     type:     annotation

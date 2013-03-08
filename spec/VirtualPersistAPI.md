@@ -19,7 +19,7 @@ The API
 
 The URI paths for the API are defined as:
 
-`[endpoint]/[useruuid]/[key]`
+`[endpoint]/[useruuid]/[category]/[key]`
 
 So, if you POST data to this URI, you will store that data. If you GET data from that URI you'll get the data you last PUT there. If you DELETE this URI then it will vanish.
 
