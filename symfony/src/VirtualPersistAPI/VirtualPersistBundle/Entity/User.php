@@ -2,6 +2,7 @@
 namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @file
@@ -36,6 +37,15 @@ class User {
    * __ORM\Column(type="string", length=255)
    */
   protected $permission;
+  
+  /**
+   * @ORM\OneToMany(targetEntity="Record", mappedBy="owner_uuid")
+   */
+  protected $records;
+  
+  public function __construct() {
+    $this->records = new ArrayCollection();
+  }
   
     /**
      * Get id
@@ -114,5 +124,38 @@ class User {
     public function getPermission()
     {
         return $this->permission;
+    }
+
+    /**
+     * Add records
+     *
+     * @param \VirtualPersistAPI\VirtualPersistBundle\Entity\Record $records
+     * @return User
+     */
+    public function addRecord(\VirtualPersistAPI\VirtualPersistBundle\Entity\Record $records)
+    {
+        $this->records[] = $records;
+    
+        return $this;
+    }
+
+    /**
+     * Remove records
+     *
+     * @param \VirtualPersistAPI\VirtualPersistBundle\Entity\Record $records
+     */
+    public function removeRecord(\VirtualPersistAPI\VirtualPersistBundle\Entity\Record $records)
+    {
+        $this->records->removeElement($records);
+    }
+
+    /**
+     * Get records
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecords()
+    {
+        return $this->records;
     }
 }

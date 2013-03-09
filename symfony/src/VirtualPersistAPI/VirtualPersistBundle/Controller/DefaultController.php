@@ -19,28 +19,37 @@ use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/{uuid}/{category}/{key}")
+     * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
      * @Method({"GET"})
      */
     public function getAction($uuid, $category, $key)
     {
       $doctrine = $this->getDoctrine();
-      
-      $user = $doctrine
-        ->getRepository('VirtualPersistBundle:User')
-        ->findOneByUuid($uuid);
-
       $record = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
-        ->findOneByCategory($category);
+        ->findOneByUUIDCategoryKey($uuid, $category, $key);
       
-      $tellme = 'uuid: ' . $uuid . ' category: ' . $category . ' key: ' . $key;
-      if ($record) $tellme = $record->getData();
+      // Did we get a record?
+      if ($record) {
+        $user = $doctrine
+          ->getRepository('VirtualPersistBundle:User')
+          ->findOneByUuid($uuid);
+        if (TRUE) { // if($user->has_authentication)
+          $tellme = 'uuid: ' . $uuid . ' category: ' . $category . ' key: ' . $key;
+          if ($record) $tellme = $record->getData();
+          
+          $response = new Response();
+          $response->setContent($tellme);
+          $request = Request::createFromGlobals();
+          $response->prepare($request);
+          return $response;
+        }
+      }
       
-      $response = new Response();
-      $response->setContent($tellme);
-      $request = Request::createFromGlobals();
-      $response->prepare($request);
-      return $response;
+      return new Response (
+        '',
+        404,
+        array('content-type' => 'text/html')
+      );
     }
 }

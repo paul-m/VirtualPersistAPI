@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class RecordRepsitory extends EntityRepository
 {
+  public function findOneByUUIDCategoryKey($uuid, $category, $key) {
+    $query = $this->getEntityManager()
+        ->createQuery('
+            SELECT r FROM VirtualPersistBundle:Record r
+            WHERE r.owner_uuid = :uuid AND r.category = :category AND r.key = :key'
+        )
+        ->setParameter('uuid', $uuid)
+        ->setParameter('category', $category)
+        ->setParameter('key', $key);
+    
+    try {
+        return $query->getSingleResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+  }
+
 }
