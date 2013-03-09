@@ -1,7 +1,6 @@
 virtual_persist_api:
     resource: "@VirtualPersistBundle/Controller/"
     type:     annotation
-    prefix:   /api
 
 
 # Internal routing configuration to handle ESI
