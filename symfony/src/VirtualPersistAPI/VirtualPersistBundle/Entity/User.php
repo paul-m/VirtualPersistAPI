@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="UserRepsitory")
  * @ORM\Table(name="User")
  */
 class User {
