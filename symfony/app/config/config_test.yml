@@ -1,4 +1,7 @@
+# Will be used by all CI systems, including travis.
+
 imports:
+    - { resource: parameters_test.yml }
     - { resource: config_dev.yml }
 
 framework:

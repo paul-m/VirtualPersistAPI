@@ -1,5 +1,6 @@
 imports:
-    - { resource: parameters.yml }
+# load from dev, prod, test
+#    - { resource: parameters.yml }
     - { resource: security.yml }
 
 framework:
@@ -45,6 +46,8 @@ doctrine:
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
+        memory:   "%database_memory%"
+        path:     "%database_path%"
         charset:  UTF8
 
     orm:
