@@ -46,7 +46,7 @@ class DefaultController extends Controller
         }
       }
       
-      return new Response ('', 404, array('content-type' => 'text/html'));
+      return new Response ('No Such Item.', 404, array('content-type' => 'text/plain'));
     }
 }
 
