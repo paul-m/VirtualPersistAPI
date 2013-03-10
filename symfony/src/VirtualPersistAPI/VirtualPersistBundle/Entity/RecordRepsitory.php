@@ -3,6 +3,7 @@
 namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NoResultException;
 
 /**
  * RecordRepsitory
@@ -21,10 +22,11 @@ class RecordRepsitory extends EntityRepository
         ->setParameter('uuid', $uuid)
         ->setParameter('category', $category)
         ->setParameter('key', $key);
-    
+
     try {
-        return $query->getSingleResult();
-    } catch (\Doctrine\ORM\NoResultException $e) {
+        $res = $query->getSingleResult();
+        return $res;
+    } catch (NoResultException $e) {
         return null;
     }
   }

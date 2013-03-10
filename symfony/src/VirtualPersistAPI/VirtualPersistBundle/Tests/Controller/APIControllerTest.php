@@ -7,8 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * Functional tests for the VirtualPersistAPI controller.
  *
  * Note that we assume FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF
- * is always a bad UUID. This is so it passes the regex
- * for the route, but fails to be valid.
+ * is always a bad UUID, and that 00000000-0000-0000-0000-000000000000
+ * is good.
  *
  * @TODO: Make a fixture and test authentication.
  */
@@ -24,10 +24,24 @@ class APIControllerTest extends WebTestCase
         '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF',
       ),
       array(
+        '/api/00000000-0000-0000-0000-000000000000',
+      ),
+      array(
         '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantProperty',
       ),
       array(
+        '/api/00000000-0000-0000-0000-000000000000/nonexistantProperty',
+      ),
+      array(
         '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantProperty/nonexistantKey',
+      ),
+    );
+  }
+
+  public function goodPathDataProvider() {
+    return array(
+      array(
+        '/api/00000000-0000-0000-0000-000000000000/extantProperty/extantKey',
       ),
     );
   }

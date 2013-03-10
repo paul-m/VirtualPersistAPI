@@ -28,7 +28,7 @@ class APIController extends Controller
       $record = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
         ->findOneByUUIDCategoryKey($uuid, $category, $key);
-      
+
       // Did we get a record?
       if ($record) {
         $user = $doctrine
