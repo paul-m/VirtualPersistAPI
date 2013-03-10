@@ -16,7 +16,7 @@ use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
  * Our prefix:
  * @Route("/api")
  */
-class DefaultController extends Controller
+class APIController extends Controller
 {
     /**
      * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
@@ -34,7 +34,7 @@ class DefaultController extends Controller
         $user = $doctrine
           ->getRepository('VirtualPersistBundle:User')
           ->findOneByUuid($uuid);
-        if (TRUE) { // if($user->has_authentication)
+        if ($user) { // if($user->has_authentication)
           $tellme = 'uuid: ' . $uuid . ' category: ' . $category . ' key: ' . $key;
           if ($record) $tellme = $record->getData();
           
@@ -46,7 +46,7 @@ class DefaultController extends Controller
         }
       }
       
-      return new Response ('No Such Item.', 404, array('content-type' => 'text/plain'));
+      return new Response ('No Such Item.', 404);//, array('content-type' => 'text/plain'));
     }
 }
 
