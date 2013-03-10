@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  *
  * @TODO: Make a fixture and test authentication.
  */
-class DefaultControllerTest extends WebTestCase
+class APIControllerTest extends WebTestCase
 {
 
   public function badPathDataProvider() {
