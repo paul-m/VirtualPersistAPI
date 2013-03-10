@@ -1,16 +1,16 @@
 VirtualPersistAPI
 =================
 
-VirtualPersistAPI (VPA) is a RESTful-ish http-base API for storing arbitrary data in a database.
+VirtualPersistAPI (VPA) is a RESTful-ish http-based API for storing arbitrary data in a database.
 
 What?
 -----
 
 You'll be able to store stuff in a database over the web.
 
-Specifically, VPA is designed for use by scripting systems which, even though they can do sophisticated things with data, can't persist that data within the system, and can make http requests.
+Specifically, VPA is designed for use by scripting systems which, even though they can do sophisticated things with data, can't persist that data within the system, even though they can make http requests.
 
-I'm talking about Second Life.
+I'm talking about Second Life. VPA is an external persistence system for Second Life. But it can be used by anything that can make http requests.
 
 License
 -------

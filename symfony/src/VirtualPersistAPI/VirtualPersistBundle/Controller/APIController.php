@@ -46,7 +46,7 @@ class APIController extends Controller
         }
       }
       
-      return new Response ('No Such Item.', 404);//, array('content-type' => 'text/plain'));
+      return new Response ('No Such Item.', 404);
     }
 }
 
