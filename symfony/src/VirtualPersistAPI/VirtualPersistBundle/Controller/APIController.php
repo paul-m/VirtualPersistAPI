@@ -83,14 +83,14 @@ class APIController extends Controller
     }
 
     /**
-     * @Route("/{uuid}/categories", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+     * @Route("/categories/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
      * @Method({"GET"})
      */
     public function categoriesAction($uuid) {
       $doctrine = $this->getDoctrine();
       $categories = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
-        ->categoriesForUUID($uuid, $category, $key);
+        ->categoriesForUUID($uuid);
 
       // Did we get an answer?
       if ($categories) {
@@ -98,13 +98,40 @@ class APIController extends Controller
           ->getRepository('VirtualPersistBundle:User')
           ->findOneByUuid($uuid);
         if ($user) { // if($user->has_authentication)
-          $request = $this->getRequest();
-          $responseType = $request->get('type');
-          if (!in_array($responseType, array('json', 'csv')))
-            $responseType = 'json';
+          // for now we just return json.
+          return new Response(
+            json_encode($categories),
+            200,
+            array('content-type' => 'application/json')
+          );
+        }
+      }
 
-            // more here....
+      return new Response ('No Such User.', 404, array('content-type' => 'text/plain'));
+    }
 
+    /**
+     * @Route("/keys/{uuid}/{category}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+     * @Method({"GET"})
+     */
+    public function keysAction($uuid, $category) {
+      $doctrine = $this->getDoctrine();
+      $keys = $doctrine
+        ->getRepository('VirtualPersistBundle:Record')
+        ->keysForUUIDCategory($uuid, $category);
+
+      // Did we get an answer?
+      if ($keys) {
+        $user = $doctrine
+          ->getRepository('VirtualPersistBundle:User')
+          ->findOneByUuid($uuid);
+        if ($user) { // if($user->has_authentication)
+          // for now we just return json.
+          return new Response(
+            json_encode($keys),
+            200,
+            array('content-type' => 'application/json')
+          );
         }
       }
 

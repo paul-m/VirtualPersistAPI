@@ -31,9 +31,9 @@ GET will return the URI contents as text/plain. Initially.
 
 The authorized consumer can query for categories and keys:
 
-`[endpoint]/[useruuid]/categories`
+`[endpoint]/categories/[useruuid]`
 
-`[endpoint]/[useruuid]/[category]/keys`
+`[endpoint]/keys/[useruuid]/[category]`
 
 These can return JSON or CSV (really newline-separated) specified by `type=json` or `type=csv`
 
