@@ -24,7 +24,7 @@ class Record {
   /**
    * @ORM\Column(type="string", length=36)
    * @ORM\ManyToOne(targetEntity="User", inversedBy="records")
-   * @ORM\JoinColumn(name="owner_uuid", referencedColumnName="uuid")
+   * @ORM\JoinColumn(name="the_owner_uuid", referencedColumnName="uuid")
    */
   protected $owner_uuid;
 

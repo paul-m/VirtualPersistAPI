@@ -46,7 +46,7 @@ class APIController extends Controller
         }
       }
       
-      return new Response ('No Such Item.', 404);
+      return new Response ('404: No Such Item.', 404);
     }
 }
 

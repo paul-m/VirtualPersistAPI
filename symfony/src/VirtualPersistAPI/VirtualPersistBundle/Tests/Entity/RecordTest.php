@@ -3,11 +3,11 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
 
-class RecordEntity extends \PHPUnit_Framework_TestCase
+class RecordEntityTest extends \PHPUnit_Framework_TestCase
 {
 
-  public function testThing() {
-    $this->assertTrue(TRUE);
+  public function testCreate() {
+    $this->assertNotNull(new Record());
   }
 
 }

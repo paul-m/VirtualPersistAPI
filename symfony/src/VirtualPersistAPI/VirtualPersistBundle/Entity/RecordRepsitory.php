@@ -15,20 +15,21 @@ class RecordRepsitory extends EntityRepository
 {
   public function findOneByUUIDCategoryKey($uuid, $category, $key) {
     $query = $this->getEntityManager()
-        ->createQuery('
-            SELECT r FROM VirtualPersistBundle:Record r
-            WHERE r.owner_uuid = :uuid AND r.category = :category AND r.key = :key'
-        )
-        ->setParameter('uuid', $uuid)
-        ->setParameter('category', $category)
-        ->setParameter('key', $key);
+      ->createQuery('
+          SELECT r FROM VirtualPersistBundle:Record r
+          WHERE r.owner_uuid = :uuid AND r.category = :category AND r.key = :key'
+      )
+      ->setParameter('uuid', $uuid)
+      ->setParameter('category', $category)
+      ->setParameter('key', $key);
 
     try {
-        $res = $query->getSingleResult();
-        return $res;
-    } catch (NoResultException $e) {
-        return null;
+      return $query->getSingleResult();
+    } catch (\Exception $e) {
+      // The show must go on.
+      return null;
     }
   }
 
 }
+

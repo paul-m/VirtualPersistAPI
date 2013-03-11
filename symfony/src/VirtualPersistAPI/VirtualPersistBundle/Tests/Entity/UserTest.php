@@ -3,11 +3,11 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
 use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
 
-class UserEntity extends \PHPUnit_Framework_TestCase
+class UserEntityTest extends \PHPUnit_Framework_TestCase
 {
 
-  public function testThing() {
-    $this->assertTrue(TRUE);
+  public function testCreate() {
+    $this->assertNotNull(new User());
   }
 
 }
