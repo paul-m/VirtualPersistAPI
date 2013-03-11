@@ -82,5 +82,34 @@ class APIController extends Controller
       return new Response ('No Such Item.', 404, array('content-type' => 'text/plain'));
     }
 
+    /**
+     * @Route("/{uuid}/categories", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+     * @Method({"GET"})
+     */
+    public function categoriesAction($uuid) {
+      $doctrine = $this->getDoctrine();
+      $categories = $doctrine
+        ->getRepository('VirtualPersistBundle:Record')
+        ->categoriesForUUID($uuid, $category, $key);
+
+      // Did we get an answer?
+      if ($categories) {
+        $user = $doctrine
+          ->getRepository('VirtualPersistBundle:User')
+          ->findOneByUuid($uuid);
+        if ($user) { // if($user->has_authentication)
+          $request = $this->getRequest();
+          $responseType = $request->get('type');
+          if (!in_array($responseType, array('json', 'csv')))
+            $responseType = 'json';
+
+            // more here....
+
+        }
+      }
+
+      return new Response ('No Such User.', 404, array('content-type' => 'text/plain'));
+    }
+
 }
 

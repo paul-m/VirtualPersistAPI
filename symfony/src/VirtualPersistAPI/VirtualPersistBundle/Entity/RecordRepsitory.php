@@ -30,6 +30,35 @@ class RecordRepsitory extends EntityRepository
       return null;
     }
   }
+  
+  public function categoriesForUUID($uuid) {
+    $query = $this->getEntityManager()
+      ->createQuery('
+        SELECT DISTINCT r.category FROM VirtualPersistBundle:Record r
+        WHERE r.owner_uuid = :uuid'
+      )
+      ->setParameter('uuid', $uuid);
+    try {
+      return $query->getResult();
+    } catch (\Exception $e) {
+      return null;
+    }
+  }
+
+  public function keysForUUIDCategory($uuid, $category) {
+    $query = $this->getEntityManager()
+      ->createQuery('
+        SELECT DISTINCT r.key FROM VirtualPersistBundle:Record r
+        WHERE r.owner_uuid = :uuid AND r.category = :category'
+      )
+      ->setParameter('uuid', $uuid)
+      ->setParameter('category', $category);
+    try {
+      return $query->getResult();
+    } catch (\Exception $e) {
+      return null;
+    }
+  }
 
 }
 

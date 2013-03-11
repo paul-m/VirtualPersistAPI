@@ -655,7 +655,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1.2.1",
+                "url": "https://github.com/Seldaek/monolog/zipball/1.2.1",
                 "reference": "1.2.1",
                 "shasum": ""
             },
@@ -699,7 +699,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2012-08-29 11:53:20"
+            "time": "2012-08-29 04:53:20"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1604,9 +1604,7 @@
             "time": "2013-02-09 18:21:53"
         }
     ],
-    "packages-dev": [
-
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
@@ -1614,11 +1612,5 @@
     "stability-flags": {
         "twig/extensions": 20,
         "kriswallsmith/assetic": 20
-    },
-    "platform": {
-        "php": ">=5.3.3"
-    },
-    "platform-dev": [
-
-    ]
+    }
 }
