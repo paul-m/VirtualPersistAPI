@@ -29,7 +29,13 @@ Data POSTed will be a urlencoded form submission, in the form:
 
 GET will return the URI contents as text/plain. Initially.
 
-The endpoint will be configurable per instance of the application. We'll arbitrarily say that 'vpa' is a good choice of endpoint name.
+The authorized consumer can query for categories and keys:
+
+`[endpoint]/[useruuid]/categories`
+
+`[endpoint]/[useruuid]/[category]/keys`
+
+These can return JSON or CSV (really newline-separated) specified by `type=json` or `type=csv`
 
 All content type restrictions will be dictated by the Second Life http request system. http://wiki.secondlife.com/wiki/LlHTTPRequest
 
