@@ -59,6 +59,18 @@ class RecordRepsitory extends EntityRepository
       return null;
     }
   }
+  
+/*  public function deleteUUIDCategoryKey($uuid, $category, $key) {
+    $query = $this->getEntityManager()
+      ->createQuery('
+        DELETE VirtualPersistBundle:Record r
+        WHERE r.owner_uuid = :uuid AND r.category = :category AND r.key = :key'
+      )
+      ->setParameter('uuid', $uuid)
+      ->setParameter('category', $category)
+      ->setParameter('key', $key)
+      ->execute();
+  }*/
 
 }
 

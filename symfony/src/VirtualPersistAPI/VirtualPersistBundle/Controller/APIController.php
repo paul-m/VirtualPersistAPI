@@ -51,6 +51,41 @@ class APIController extends Controller
 
     /**
      * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+     * @Method({"POST"})
+     */
+    public function postAction($uuid, $category, $key)
+    {
+      $doctrine = $this->getDoctrine();
+
+      $user = $doctrine
+        ->getRepository('VirtualPersistBundle:User')
+        ->findOneByUuid($uuid);
+      if ($user) { // if($user->has_authentication)
+        $request = Request::createFromGlobals();
+        $data = $request->get('data');
+
+        $record = new Record();
+        $record->setOwnerUUID($uuid);
+        $record->setCategory($category);
+        $record->setKey($key);
+        $record->setData($data);
+        
+        $entityManager = $doctrine->getEntityManager();
+        $entityManager->persist($record);
+        $entityManager->flush();
+        
+        return new Response('Item added.', 200);
+      }
+      else {
+        return new Response('bad access.', 401);
+      }
+      return new Response ('Huh?', 503);
+    }
+
+    /**
+     * TODO: Delete action works from cli curl, hopefully we can get
+     * fixtures working soon.
+     * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
      * @Method({"DELETE"})
      */
     public function deleteAction($uuid, $category, $key)
@@ -73,13 +108,11 @@ class APIController extends Controller
 
           // Tell the user.
           $response = new Response('Item deleted.', 200);
-          $request = Request::createFromGlobals();
-          $response->prepare($request);
           return $response;
         }
       }
 
-      return new Response ('No Such Item.', 404, array('content-type' => 'text/plain'));
+      return new Response ('No Such Item.', 404);
     }
 
     /**
@@ -107,7 +140,7 @@ class APIController extends Controller
         }
       }
 
-      return new Response ('No Such User.', 404, array('content-type' => 'text/plain'));
+      return new Response ('Item not found.', 404, array('content-type' => 'text/plain'));
     }
 
     /**

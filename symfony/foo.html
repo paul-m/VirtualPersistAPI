@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="robots" content="noindex,nofollow" />
+        <title>    An exception occurred while executing &#039;INSERT INTO Record (owner_uuid, category, key, data) VALUES (?, ?, ?, ?)&#039; with params {&quot;1&quot;:&quot;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&quot;,&quot;2&quot;:&quot;foo&quot;,&quot;3&quot;:&quot;bar&quot;,&quot;4&quot;:&quot;datazaza&quot;}:
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#039;key, data) VALUES (&#039;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&#039;, &#039;foo&#039;, &#039;bar&#039;, &#039;dataza&#039; at line 1 (500 Internal Server Error)
+</title>
+        <link href="/bundles/framework/css/exception_layout.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/bundles/framework/css/exception.css" rel="stylesheet" type="text/css" media="all" />
+    </head>
+    <body>
+        <div id="content">
+            <div class="header clear_fix">
+                <div class="header_logo">
+                    <img src="/bundles/framework/images/logo_symfony.png" alt="Symfony" />
+                </div>
+
+                <div class="search">
+                  <form method="get" action="http://symfony.com/search">
+                    <div class="form_row">
+
+                      <label for="search_id">
+                          <img src="/bundles/framework/images/grey_magnifier.png" alt="Search on Symfony website" />
+                      </label>
+
+                      <input name="q" id="search_id" type="search" placeholder="Search on Symfony website" />
+
+                      <button type="submit">
+                        <span class="border_l">
+                          <span class="border_r">
+                            <span class="btn_bg">OK</span>
+                          </span>
+                        </span>
+                      </button>
+                    </div>
+                   </form>
+                </div>
+            </div>
+
+                <div class="sf-exceptionreset">
+
+    <div class="block_exception">
+        <div class="block_exception_detected clear_fix">
+            <div class="illustration_exception">
+                <img alt="Exception detected!" src="/bundles/framework/images/exception_detected.png"/>
+            </div>
+            <div class="text_exception">
+
+                <div class="open_quote">
+                    <img alt="" src="/bundles/framework/images/open_quote.gif"/>
+                </div>
+
+                <h1>
+                    An exception occurred while executing &#039;INSERT INTO Record (owner_uuid, category, key, data) VALUES (?, ?, ?, ?)&#039; with params {&quot;1&quot;:&quot;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&quot;,&quot;2&quot;:&quot;foo&quot;,&quot;3&quot;:&quot;bar&quot;,&quot;4&quot;:&quot;datazaza&quot;}:<br />
+<br />
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#039;key, data) VALUES (&#039;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&#039;, &#039;foo&#039;, &#039;bar&#039;, &#039;dataza&#039; at line 1
+                </h1>
+
+                <div>
+                    <strong>500</strong> Internal Server Error - <abbr title="Doctrine\DBAL\DBALException">DBALException</abbr>
+                </div>
+
+                                                    <div class="linked"><span><strong>1</strong> linked Exception:</span>
+                        <ul>
+                                                            <li>
+                                    <abbr title="PDOException">PDOException</abbr> <a href="#traces_link_1" onclick="toggle('traces_1', 'traces'); switchIcons('icon_traces_1_open', 'icon_traces_1_close');">&#187;</a>
+                                </li>
+                                                    </ul>
+                    </div>
+                
+                <div class="close_quote">
+                    <img alt="" src="/bundles/framework/images/close_quote.gif"/>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+            <div class="block">
+            <h2>
+            <span><small>[2/2]</small></span>
+            <abbr title="Doctrine\DBAL\DBALException">DBALException</abbr>: An exception occurred while executing &#039;INSERT INTO Record (owner_uuid, category, key, data) VALUES (?, ?, ?, ?)&#039; with params {&quot;1&quot;:&quot;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&quot;,&quot;2&quot;:&quot;foo&quot;,&quot;3&quot;:&quot;bar&quot;,&quot;4&quot;:&quot;datazaza&quot;}:<br />
+<br />
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#039;key, data) VALUES (&#039;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&#039;, &#039;foo&#039;, &#039;bar&#039;, &#039;dataza&#039; at line 1&nbsp;
+            <a href="#" onclick="toggle('traces_0', 'traces'); switchIcons('icon_traces_0_open', 'icon_traces_0_close'); return false;"><img class="toggle" id="icon_traces_0_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_traces_0_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>        </h2>
+    
+    <a id="traces_link_0"></a>
+    <ol class="traces list_exception" id="traces_0" style="display: none">
+                    <li>
+                
+    
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php at line 47&nbsp;
+    <a href="#" onclick="toggle('trace_0_0'); switchIcons('icon_0_0_open', 'icon_0_0_close'); return false;"><img class="toggle" id="icon_0_0_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: visible" /><img class="toggle" id="icon_0_0_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: hidden; margin-left: -18px" /></a>    <div id="trace_0_0" style="display: block" class="trace">
+        <ol start="44"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$msg&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">":\n\n"</span><span style="color: #007700">.</span><span style="color: #0000BB">$driverEx</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;new&nbsp;<span style="color: #0000BB">self</span><span style="color: #007700">(</span><span style="color: #0000BB">$msg</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$driverEx</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;<span style="color: #0000BB">invalidWrapperClass</span><span style="color: #007700">(</span><span style="color: #0000BB">$wrapperClass</span><span style="color: #007700">)</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\DBAL\DBALException">DBALException</abbr>
+        ::driverExceptionDuringQuery
+    </strong>
+    (<em>object</em>(<abbr title="PDOException">PDOException</abbr>), 'INSERT INTO Record (owner_uuid, category, key, data) VALUES (?, ?, ?, ?)', <em>array</em>('2FD305FF-12A7-4E92-8D7C-5ADF891284F3', 'foo', 'bar', 'datazaza'))
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php at line 140&nbsp;
+    <a href="#" onclick="toggle('trace_0_1'); switchIcons('icon_0_1_open', 'icon_0_1_close'); return false;"><img class="toggle" id="icon_0_1_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_1_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_1" style="display: none" class="trace">
+        <ol start="137"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$params</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$ex</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span style="color: #0000BB">DBALException</span><span style="color: #007700">::</span><span style="color: #0000BB">driverExceptionDuringQuery</span><span style="color: #007700">(</span><span style="color: #0000BB">$ex</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sql</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">resolveParams</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">params</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">types</span><span style="color: #007700">));</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$logger</span><span style="color: #007700">)&nbsp;{</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\DBAL\Statement">Statement</abbr>
+        -&gt;execute
+    </strong>
+    ()
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php at line 277&nbsp;
+    <a href="#" onclick="toggle('trace_0_2'); switchIcons('icon_0_2_open', 'icon_0_2_close'); return false;"><img class="toggle" id="icon_0_2_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_2_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_2" style="display: none" class="trace">
+        <ol start="274"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$isPostInsertId</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$idGen</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">generate</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_em</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$entity</span><span style="color: #007700">);</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\Persisters\BasicEntityPersister">BasicEntityPersister</abbr>
+        -&gt;executeInserts
+    </strong>
+    ()
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php at line 920&nbsp;
+    <a href="#" onclick="toggle('trace_0_3'); switchIcons('icon_0_3_open', 'icon_0_3_close'); return false;"><img class="toggle" id="icon_0_3_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_3_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_3" style="display: none" class="trace">
+        <ol start="917"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$postInsertIds&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$persister</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeInserts</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$postInsertIds</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">//&nbsp;Persister&nbsp;returned&nbsp;post-insert&nbsp;IDs</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\UnitOfWork">UnitOfWork</abbr>
+        -&gt;executeInserts
+    </strong>
+    (<em>object</em>(<abbr title="Doctrine\ORM\Mapping\ClassMetadata">ClassMetadata</abbr>))
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php at line 311&nbsp;
+    <a href="#" onclick="toggle('trace_0_4'); switchIcons('icon_0_4_open', 'icon_0_4_close'); return false;"><img class="toggle" id="icon_0_4_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_4_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_4" style="display: none" class="trace">
+        <ol start="308"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">entityInsertions</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(<span style="color: #0000BB">$commitOrder&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$class</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeInserts</span><span style="color: #007700">(</span><span style="color: #0000BB">$class</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\UnitOfWork">UnitOfWork</abbr>
+        -&gt;commit
+    </strong>
+    (<em>null</em>)
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php at line 355&nbsp;
+    <a href="#" onclick="toggle('trace_0_5'); switchIcons('icon_0_5_open', 'icon_0_5_close'); return false;"><img class="toggle" id="icon_0_5_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_5_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_5" style="display: none" class="trace">
+        <ol start="352"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errorIfClosed</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unitOfWork</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">commit</span><span style="color: #007700">(</span><span style="color: #0000BB">$entity</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">/**</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\EntityManager">EntityManager</abbr>
+        -&gt;flush
+    </strong>
+    (<em>null</em>)
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/cache/dev/jms_diextra/doctrine/EntityManager_513e944ba9354.php at line 362&nbsp;
+    <a href="#" onclick="toggle('trace_0_6'); switchIcons('icon_0_6_open', 'icon_0_6_close'); return false;"><img class="toggle" id="icon_0_6_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_6_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_6" style="display: none" class="trace">
+        <ol start="359"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">flush</span><span style="color: #007700">(</span><span style="color: #0000BB">$entity&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">)</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">delegate</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flush</span><span style="color: #007700">(</span><span style="color: #0000BB">$entity</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">/**</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="EntityManager513e944ba9354_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">EntityManager</abbr>
+        -&gt;flush
+    </strong>
+    ()
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/src/VirtualPersistAPI/VirtualPersistBundle/Controller/APIController.php at line 75&nbsp;
+    <a href="#" onclick="toggle('trace_0_7'); switchIcons('icon_0_7_open', 'icon_0_7_close'); return false;"><img class="toggle" id="icon_0_7_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_7_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_7" style="display: none" class="trace">
+        <ol start="72"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$entityManager&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doctrine</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getEntityManager</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$entityManager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">persist</span><span style="color: #007700">(</span><span style="color: #0000BB">$record</span><span style="color: #007700">);</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$entityManager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flush</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;new&nbsp;<span style="color: #0000BB">Response</span><span style="color: #007700">(</span><span style="color: #DD0000">'Item&nbsp;added.'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="VirtualPersistAPI\VirtualPersistBundle\Controller\APIController">APIController</abbr>
+        -&gt;postAction
+    </strong>
+    ('2FD305FF-12A7-4E92-8D7C-5ADF891284F3', 'foo', 'bar')
+
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title=""></abbr>
+        call_user_func_array
+    </strong>
+    (<em>array</em>(<em>object</em>(<abbr title="VirtualPersistAPI\VirtualPersistBundle\Controller\APIController">APIController</abbr>), 'postAction'), <em>array</em>('2FD305FF-12A7-4E92-8D7C-5ADF891284F3', 'foo', 'bar'))
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/bootstrap.php.cache at line 1428&nbsp;
+    <a href="#" onclick="toggle('trace_0_9'); switchIcons('icon_0_9_open', 'icon_0_9_close'); return false;"><img class="toggle" id="icon_0_9_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_9_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_9" style="display: none" class="trace">
+        <ol start="1425"><li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$arguments&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">resolver</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getArguments</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$controller</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">call_user_func_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$controller</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$arguments</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!<span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">instanceof&nbsp;</span><span style="color: #0000BB">Response</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$event&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GetResponseForControllerResultEvent</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$response</span><span style="color: #007700">);</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\HttpKernel">HttpKernel</abbr>
+        -&gt;handleRaw
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>), '1')
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/bootstrap.php.cache at line 1392&nbsp;
+    <a href="#" onclick="toggle('trace_0_10'); switchIcons('icon_0_10_open', 'icon_0_10_close'); return false;"><img class="toggle" id="icon_0_10_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_10_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_10" style="display: none" class="trace">
+        <ol start="1389"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;<span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">Request&nbsp;$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">HttpKernelInterface</span><span style="color: #007700">::</span><span style="color: #0000BB">MASTER_REQUEST</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$catch&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">)</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handleRaw</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">$catch</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span style="color: #0000BB">$e</span><span style="color: #007700">;</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\HttpKernel">HttpKernel</abbr>
+        -&gt;handle
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>), '1', <em>true</em>)
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/bootstrap.php.cache at line 1568&nbsp;
+    <a href="#" onclick="toggle('trace_0_11'); switchIcons('icon_0_11_open', 'icon_0_11_close'); return false;"><img class="toggle" id="icon_0_11_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_11_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_11" style="display: none" class="trace">
+        <ol start="1565"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">container</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #DD0000">'request'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'request'</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$catch</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">container</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">leaveScope</span><span style="color: #007700">(</span><span style="color: #DD0000">'request'</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Bundle\FrameworkBundle\HttpKernel">HttpKernel</abbr>
+        -&gt;handle
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>), '1', <em>true</em>)
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/bootstrap.php.cache at line 619&nbsp;
+    <a href="#" onclick="toggle('trace_0_12'); switchIcons('icon_0_12_open', 'icon_0_12_close'); return false;"><img class="toggle" id="icon_0_12_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_12_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_12" style="display: none" class="trace">
+        <ol start="616"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">boot</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getHttpKernel</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$catch</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;</code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\Kernel">Kernel</abbr>
+        -&gt;handle
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>))
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/web/app_dev.php at line 25&nbsp;
+    <a href="#" onclick="toggle('trace_0_13'); switchIcons('icon_0_13_open', 'icon_0_13_close'); return false;"><img class="toggle" id="icon_0_13_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_0_13_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_0_13" style="display: none" class="trace">
+        <ol start="22"><li><code><span style="color: #0000BB">$kernel&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">AppKernel</span><span style="color: #007700">(</span><span style="color: #DD0000">'dev'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);</span></code></li>
+<li><code><span style="color: #0000BB">$kernel</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadClassCache</span><span style="color: #007700">();</span></code></li>
+<li><code><span style="color: #0000BB">$request&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">Request</span><span style="color: #007700">::</span><span style="color: #0000BB">createFromGlobals</span><span style="color: #007700">();</span></code></li>
+<li class="selected"><code><span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$kernel</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">);</span></code></li>
+<li><code><span style="color: #0000BB">$response</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">send</span><span style="color: #007700">();</span></code></li>
+<li><code><span style="color: #0000BB">$kernel</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">terminate</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$response</span><span style="color: #007700">);</span></code></li>
+<li><code>
+</code></li></ol>
+    </div>
+            </li>
+            </ol>
+</div>
+            <div class="block">
+            <h2>
+            <span><small>[1/2]</small></span>
+            <abbr title="PDOException">PDOException</abbr>: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#039;key, data) VALUES (&#039;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&#039;, &#039;foo&#039;, &#039;bar&#039;, &#039;dataza&#039; at line 1&nbsp;
+            <a href="#" onclick="toggle('traces_1', 'traces'); switchIcons('icon_traces_1_open', 'icon_traces_1_close'); return false;"><img class="toggle" id="icon_traces_1_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_traces_1_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>        </h2>
+    
+    <a id="traces_link_1"></a>
+    <ol class="traces list_exception" id="traces_1" style="display: none">
+                    <li>
+                
+    
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php at line 138&nbsp;
+    <a href="#" onclick="toggle('trace_1_0'); switchIcons('icon_1_0_open', 'icon_1_0_close'); return false;"><img class="toggle" id="icon_1_0_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: visible" /><img class="toggle" id="icon_1_0_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: hidden; margin-left: -18px" /></a>    <div id="trace_1_0" style="display: block" class="trace">
+        <ol start="135"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$params</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$ex</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span style="color: #0000BB">DBALException</span><span style="color: #007700">::</span><span style="color: #0000BB">driverExceptionDuringQuery</span><span style="color: #007700">(</span><span style="color: #0000BB">$ex</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sql</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">resolveParams</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">params</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">types</span><span style="color: #007700">));</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="PDOStatement">PDOStatement</abbr>
+        -&gt;execute
+    </strong>
+    (<em>null</em>)
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php at line 138&nbsp;
+    <a href="#" onclick="toggle('trace_1_1'); switchIcons('icon_1_1_open', 'icon_1_1_close'); return false;"><img class="toggle" id="icon_1_1_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_1_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_1" style="display: none" class="trace">
+        <ol start="135"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$params</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$ex</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span style="color: #0000BB">DBALException</span><span style="color: #007700">::</span><span style="color: #0000BB">driverExceptionDuringQuery</span><span style="color: #007700">(</span><span style="color: #0000BB">$ex</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">sql</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">conn</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">resolveParams</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">params</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">types</span><span style="color: #007700">));</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\DBAL\Statement">Statement</abbr>
+        -&gt;execute
+    </strong>
+    ()
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php at line 277&nbsp;
+    <a href="#" onclick="toggle('trace_1_2'); switchIcons('icon_1_2_open', 'icon_1_2_close'); return false;"><img class="toggle" id="icon_1_2_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_2_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_2" style="display: none" class="trace">
+        <ol start="274"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$isPostInsertId</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$idGen</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">generate</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_em</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$entity</span><span style="color: #007700">);</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\Persisters\BasicEntityPersister">BasicEntityPersister</abbr>
+        -&gt;executeInserts
+    </strong>
+    ()
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php at line 920&nbsp;
+    <a href="#" onclick="toggle('trace_1_3'); switchIcons('icon_1_3_open', 'icon_1_3_close'); return false;"><img class="toggle" id="icon_1_3_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_3_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_3" style="display: none" class="trace">
+        <ol start="917"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$postInsertIds&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$persister</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeInserts</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$postInsertIds</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">//&nbsp;Persister&nbsp;returned&nbsp;post-insert&nbsp;IDs</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\UnitOfWork">UnitOfWork</abbr>
+        -&gt;executeInserts
+    </strong>
+    (<em>object</em>(<abbr title="Doctrine\ORM\Mapping\ClassMetadata">ClassMetadata</abbr>))
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php at line 311&nbsp;
+    <a href="#" onclick="toggle('trace_1_4'); switchIcons('icon_1_4_open', 'icon_1_4_close'); return false;"><img class="toggle" id="icon_1_4_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_4_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_4" style="display: none" class="trace">
+        <ol start="308"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">entityInsertions</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(<span style="color: #0000BB">$commitOrder&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$class</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">executeInserts</span><span style="color: #007700">(</span><span style="color: #0000BB">$class</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\UnitOfWork">UnitOfWork</abbr>
+        -&gt;commit
+    </strong>
+    (<em>null</em>)
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php at line 355&nbsp;
+    <a href="#" onclick="toggle('trace_1_5'); switchIcons('icon_1_5_open', 'icon_1_5_close'); return false;"><img class="toggle" id="icon_1_5_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_5_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_5" style="display: none" class="trace">
+        <ol start="352"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errorIfClosed</span><span style="color: #007700">();</span></code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">unitOfWork</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">commit</span><span style="color: #007700">(</span><span style="color: #0000BB">$entity</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">/**</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Doctrine\ORM\EntityManager">EntityManager</abbr>
+        -&gt;flush
+    </strong>
+    (<em>null</em>)
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/cache/dev/jms_diextra/doctrine/EntityManager_513e944ba9354.php at line 362&nbsp;
+    <a href="#" onclick="toggle('trace_1_6'); switchIcons('icon_1_6_open', 'icon_1_6_close'); return false;"><img class="toggle" id="icon_1_6_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_6_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_6" style="display: none" class="trace">
+        <ol start="359"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">flush</span><span style="color: #007700">(</span><span style="color: #0000BB">$entity&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">)</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">delegate</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flush</span><span style="color: #007700">(</span><span style="color: #0000BB">$entity</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF8000">/**</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="EntityManager513e944ba9354_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">EntityManager</abbr>
+        -&gt;flush
+    </strong>
+    ()
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/src/VirtualPersistAPI/VirtualPersistBundle/Controller/APIController.php at line 75&nbsp;
+    <a href="#" onclick="toggle('trace_1_7'); switchIcons('icon_1_7_open', 'icon_1_7_close'); return false;"><img class="toggle" id="icon_1_7_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_7_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_7" style="display: none" class="trace">
+        <ol start="72"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$entityManager&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$doctrine</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getEntityManager</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$entityManager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">persist</span><span style="color: #007700">(</span><span style="color: #0000BB">$record</span><span style="color: #007700">);</span></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$entityManager</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">flush</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;new&nbsp;<span style="color: #0000BB">Response</span><span style="color: #007700">(</span><span style="color: #DD0000">'Item&nbsp;added.'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">200</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="VirtualPersistAPI\VirtualPersistBundle\Controller\APIController">APIController</abbr>
+        -&gt;postAction
+    </strong>
+    ('2FD305FF-12A7-4E92-8D7C-5ADF891284F3', 'foo', 'bar')
+
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title=""></abbr>
+        call_user_func_array
+    </strong>
+    (<em>array</em>(<em>object</em>(<abbr title="VirtualPersistAPI\VirtualPersistBundle\Controller\APIController">APIController</abbr>), 'postAction'), <em>array</em>('2FD305FF-12A7-4E92-8D7C-5ADF891284F3', 'foo', 'bar'))
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/bootstrap.php.cache at line 1428&nbsp;
+    <a href="#" onclick="toggle('trace_1_9'); switchIcons('icon_1_9_open', 'icon_1_9_close'); return false;"><img class="toggle" id="icon_1_9_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_9_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_9" style="display: none" class="trace">
+        <ol start="1425"><li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$arguments&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">resolver</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getArguments</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$controller</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">call_user_func_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$controller</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$arguments</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!<span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">instanceof&nbsp;</span><span style="color: #0000BB">Response</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$event&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GetResponseForControllerResultEvent</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$response</span><span style="color: #007700">);</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\HttpKernel">HttpKernel</abbr>
+        -&gt;handleRaw
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>), '1')
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/bootstrap.php.cache at line 1392&nbsp;
+    <a href="#" onclick="toggle('trace_1_10'); switchIcons('icon_1_10_open', 'icon_1_10_close'); return false;"><img class="toggle" id="icon_1_10_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_10_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_10" style="display: none" class="trace">
+        <ol start="1389"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;<span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">Request&nbsp;$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">HttpKernelInterface</span><span style="color: #007700">::</span><span style="color: #0000BB">MASTER_REQUEST</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$catch&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">)</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handleRaw</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(<span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">$catch</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;<span style="color: #0000BB">$e</span><span style="color: #007700">;</span></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\HttpKernel">HttpKernel</abbr>
+        -&gt;handle
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>), '1', <em>true</em>)
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/bootstrap.php.cache at line 1568&nbsp;
+    <a href="#" onclick="toggle('trace_1_11'); switchIcons('icon_1_11_open', 'icon_1_11_close'); return false;"><img class="toggle" id="icon_1_11_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_11_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_11" style="display: none" class="trace">
+        <ol start="1565"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">container</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set</span><span style="color: #007700">(</span><span style="color: #DD0000">'request'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'request'</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{</code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">parent</span><span style="color: #007700">::</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$catch</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(\<span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">container</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">leaveScope</span><span style="color: #007700">(</span><span style="color: #DD0000">'request'</span><span style="color: #007700">);</span></code></li>
+<li><code></code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Bundle\FrameworkBundle\HttpKernel">HttpKernel</abbr>
+        -&gt;handle
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>), '1', <em>true</em>)
+
+    <br />
+    in <abbr title="/Users/paul/VirtualPersistAPI/symfony/app/">kernel.root_dir</abbr>/bootstrap.php.cache at line 619&nbsp;
+    <a href="#" onclick="toggle('trace_1_12'); switchIcons('icon_1_12_open', 'icon_1_12_close'); return false;"><img class="toggle" id="icon_1_12_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_12_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_12" style="display: none" class="trace">
+        <ol start="616"><li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">boot</span><span style="color: #007700">();</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li class="selected"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getHttpKernel</span><span style="color: #007700">()-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$type</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$catch</span><span style="color: #007700">);</span></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></li>
+<li><code></code></li>
+<li><code>&nbsp;&nbsp;&nbsp;&nbsp;</code></li></ol>
+    </div>
+            </li>
+                    <li>
+                    at
+    <strong>
+        <abbr title="Symfony\Component\HttpKernel\Kernel">Kernel</abbr>
+        -&gt;handle
+    </strong>
+    (<em>object</em>(<abbr title="Symfony\Component\HttpFoundation\Request">Request</abbr>))
+
+    <br />
+    in /Users/paul/VirtualPersistAPI/symfony/web/app_dev.php at line 25&nbsp;
+    <a href="#" onclick="toggle('trace_1_13'); switchIcons('icon_1_13_open', 'icon_1_13_close'); return false;"><img class="toggle" id="icon_1_13_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: hidden" /><img class="toggle" id="icon_1_13_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: visible; margin-left: -18px" /></a>    <div id="trace_1_13" style="display: none" class="trace">
+        <ol start="22"><li><code><span style="color: #0000BB">$kernel&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">AppKernel</span><span style="color: #007700">(</span><span style="color: #DD0000">'dev'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);</span></code></li>
+<li><code><span style="color: #0000BB">$kernel</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">loadClassCache</span><span style="color: #007700">();</span></code></li>
+<li><code><span style="color: #0000BB">$request&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">Request</span><span style="color: #007700">::</span><span style="color: #0000BB">createFromGlobals</span><span style="color: #007700">();</span></code></li>
+<li class="selected"><code><span style="color: #0000BB">$response&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$kernel</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">);</span></code></li>
+<li><code><span style="color: #0000BB">$response</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">send</span><span style="color: #007700">();</span></code></li>
+<li><code><span style="color: #0000BB">$kernel</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">terminate</span><span style="color: #007700">(</span><span style="color: #0000BB">$request</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$response</span><span style="color: #007700">);</span></code></li>
+<li><code>
+</code></li></ol>
+    </div>
+            </li>
+            </ol>
+</div>
+    
+            <div class="block">
+            <div class="logs clear_fix">
+                <h2>
+                    Logs&nbsp;
+                    <a href="#" onclick="toggle('logs'); switchIcons('icon_logs_open', 'icon_logs_close'); return false;"><img class="toggle" id="icon_logs_open" alt="+" src="/bundles/framework/images/blue_picto_more.gif" style="visibility: hidden" /><img class="toggle" id="icon_logs_close" alt="-" src="/bundles/framework/images/blue_picto_less.gif" style="visibility: visible; margin-left: -18px" /></a></h2>
+                                    <div class="error_count">
+                        <span>
+                            1 error
+                        </span>
+                    </div>
+                
+            </div>
+
+            <div id="logs">
+                <ol class="traces logs">
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ProfilerListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            INFO - Matched route &quot;virtualpersistapi_virtualpersist_api_post&quot; (parameters: &quot;_controller&quot;: &quot;VirtualPersistAPI\VirtualPersistBundle\Controller\APIController::postAction&quot;, &quot;uuid&quot;: &quot;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&quot;, &quot;category&quot;: &quot;foo&quot;, &quot;key&quot;: &quot;bar&quot;, &quot;_route&quot;: &quot;virtualpersistapi_virtualpersist_api_post&quot;)
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\Security\Http\Firewall::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\AsseticBundle\EventListener\RequestListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\DataCollector\RouterDataCollector::onKernelController&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener::onKernelController&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener::onKernelController&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelController&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Symfony\Component\HttpKernel\DataCollector\RequestDataCollector::onKernelController&quot;.
+        </li>
+            <li>
+            DEBUG - SELECT t0.id AS id1, t0.uuid AS uuid2, t0.password AS password3 FROM User t0 WHERE t0.uuid = ? LIMIT 1
+        </li>
+            <li>
+            DEBUG - &quot;START TRANSACTION&quot;
+        </li>
+            <li>
+            DEBUG - INSERT INTO Record (owner_uuid, category, key, data) VALUES (?, ?, ?, ?)
+        </li>
+            <li>
+            DEBUG - &quot;ROLLBACK&quot;
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.exception&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ProfilerListener::onKernelException&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.exception&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException&quot;.
+        </li>
+            <li class="error">
+            CRITICAL - Doctrine\DBAL\DBALException: An exception occurred while executing &#039;INSERT INTO Record (owner_uuid, category, key, data) VALUES (?, ?, ?, ?)&#039; with params {&quot;1&quot;:&quot;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&quot;,&quot;2&quot;:&quot;foo&quot;,&quot;3&quot;:&quot;bar&quot;,&quot;4&quot;:&quot;datazaza&quot;}:
+
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#039;key, data) VALUES (&#039;2FD305FF-12A7-4E92-8D7C-5ADF891284F3&#039;, &#039;foo&#039;, &#039;bar&#039;, &#039;dataza&#039; at line 1 (uncaught exception) at /Users/paul/VirtualPersistAPI/symfony/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php line 47
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\ProfilerListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Component\Security\Http\Firewall::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.request&quot; to listener &quot;Symfony\Bundle\AsseticBundle\EventListener\RequestListener::onKernelRequest&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Symfony\Bundle\FrameworkBundle\DataCollector\RouterDataCollector::onKernelController&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener::onKernelController&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener::onKernelController&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener::onKernelController&quot;.
+        </li>
+            <li>
+            DEBUG - Notified event &quot;kernel.controller&quot; to listener &quot;Symfony\Component\HttpKernel\DataCollector\RequestDataCollector::onKernelController&quot;.
+        </li>
+    </ol>
+            </div>
+
+        </div>
+    
+    
+</div>
+
+<script type="text/javascript">//<![CDATA[
+    function toggle(id, clazz) {
+        var el = document.getElementById(id),
+            current = el.style.display,
+            i;
+
+        if (clazz) {
+            var tags = document.getElementsByTagName('*');
+            for (i = tags.length - 1; i >= 0 ; i--) {
+                if (tags[i].className === clazz) {
+                    tags[i].style.display = 'none';
+                }
+            }
+        }
+
+        el.style.display = current === 'none' ? 'block' : 'none';
+    }
+
+    function switchIcons(id1, id2) {
+        var icon1, icon2, visibility1, visibility2;
+
+        icon1 = document.getElementById(id1);
+        icon2 = document.getElementById(id2);
+
+        visibility1 = icon1.style.visibility;
+        visibility2 = icon2.style.visibility;
+
+        icon1.style.visibility = visibility2;
+        icon2.style.visibility = visibility1;
+    }
+//]]></script>
+        </div>
+    
+<div id="sfwdt513e990fac080" class="sf-toolbar" style="display: none"></div><script type="text/javascript">/*<![CDATA[*/    Sfjs = (function() {        "use strict";        var noop = function() {},            request = function(url, onSuccess, onError, payload, options) {                var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');                options = options || {};                xhr.open(options.method || 'GET', url, true);                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');                xhr.onreadystatechange = function(state) {                    if (4 === xhr.readyState && 200 === xhr.status) {                        (onSuccess || noop)(xhr);                    } else if (4 === xhr.readyState && xhr.status != 200) {                        (onError || noop)(xhr);                    }                };                xhr.send(payload || '');            },            hasClass = function(el, klass) {                return el.className.match(new RegExp('\\b' + klass + '\\b'));            },            removeClass = function(el, klass) {                el.className = el.className.replace(new RegExp('\\b' + klass + '\\b'), ' ');            },            addClass = function(el, klass) {                if (!hasClass(el, klass)) { el.className += " " + klass; }            };        return {            hasClass: hasClass,            removeClass: removeClass,            addClass: addClass,            request: request,            load: function(selector, url, onSuccess, onError, options) {                var el = document.getElementById(selector);                if (el && el.getAttribute('data-sfurl') !== url) {                    request(                        url,                        function(xhr) {                            el.innerHTML = xhr.responseText;                            el.setAttribute('data-sfurl', url);                            removeClass(el, 'loading');                            (onSuccess || noop)(xhr, el);                        },                        function(xhr) { (onError || noop)(xhr, el); },                        options                    );                }                return this;            },            toggle: function(selector, elOn, elOff) {                var i,                    style,                    tmp = elOn.style.display,                    el = document.getElementById(selector);                elOn.style.display = elOff.style.display;                elOff.style.display = tmp;                if (el) {                    el.style.display = 'none' === tmp ? 'none' : 'block';                }                return this;            }        }    })();/*]]>*/</script><script type="text/javascript">/*<![CDATA[*/    (function () {                Sfjs.load(            'sfwdt513e990fac080',            '/app_dev.php/_wdt/513e990fac080',            function(xhr, el) {                el.style.display = -1 !== xhr.responseText.indexOf('sf-toolbarreset') ? 'block' : 'none';            },            function(xhr) {                if (xhr.status !== 0) {                    confirm('An error occurred while loading the web debug toolbar (' + xhr.status + ': ' + xhr.statusText + ').\n\nDo you want to open the profiler?') && (window.location = '/app_dev.php/_profiler/513e990fac080');                }            }        );    })();/*]]>*/</script>
+</body>
+</html>

@@ -43,6 +43,12 @@ class APIControllerTest extends WebTestCase
       array(
         '/api/00000000-0000-0000-0000-000000000000/extantProperty/extantKey',
       ),
+      array(
+        '/api/properties/00000000-0000-0000-0000-000000000000',
+      ),
+      array(
+        '/api/keys/00000000-0000-0000-0000-000000000000/extantProperty',
+      ),
     );
   }
 
