@@ -1,0 +1,46 @@
+web1:
+    shared_writable_dirs:
+     - app/cache
+     - app/logs
+     - app/sessions
+
+    document_root: web
+    default_gateway: app.php
+    index_list: [app.php]
+
+    php_version: 5.3.10
+    php_extensions:
+     - apc
+     - intl
+     - mbstring
+     - xsl
+     - mysql
+     - pdo_mysql
+     - zip
+
+    php_short_open_tag: "0"
+    php_magic_quotes_gpc: "0"
+    php_register_globals: "0"
+    php_session_autostart: "0"
+    php_date_timezone: America/Detroit
+
+    after_build:
+        - "cp app/config/parameters.pagoda.yml app/config/parameters.yml"
+        - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
+        - "php symfony/composer.phar install -n"
+        - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
+#        - "php vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/data/build-data.php"
+    before_deploy:
+        - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
+        - "php symfony/app/console --env=prod --no-debug cache:warmup"
+        - "php symfony/app/console --env=prod --no-debug doctrine:schema:create --force"
+#        - "php symfony/app/console --env=prod --no-debug doctrine:migrations:migrate -n"
+
+db1:
+    name: symfony
+    type: mysql
+
+global:
+    env:
+        - USE_INTL_ICU_DATA_VERSION: true
+

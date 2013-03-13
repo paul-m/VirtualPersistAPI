@@ -8,17 +8,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-class DefaultController extends Controller
-{
+class DefaultController extends Controller {
 
-    /**
-     * @Route("/")
-     * @Template()
-     */
-    public function indexAction()
-    {
-      return array('content' => "Hi, I'm your VirtualPersistAPI site.");
-    }
+  /**
+   * @Route("/")
+   * @Template()
+   */
+  public function indexAction() {
+    return array('content' => "Hi, I'm your VirtualPersistAPI site.");
+  }
 
 }
 
