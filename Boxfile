@@ -25,7 +25,7 @@ web1:
     php_date_timezone: America/Detroit
 
     after_build:
-        - "cp app/config/parameters.pagoda.yml app/config/parameters.yml"
+        - "cp symfony/app/config/parameters.pagoda.yml symfony/app/config/parameters.yml"
         - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
         - "php symfony/composer.phar install -n"
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
