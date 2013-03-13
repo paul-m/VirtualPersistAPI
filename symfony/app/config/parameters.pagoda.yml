@@ -3,11 +3,11 @@ imports:
 
 parameters:
     database_driver:   pdo_mysql
-    database_host:     %database.host%
-    database_port:     %database.port%
-    database_name:     %database.name%
-    database_user:     %database.user%
-    database_password: %database.password%
+#    database_host:     %database.host%
+#    database_port:     %database.port%
+#    database_name:     %database.name%
+#    database_user:     %database.user%
+#    database_password: %database.password%
 
     mailer_transport:  smtp
     mailer_host:       localhost
