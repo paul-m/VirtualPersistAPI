@@ -15,7 +15,18 @@ class DefaultController extends Controller {
    * @Template()
    */
   public function indexAction() {
-    return array('content' => "Hi, I'm your VirtualPersistAPI site.");
+    $userRepo = $this->getDoctrine()
+      ->getRepository('VirtualPersistBundle:User');
+    $recordRepo = $this->getDoctrine()
+      ->getRepository('VirtualPersistBundle:Record');
+
+    $users = $userRepo->getAll();
+    $categories = $recordRepo->uniqueCategories();
+    return array(
+      'header' => "Hi, I'm your VirtualPersistAPI site.",
+      'users' => $users,
+      'categories' => $categories
+    );
   }
 
 }

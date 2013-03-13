@@ -3,6 +3,7 @@
 namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
 
 /**
  * UserRepsitory
@@ -12,4 +13,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepsitory extends EntityRepository
 {
+    public function getAll()
+    {
+      try {
+        $users = $this->_em
+          ->createQuery('SELECT u FROM VirtualPersistBundle:User u')
+          ->getResult();
+        if (!empty($users)) {
+          return $users;
+        }
+      } catch (\Exception $e) {
+      }
+      $user = new User();
+      $user->setUuid('<none>');
+      return array($user);
+    }
 }

@@ -6,7 +6,8 @@ php:
 
 before_script:
   - cd ./symfony
-  - composer -v update
+  - composer -v -o --no-progress update
+  - php ./app/console cache:clear -e=test
 
 script: ./vendor/bin/phpunit -c ./app
 
