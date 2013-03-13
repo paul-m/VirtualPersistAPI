@@ -49,11 +49,23 @@ class APIController extends Controller {
    */
   public function postAction($uuid, $category, $key) {
     $doctrine = $this->getDoctrine();
+    $entityManager = $doctrine->getEntityManager();
 
     $user = $doctrine
-            ->getRepository('VirtualPersistBundle:User')
-            ->findOneByUuid($uuid);
+      ->getRepository('VirtualPersistBundle:User')
+      ->findOneByUuid($uuid);
     if ($user) { // if($user->has_authentication)
+
+      $records = $doctrine
+        ->getRepository('VirtualPersistBundle:Record')
+        ->findAllByUUIDCategoryKey($uuid, $category, $key);
+      if (!empty($records)) {
+        foreach($records as $record) {
+          $entityManager->remove($record);
+        }
+        $entityManager->flush();
+      }
+
       $request = Request::createFromGlobals();
       $data = $request->get('data');
       $record = new Record();
@@ -62,7 +74,6 @@ class APIController extends Controller {
       $record->setKey($key);
       $record->setData($data);
 
-      $entityManager = $doctrine->getEntityManager();
       $entityManager->persist($record);
       $entityManager->flush();
 
