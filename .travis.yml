@@ -6,7 +6,7 @@ php:
 
 before_script:
   - cd ./symfony
-  - composer -v -o update
+  - composer -v update
 
 script: ./vendor/bin/phpunit -c ./app
 
