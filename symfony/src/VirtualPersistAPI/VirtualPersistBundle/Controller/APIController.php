@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
@@ -33,19 +32,14 @@ class APIController extends Controller {
               ->getRepository('VirtualPersistBundle:User')
               ->findOneByUuid($uuid);
       if ($user) { // if($user->has_authentication)
-        $tellme = 'uuid: ' . $uuid . ' category: ' . $category . ' key: ' . $key;
-        if ($record)
-          $tellme = $record->getData();
-
         $response = new Response(
-                        $tellme,
-                        200,
-                        array('content-type' => 'text/plain')
+                  $record->getData(),
+                  200,
+                  array('content-type' => 'text/plain')
         );
         return $response;
       }
     }
-
     return new Response('404: No Such Item.', 404);
   }
 
@@ -165,9 +159,9 @@ class APIController extends Controller {
         }
         // for now we just return json.
         return new Response(
-                        json_encode($keyArray),
-                        200,
-                        array('content-type' => 'application/json')
+                    json_encode($keyArray),
+                    200,
+                    array('content-type' => 'application/json')
         );
       }
     }

@@ -27,13 +27,19 @@ class APIControllerTest extends WebTestCase {
             '/api/00000000-0000-0000-0000-000000000000',
         ),
         array(
-            '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantProperty',
+            '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantCategory',
         ),
         array(
-            '/api/00000000-0000-0000-0000-000000000000/nonexistantProperty',
+            '/api/00000000-0000-0000-0000-000000000000/nonexistantCategory',
         ),
         array(
-            '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantProperty/nonexistantKey',
+            '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantCategory/nonexistantKey',
+        ),
+        array(
+            '/api/categories/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/',
+        ),
+        array(
+            '/api/keys/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantCategory',
         ),
     );
   }
@@ -41,13 +47,13 @@ class APIControllerTest extends WebTestCase {
   public function goodPathDataProvider() {
     return array(
         array(
-            '/api/00000000-0000-0000-0000-000000000000/extantProperty/extantKey',
+            '/api/00000000-0000-0000-0000-000000000000/extantCategory/extantKey',
         ),
         array(
-            '/api/properties/00000000-0000-0000-0000-000000000000',
+            '/api/categories/00000000-0000-0000-0000-000000000000',
         ),
         array(
-            '/api/keys/00000000-0000-0000-0000-000000000000/extantProperty',
+            '/api/keys/00000000-0000-0000-0000-000000000000/extantCategory',
         ),
     );
   }
