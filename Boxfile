@@ -1,3 +1,7 @@
+db1:
+    name: symfony
+    type: mysql
+
 web1:
     shared_writable_dirs:
      - app/cache
@@ -41,10 +45,6 @@ web1:
         - "php symfony/app/console --env=prod --no-debug cache:warmup"
         - "php symfony/app/console --env=prod --no-debug doctrine:schema:create --force"
 #        - "php symfony/app/console --env=prod --no-debug doctrine:migrations:migrate -n"
-
-db1:
-    name: symfony
-    type: mysql
 
 global:
     env:
