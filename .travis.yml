@@ -5,8 +5,8 @@ php:
   - 5.4
 
 before_script:
-  - curl -s https://getcomposer.org/installer | php -- --install-dir="symfony"
-  - php ./symfony/composer.phar -v -o -d=symfony/ update
+  - cd ./symfony
+  - composer -v -o update
 
-script: ./symfony/vendor/bin/phpunit -c ./symfony/app
+script: ./vendor/bin/phpunit -c ./app
 
