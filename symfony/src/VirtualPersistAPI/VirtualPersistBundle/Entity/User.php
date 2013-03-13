@@ -37,16 +37,7 @@ class User {
    * __ORM\Column(type="string", length=255)
    */
   protected $permission;
-  
-  /**
-   * @ORM\OneToMany(targetEntity="Record", mappedBy="owner_uuid")
-   */
-  protected $records;
-  
-  public function __construct() {
-    $this->records = new ArrayCollection();
-  }
-  
+    
     /**
      * Get id
      *

@@ -20,14 +20,5 @@ class DefaultController extends Controller
       return array('content' => "Hi, I'm your VirtualPersistAPI site.");
     }
 
-    /**
-     * @Route("/delete")
-     * @Method({"DELETE"})
-     */
-    public function deleteAction()
-    {
-      return new Response('woot.');
-    }
-
 }
 

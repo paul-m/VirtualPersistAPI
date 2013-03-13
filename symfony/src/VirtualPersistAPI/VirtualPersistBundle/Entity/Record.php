@@ -23,8 +23,6 @@ class Record {
   
   /**
    * @ORM\Column(type="string", length=36)
-   * @ORM\ManyToOne(targetEntity="User", inversedBy="records")
-   * @ORM\JoinColumn(name="the_owner_uuid", referencedColumnName="uuid")
    */
   protected $owner_uuid;
 
@@ -36,7 +34,7 @@ class Record {
   /**
    * @ORM\Column(type="string", length=255)
    */
-  protected $key;
+  protected $aKey;
 
   /**
    * @ORM\Column(type="text")
@@ -108,7 +106,7 @@ class Record {
      */
     public function setKey($key)
     {
-        $this->key = $key;
+        $this->aKey = $key;
     
         return $this;
     }
@@ -120,7 +118,7 @@ class Record {
      */
     public function getKey()
     {
-        return $this->key;
+        return $this->aKey;
     }
 
     /**

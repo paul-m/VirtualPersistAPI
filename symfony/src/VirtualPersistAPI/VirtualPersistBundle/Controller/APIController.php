@@ -38,10 +38,11 @@ class APIController extends Controller
           $tellme = 'uuid: ' . $uuid . ' category: ' . $category . ' key: ' . $key;
           if ($record) $tellme = $record->getData();
 
-          $response = new Response();
-          $response->setContent($tellme);
-          $request = Request::createFromGlobals();
-          $response->prepare($request);
+          $response = new Response(
+            $tellme,
+            200,
+            array('content-type' => 'text/plain')
+          );
           return $response;
         }
       }
@@ -63,7 +64,6 @@ class APIController extends Controller
       if ($user) { // if($user->has_authentication)
         $request = Request::createFromGlobals();
         $data = $request->get('data');
-
         $record = new Record();
         $record->setOwnerUUID($uuid);
         $record->setCategory($category);
@@ -131,9 +131,13 @@ class APIController extends Controller
           ->getRepository('VirtualPersistBundle:User')
           ->findOneByUuid($uuid);
         if ($user) { // if($user->has_authentication)
+          $categoryArray = array();
+          foreach ($categories as $category) {
+            $categoryArray[] = $category['category'];
+          }
           // for now we just return json.
           return new Response(
-            json_encode($categories),
+            json_encode($categoryArray),
             200,
             array('content-type' => 'application/json')
           );
@@ -159,16 +163,20 @@ class APIController extends Controller
           ->getRepository('VirtualPersistBundle:User')
           ->findOneByUuid($uuid);
         if ($user) { // if($user->has_authentication)
+          $keyArray = array();
+          foreach ($keys as $key) {
+            $keyArray[] = $key['aKey'];
+          }
           // for now we just return json.
           return new Response(
-            json_encode($keys),
+            json_encode($keyArray),
             200,
             array('content-type' => 'application/json')
           );
         }
       }
 
-      return new Response ('No Such User.', 404, array('content-type' => 'text/plain'));
+      return new Response ('Item not found.', 404, array('content-type' => 'text/plain'));
     }
 
 }

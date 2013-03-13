@@ -17,7 +17,7 @@ class RecordRepsitory extends EntityRepository
     $query = $this->getEntityManager()
       ->createQuery('
           SELECT r FROM VirtualPersistBundle:Record r
-          WHERE r.owner_uuid = :uuid AND r.category = :category AND r.key = :key'
+          WHERE r.owner_uuid = :uuid AND r.category = :category AND r.aKey = :key'
       )
       ->setParameter('uuid', $uuid)
       ->setParameter('category', $category)
@@ -48,7 +48,7 @@ class RecordRepsitory extends EntityRepository
   public function keysForUUIDCategory($uuid, $category) {
     $query = $this->getEntityManager()
       ->createQuery('
-        SELECT DISTINCT r.key FROM VirtualPersistBundle:Record r
+        SELECT DISTINCT r.aKey FROM VirtualPersistBundle:Record r
         WHERE r.owner_uuid = :uuid AND r.category = :category'
       )
       ->setParameter('uuid', $uuid)
@@ -64,7 +64,7 @@ class RecordRepsitory extends EntityRepository
     $query = $this->getEntityManager()
       ->createQuery('
         DELETE VirtualPersistBundle:Record r
-        WHERE r.owner_uuid = :uuid AND r.category = :category AND r.key = :key'
+        WHERE r.owner_uuid = :uuid AND r.category = :category AND r.aKey = :key'
       )
       ->setParameter('uuid', $uuid)
       ->setParameter('category', $category)
