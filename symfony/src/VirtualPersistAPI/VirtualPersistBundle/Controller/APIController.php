@@ -39,6 +39,7 @@ class APIController extends Controller {
         );
         return $response;
       }
+      return new Response('bad access.', 401);
     }
     return new Response('404: No Such Item.', 404);
   }

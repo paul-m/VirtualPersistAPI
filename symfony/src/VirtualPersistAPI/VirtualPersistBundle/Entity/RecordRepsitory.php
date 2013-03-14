@@ -22,9 +22,9 @@ class RecordRepsitory extends EntityRepository {
             ->setParameter('uuid', $uuid)
             ->setParameter('category', $category)
             ->setParameter('key', $key);
-
     try {
-      return $query->getSingleResult();
+      $result = $query->getSingleResult();
+      return $result;
     } catch (\Exception $e) {
       // The show must go on.
       return null;
