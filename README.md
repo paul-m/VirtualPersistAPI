@@ -12,6 +12,15 @@ The API includes a way to query for categories per UUID, and keys per category.
 
 There's a more detailed API spec document here: https://github.com/paul-m/VirtualPersistAPI/blob/master/spec/VirtualPersistAPI.md
 
+Why?
+----
+
+The main justification for writing this was to make a persistent data API for use by Second Life scripters.
+
+Also I wanted to learn Symfony.
+
+Also I needed a project for a PHP class I was taking. :-)
+
 License
 -------
 
