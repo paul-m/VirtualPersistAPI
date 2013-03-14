@@ -6,7 +6,7 @@ The Basics
 
 This API allows the user to POST, GET, and DELETE arbitrary content over http, based on their credentials.
 
-The data stored is a simple key->value relationship.
+The data stored is a simple category->key->value relationship.
 
 The key and value will be sent through a POST request. This really should be a PUT for RESTful semantic accuracy but PUT is a pain to configure in many circumstances. Part of the rationale for this API is so that non-experts can use it with relative ease, so we'll use POST.
 
@@ -27,7 +27,7 @@ Data POSTed will be a urlencoded form submission, in the form:
 
 `data=[payload]`
 
-GET will return the URI contents as text/plain. Initially.
+GET will return the URI contents as text/plain, since it's always the data you POSTed.
 
 The authorized consumer can query for categories and keys:
 
@@ -35,7 +35,7 @@ The authorized consumer can query for categories and keys:
 
 `[endpoint]/keys/[useruuid]/[category]`
 
-These can return JSON or CSV (really newline-separated) specified by `type=json` or `type=csv`
+These can return JSON or CSV or LSLON specified by `?type=[whichever]`. (Currently only JSON is supported.)
 
 All content type restrictions will be dictated by the Second Life http request system. http://wiki.secondlife.com/wiki/LlHTTPRequest
 

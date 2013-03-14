@@ -1,43 +1,51 @@
 VirtualPersistAPI
 =================
 
-VirtualPersistAPI (VPA) is a RESTful-ish http-based API for storing arbitrary data in a database.
+What is it?
+-----------
 
-What?
------
+VirtualPersistAPI (VPA) is a RESTful-ish http-based API for storing arbitrary data. You can POST data to VPA and then GET the data back, and then DELETE it if you want.
 
-You'll be able to store stuff in a database over the web.
+The data is identified in a three-tier hierarchy: The user's UUID, a category, and a key. The category and key are arbitrary.
 
-Specifically, VPA is designed for use by scripting systems which, even though they can do sophisticated things with data, can't persist that data within the system, even though they can make http requests.
+The API includes a way to query for categories per UUID, and keys per category.
 
-I'm talking about Second Life. VPA is an external persistence system for Second Life. But it can be used by anything that can make http requests.
+There's a more detailed API spec document here: https://github.com/paul-m/VirtualPersistAPI/blob/master/spec/VirtualPersistAPI.md
 
 License
 -------
 
 The final licensing for this project will be an open-source license compatible with its components, and free for anyone to use however they see fit.
 
+Components
+----------
+
+VirtualPersistAPI uses the following components:
+
+- Symfony2
+- Doctrine ORM
+- PHPUnit
+
 Roadmap
 -------
 
-Part of the reason VPA exists is that I needed a project for a PHP class, and this is an idea I've had for a while.
+VirtualPersistAPI reached its first milestone: It currently has RESTful GET, POST, DELETE and category/key discovery. It can use any database supported by Doctrine (which relies on PDO).
 
-VPA will be written in Symfony2 and Doctrine, and thus in PHP.
+Future milestones:
 
-It will be developed in the following manner:
+1. Easy deployment. Currently targeting Pagodabox, but not quite there.
 
-- The RESTful API will be designed and specified.
-- Tests will be written against the API specification.
-- Entities and their relationships will be designed and specified.
-- Tests will be written against the entity specification.
-- Symfony and Doctrine will be written to make the tests pass.
+2. Real user authentication. Currently, the only authentication check is that a user UUID exists which matches the one in the request. This milestone will use the built-in Symfony user package.
 
-That's the idea, anyway. Let's see how it goes.
+3. User management/admin pages. Currently all admin happens by manipulating the database.
+
+4. Refactor my Symfony-noob code.
 
 Contribution
 ------------
 
-If you're in the class and want to work on this project, please ping me let me know and we can do it.
+The VirtualPersistAPI project is hosted on github. Fork, send pull requests, file issues... https://github.com/paul-m/VirtualPersistAPI
 
-If you're not in the class, I'll have to discuss it with my instructor, but I wager it's do-able.
+All contributions will require tests that pass travis. So write them. :-)
 
+[![Build Status](https://travis-ci.org/paul-m/VirtualPersistAPI.png)](https://travis-ci.org/paul-m/VirtualPersistAPI)
