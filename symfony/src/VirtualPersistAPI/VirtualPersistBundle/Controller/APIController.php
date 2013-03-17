@@ -1,5 +1,4 @@
 <?php
-
 namespace VirtualPersistAPI\VirtualPersistBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,13 +28,13 @@ class APIController extends Controller {
     // Did we get a record?
     if ($record) {
       $user = $doctrine
-              ->getRepository('VirtualPersistBundle:User')
-              ->findOneByUuid($uuid);
+        ->getRepository('VirtualPersistBundle:User')
+        ->findOneByUuid($uuid);
       if ($user) { // if($user->has_authentication)
         $response = new Response(
-                  $record->getData(),
-                  200,
-                  array('content-type' => 'text/plain')
+          $record->getData(),
+          200,
+          array('content-type' => 'text/plain')
         );
         return $response;
       }
