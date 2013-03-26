@@ -1,7 +1,7 @@
 <?php
-
 namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
+//use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(repositoryClass="UserRepsitory")
  * @ORM\Table(name="User")
  */
-class User {
+class User { //implements UserInterface {
 
   /**
    * @ORM\ID

@@ -182,16 +182,50 @@ class APIController extends Controller {
 
   /**
    * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
-   * @Method({"GET", "POST", "DELETE"})
+   * @Method({"GET"})
    */
-  public function userAction($uuid) {
+  public function userGetAction($uuid) {
     $user = $this->getDoctrine()
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
+    $request = Request::createFromGlobals();
+    $method = $request->getMethod();
     if ($user) {
       return new Response('User: ' . $user->getUUID());
     }
     return new Response('User? LOSER!', 404);
+  }
+
+  /**
+   * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+   * @Method({"POST"})
+   */
+  public function userPostAction($uuid) {
+    $user = new User();
+    $user->setUuid($request->get('uuid'));
+    $user->setPassword($request->get('password'));
+    $user->setPermission($request->get('permission'));
+    $em = $this->getDoctrine()->getEntityManager();
+    $em->persist($user);
+    $em->flush();
+    return new Response('User added.');
+  }
+  
+  /**
+   * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+   * @Method({"DELETE"})
+   */
+  public function userDeleteAction($uuid) {
+    $user = $this->getDoctrine()
+      ->getRepository('VirtualPersistBundle:User')
+      ->findOneByUuid($uuid);
+    if ($user) {
+      $em = $this->getDoctrine()->getEntityManager();
+      $em->remove($user);
+      $em->flush();
+      return new Response('User deleted.');
+    }
+    return new Response('No such user.', 404);
   }
 
 }
