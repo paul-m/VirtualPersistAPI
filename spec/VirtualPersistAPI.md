@@ -37,6 +37,21 @@ The authorized consumer can query for categories and keys:
 
 These can return JSON or CSV or LSLON specified by `?type=[whichever]`. (Currently only JSON is supported.)
 
+Authorized consumers can also query, add, and remove users:
+
+GET, POST, and DELETE: 
+
+`[endpoint]/user/[useruuid]`
+
+GETting the user will return information about the user. At this time, only the UUID is returned. In the future, other information such as name or UUID/URL of profile pic might also be included.
+
+POSTing a user will add it. Available attributes:
+
+- `pw` sets the password.
+- `perm` sets the permission.
+
+Including neither of these creates a record which has no permission to add records or do anything destructive.
+
 All content type restrictions will be dictated by the Second Life http request system. http://wiki.secondlife.com/wiki/LlHTTPRequest
 
 Authentication

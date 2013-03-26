@@ -180,5 +180,19 @@ class APIController extends Controller {
     return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
   }
 
+  /**
+   * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+   * @Method({"GET", "POST", "DELETE"})
+   */
+  public function userAction($uuid) {
+    $user = $this->getDoctrine()
+      ->getRepository('VirtualPersistBundle:User')
+      ->findOneByUuid($uuid);
+    if ($user) {
+      return new Response('User: ' . $user->getUUID());
+    }
+    return new Response('User? LOSER!', 404);
+  }
+
 }
 
