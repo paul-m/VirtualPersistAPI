@@ -16,6 +16,9 @@ use Symfony\Component\BrowserKit\Response;
  */
 class APIControllerTest extends WebTestCase {
 
+  /**
+   * Data provider for paths that should result in 404
+   */
   public function badPathDataProvider() {
     return array(
         array(
@@ -45,6 +48,9 @@ class APIControllerTest extends WebTestCase {
     );
   }
 
+  /**
+   * Data provider for paths that should result in 200
+   */
   public function goodPathDataProvider() {
     return array(
         array(

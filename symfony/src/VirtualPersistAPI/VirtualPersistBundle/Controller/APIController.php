@@ -20,6 +20,8 @@ class APIController extends Controller {
    * @Method({"GET"})
    */
   public function getAction($uuid, $category, $key) {
+    return new Response('404: No Such Item.', 404);
+
     $doctrine = $this->getDoctrine();
     $record = $doctrine
             ->getRepository('VirtualPersistBundle:Record')
