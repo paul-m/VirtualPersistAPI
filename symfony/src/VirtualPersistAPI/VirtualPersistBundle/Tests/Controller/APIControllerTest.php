@@ -3,6 +3,7 @@
 namespace VirtualPersistAPI\VirtualPersistBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Response;
 
 /**
  * Functional tests for the VirtualPersistAPI controller.
@@ -67,7 +68,8 @@ class APIControllerTest extends WebTestCase {
     // We assume the controller's prefix is /api
     $client = static::createClient();
     $crawler = $client->request('GET', $path);
-    $this->assertTrue($client->getResponse()->isNotFound());
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(404, $status, "Status code: $status");
   }
 
 }
