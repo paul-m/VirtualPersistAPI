@@ -4,6 +4,9 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Response;
+use VirtualPersistAPI\VirtualPersistBundle\Tests\Testing\EnvironmentTestCase;
+
+use VirtualPersistAPI\VirtualPersistBundle\Tests\Rigging\AppTestCase;
 
 /**
  * Functional tests for the VirtualPersistAPI controller.
@@ -14,7 +17,7 @@ use Symfony\Component\BrowserKit\Response;
  *
  * @TODO: Make a fixture and test authentication.
  */
-class APIControllerTest extends WebTestCase {
+class APIControllerPathTest extends AppTestCase {
 
   /**
    * Data provider for paths that should result in 404
@@ -72,7 +75,7 @@ class APIControllerTest extends WebTestCase {
    */
   public function testPaths404($path) {
     // We assume the controller's prefix is /api
-    $client = static::createClient();
+    $client = static::createClientForApp();
     $crawler = $client->request('GET', $path);
     $status = $client->getResponse()->getStatusCode();
     $this->assertEquals(404, $status, "Status code: $status");

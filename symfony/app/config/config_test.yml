@@ -4,10 +4,6 @@ imports:
     - { resource: parameters_test.yml }
     - { resource: config_dev.yml }
 
-doctrine:
-  dbal:
-    path: "%database_path%"
-
 framework:
     test: ~
     session:
