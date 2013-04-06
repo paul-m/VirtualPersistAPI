@@ -21,29 +21,32 @@ class APIController extends Controller {
    */
   public function getAction($uuid, $category, $key) {
 //    return new Response('404: No Such Item.', 404);
-
-    $doctrine = $this->getDoctrine();
-    $record = $doctrine
-            ->getRepository('VirtualPersistBundle:Record')
-            ->findOneByUUIDCategoryKey($uuid, $category, $key);
-
-    // Did we get a record?
-    if ($record) {
-      $user = $doctrine
-        ->getRepository('VirtualPersistBundle:User')
-        ->findOneByUuid($uuid);
-      if ($user) { // if($user->has_authentication)
-        $response = new Response(
-          $record->getData(),
-          200,
-          array('content-type' => 'text/plain')
-        );
-        return $response;
+    try {
+      $doctrine = $this->getDoctrine();
+      $record = $doctrine
+              ->getRepository('VirtualPersistBundle:Record')
+              ->findOneByUUIDCategoryKey($uuid, $category, $key);
+  
+      // Did we get a record?
+      if ($record) {
+        $user = $doctrine
+          ->getRepository('VirtualPersistBundle:User')
+          ->findOneByUuid($uuid);
+        if ($user) { // if($user->has_authentication)
+          $response = new Response(
+            $record->getData(),
+            200,
+            array('content-type' => 'text/plain')
+          );
+          return $response;
+        }
+        return new Response('bad access.', 401);
       }
-      return new Response('bad access.', 401);
+    } catch (\Exception $e) {
     }
     return new Response('404: No Such Item.', 404);
   }
+
 
   /**
    * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
