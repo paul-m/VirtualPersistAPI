@@ -26,7 +26,9 @@ class DefaultControllerTest extends WebTestCase {
     // We assume the controller's prefix is /api
     $client = static::createClient();
     $crawler = $client->request('GET', $path);
-    $this->assertTrue($client->getResponse()->isSuccessful());
+    $this->assertTrue($client->getResponse()->isSuccessful(),
+      'Result: ' . $client->getResponse()->getStatusCode()
+    );
   }
 
 }
