@@ -126,31 +126,35 @@ class APIController extends Controller {
    * @Method({"GET"})
    */
   public function categoriesAction($uuid) {
-    $doctrine = $this->getDoctrine();
-    $categories = $doctrine
-            ->getRepository('VirtualPersistBundle:Record')
-            ->categoriesForUUID($uuid);
-
-    // Did we get an answer?
-    if ($categories) {
-      $user = $doctrine
-              ->getRepository('VirtualPersistBundle:User')
-              ->findOneByUuid($uuid);
-      if ($user) { // if($user->has_authentication)
-        $categoryArray = array();
-        foreach ($categories as $category) {
-          $categoryArray[] = $category['category'];
+    try {
+      $doctrine = $this->getDoctrine();
+      $categories = $doctrine
+              ->getRepository('VirtualPersistBundle:Record')
+              ->categoriesForUUID($uuid);
+  
+      // Did we get an answer?
+      if ($categories) {
+        $user = $doctrine
+                ->getRepository('VirtualPersistBundle:User')
+                ->findOneByUuid($uuid);
+        if ($user) { // if($user->has_authentication)
+          $categoryArray = array();
+          foreach ($categories as $category) {
+            $categoryArray[] = $category['category'];
+          }
+          // for now we just return json.
+          return new Response(
+                          json_encode($categoryArray),
+                          200,
+                          array('content-type' => 'application/json')
+          );
         }
-        // for now we just return json.
-        return new Response(
-                        json_encode($categoryArray),
-                        200,
-                        array('content-type' => 'application/json')
-        );
       }
+  
+      return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
+    } catch (\Exception $e) {
     }
-
-    return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
+    return new Response('Item not found.', 404);
   }
 
   /**
@@ -158,31 +162,35 @@ class APIController extends Controller {
    * @Method({"GET"})
    */
   public function keysAction($uuid, $category) {
-    $doctrine = $this->getDoctrine();
-    $keys = $doctrine
-            ->getRepository('VirtualPersistBundle:Record')
-            ->keysForUUIDCategory($uuid, $category);
-
-    // Did we get an answer?
-    if ($keys) {
-      $user = $doctrine
-              ->getRepository('VirtualPersistBundle:User')
-              ->findOneByUuid($uuid);
-      if ($user) { // if($user->has_authentication)
-        $keyArray = array();
-        foreach ($keys as $key) {
-          $keyArray[] = $key['aKey'];
+    try {
+      $doctrine = $this->getDoctrine();
+      $keys = $doctrine
+              ->getRepository('VirtualPersistBundle:Record')
+              ->keysForUUIDCategory($uuid, $category);
+  
+      // Did we get an answer?
+      if ($keys) {
+        $user = $doctrine
+                ->getRepository('VirtualPersistBundle:User')
+                ->findOneByUuid($uuid);
+        if ($user) { // if($user->has_authentication)
+          $keyArray = array();
+          foreach ($keys as $key) {
+            $keyArray[] = $key['aKey'];
+          }
+          // for now we just return json.
+          return new Response(
+                      json_encode($keyArray),
+                      200,
+                      array('content-type' => 'application/json')
+          );
         }
-        // for now we just return json.
-        return new Response(
-                    json_encode($keyArray),
-                    200,
-                    array('content-type' => 'application/json')
-        );
       }
+  
+      return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
+    } catch (\Exception $e) {
     }
-
-    return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
+    return new Response('Item not found.', 404);
   }
 
   /**
