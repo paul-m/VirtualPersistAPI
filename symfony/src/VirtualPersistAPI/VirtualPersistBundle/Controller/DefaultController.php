@@ -15,6 +15,9 @@ class DefaultController extends Controller {
    * @Template()
    */
   public function indexAction() {
+    $resultArray = array(
+      'header' => "Hi, I'm your VirtualPersistAPI site.",
+    );
     try {
       $userRepo = $this->getDoctrine()
         ->getRepository('VirtualPersistBundle:User');
@@ -23,14 +26,11 @@ class DefaultController extends Controller {
   
       $users = $userRepo->getAll();
       $categories = $recordRepo->uniqueCategories();
-      return array(
-        'header' => "Hi, I'm your VirtualPersistAPI site.",
-        'users' => $users,
-        'categories' => $categories
-      );
+      $resultArray['users'] = $users;
+      $resultArray['categories'] = $categories;
     } catch (\Exception $e) {
     }
-    return new Response('Not available.', 404);
+    return $resultArray;
   }
 
 }
