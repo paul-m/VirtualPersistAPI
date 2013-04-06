@@ -17,6 +17,8 @@ class DefaultController extends Controller {
   public function indexAction() {
     $resultArray = array(
       'header' => "Hi, I'm your VirtualPersistAPI site.",
+      'users' => array(),
+      'categories' => array(),
     );
     try {
       $userRepo = $this->getDoctrine()
