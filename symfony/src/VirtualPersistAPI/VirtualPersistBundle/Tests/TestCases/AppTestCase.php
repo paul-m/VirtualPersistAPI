@@ -1,5 +1,5 @@
 <?php
-namespace VirtualPersistAPI\VirtualPersistBundle\Tests\Rigging;
+namespace VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases;
 
 // Very clearly a rip-off of Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 // Other inspiration: http://blog.sznapka.pl/fully-isolated-tests-in-symfony2/

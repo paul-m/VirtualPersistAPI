@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Response;
 use VirtualPersistAPI\VirtualPersistBundle\Tests\Testing\EnvironmentTestCase;
 
-use VirtualPersistAPI\VirtualPersistBundle\Tests\Rigging\AppTestCase;
+use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppTestCase;
 
 /**
  * Functional tests for the VirtualPersistAPI controller.
@@ -15,7 +15,8 @@ use VirtualPersistAPI\VirtualPersistBundle\Tests\Rigging\AppTestCase;
  * is always a bad UUID, and that 00000000-0000-0000-0000-000000000000
  * is good.
  *
- * @TODO: Make a fixture and test authentication.
+ * @TODO: Make a fixture
+ * @TODO: test authentication.
  */
 class APIControllerPathTest extends AppTestCase {
 
