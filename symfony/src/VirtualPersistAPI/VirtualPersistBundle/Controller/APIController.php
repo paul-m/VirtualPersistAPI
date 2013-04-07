@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
+use VirtualPersistAPI\VirtualPersistBundle\Response\TextPlainResponse;
 
 /**
  * Our prefix:
@@ -29,22 +30,18 @@ class APIController extends Controller {
   
       // Did we get a record?
       if ($record) {
-        $user = $doctrine
+        $user = $doctrine 
           ->getRepository('VirtualPersistBundle:User')
           ->findOneByUuid($uuid);
         if ($user) { // if($user->has_authentication)
-          $response = new Response(
-            $record->getData(),
-            200,
-            array('content-type' => 'text/plain')
-          );
-          return $response;
+          return new TextPlainResponse($record->getData(), 200);
         }
-        return new Response('bad access.', 401);
+        return new TextPlainResponse('bad access.', 401);
       }
     } catch (\Exception $e) {
+      // no-op
     }
-    return new Response('404: No Such Item.', 404);
+    return new TextPlainResponse('404: No Such Item.', 404);
   }
 
 
@@ -82,11 +79,11 @@ class APIController extends Controller {
       $entityManager->persist($record);
       $entityManager->flush();
 
-      return new Response('Item added.', 200);
+      return new TextPlainResponse('Item added.', 200);
     } else {
-      return new Response('bad access.', 401);
+      return new TextPlainResponse('bad access.', 401);
     }
-    return new Response('Huh?', 503);
+    return new TextPlainResponse('Huh?', 503);
   }
 
   /**
@@ -113,12 +110,12 @@ class APIController extends Controller {
         $entityManager->flush();
 
         // Tell the user.
-        $response = new Response('Item deleted.', 200);
+        $response = new TextPlainResponse('Item deleted.', 200);
         return $response;
       }
     }
 
-    return new Response('No Such Item.', 404);
+    return new TextPlainResponse('No Such Item.', 404);
   }
 
   /**
