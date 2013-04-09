@@ -51,7 +51,7 @@ A back-end is needed for management of users and various reports and log analysi
 - Reports and analysis.
 - Unit and functional tests.
 
-### Incidental Milestone
+### Incidental Milestones
 
 It might be the case that one of the following gets done while working on the other milestones:
 
