@@ -37,6 +37,18 @@ The authorized consumer can query for categories and keys:
 
 These can return JSON or CSV or LSLON specified by `?type=[whichever]`. (Currently only JSON is supported.)
 
+Example:
+
+	GET /api/C862D196-3972-4BA1-86FB-EEAD943A9C5E/aCategory/aKey
+	
+This will get whatever data exists at key `aKey` in category `aCategory` for the user with UUID `C862D196-3972-4BA1-86FB-EEAD943A9C5E`. Substitute `POST` or `DELETE` to manage the data itself.
+
+Example:
+
+	GET /api/keys/C862D196-3972-4BA1-86FB-EEAD943A9C5E/aCategory?type=json
+
+This will get the list of keys for `aCategory` belonging to user `C862D196-3972-4BA1-86FB-EEAD943A9C5E` as a JSON object.
+
 Authorized consumers can also query, add, and remove users:
 
 GET, POST, and DELETE: 
