@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/paul-m/VirtualPersistAPI.png)](https://travis-ci.org/paul-m/VirtualPersistAPI)
+
 VirtualPersistAPI
 =================
 
@@ -56,5 +58,3 @@ Contribution
 The VirtualPersistAPI project is hosted on github. Fork, send pull requests, file issues... https://github.com/paul-m/VirtualPersistAPI
 
 All contributions will require tests that pass travis. So write them. :-)
-
-[![Build Status](https://travis-ci.org/paul-m/VirtualPersistAPI.png)](https://travis-ci.org/paul-m/VirtualPersistAPI)
