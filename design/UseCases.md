@@ -23,6 +23,5 @@ The amount of data to be stored per record is limited mainly by LSL's request li
 Other use cases
 ---------------
 
-This system could be used by any consumer to persist arbitrary data. It could serve as a data store for non-LSL based systems.
-
+This system could be used by any consumer to persist arbitrary data. It could serve as a data store for non-LSL based systems, using the API.
 

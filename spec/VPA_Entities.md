@@ -11,7 +11,7 @@ VPA needs two entities:
 
 - Owner
   - UUID
-  - Password
+  - Password (hash)
   - Permission
-  - other?? Maybe WorldAPI stuff.
+  - Salt (the salt that was used to generate the password hash)
 
