@@ -28,4 +28,26 @@ class UserRepsitory extends EntityRepository
       $user->setUuid('<none>');
       return array($user);
     }
+
+    public function addUser(User $user) {
+      $em = $this->_em;
+      $conn = $em->getConnection();
+      // Save the user inside a transaction.
+      $conn->transactional(function($em, $user) {
+        $em->persist($user);
+        $em->flush();
+      });
+    }
+
+    public function addUsers(array $users) {
+      $em = $this->_em;
+      $conn = $em->getConnection();
+      // Transaction.
+      $conn->transactional(function ($em, $users) {
+        foreach($users as $user) {
+          $this->addUser($user);
+        }
+      });
+    }
+
 }

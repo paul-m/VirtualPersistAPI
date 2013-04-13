@@ -34,10 +34,24 @@ class User { //implements UserInterface {
   protected $password;
 
   /**
+   * @ORM\Column(type="string", length=255)
+   */
+  protected $salt;
+
+  /**
    * NOTE: This will change.
    * __ORM\Column(type="string", length=255)
    */
   protected $permission;
+
+  /**
+   * @_ORM\OneToMany(targetEntity="Record", mappedBy="owner_uuid")
+   */
+//  protected $records;
+  
+/*  public function __construct() {
+    $this->records = new \Doctrine\Common\Collections\ArrayCollection();
+  }*/
 
   /**
    * Get id

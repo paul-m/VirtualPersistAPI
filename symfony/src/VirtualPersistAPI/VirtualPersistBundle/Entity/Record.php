@@ -23,7 +23,8 @@ class Record {
   protected $id;
 
   /**
-   * @ORM\Column(type="string", length=36)
+   * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
+   * _@_ORM\Column(type="string", length=36)
    */
   protected $owner_uuid;
 
@@ -33,6 +34,7 @@ class Record {
   protected $category;
 
   /**
+   * Using aKey as the name, because key is a reserved word.
    * @ORM\Column(type="string", length=255)
    */
   protected $aKey;
