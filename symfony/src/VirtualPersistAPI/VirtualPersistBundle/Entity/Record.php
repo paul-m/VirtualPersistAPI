@@ -23,8 +23,16 @@ class Record {
   protected $id;
 
   /**
-   * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
-   * _@_ORM\Column(type="string", length=36)
+   * @ORM\Column(type="integer")
+   * @ORM\ManyToOne(targetEntity="User")
+   * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
+   */
+  protected $owner_id;
+
+  /**
+   * @ORM\Column(type="string", length=36)
+   * @ORM\ManyToOne(targetEntity="User")
+   * @ORM\JoinColumn(name="owner_uuid", referencedColumnName="uuid", nullable=false)
    */
   protected $owner_uuid;
 
@@ -34,7 +42,7 @@ class Record {
   protected $category;
 
   /**
-   * Using aKey as the name, because key is a reserved word.
+   * Using aKey as the column name, because key is a reserved word.
    * @ORM\Column(type="string", length=255)
    */
   protected $aKey;
@@ -43,6 +51,11 @@ class Record {
    * @ORM\Column(type="text")
    */
   protected $data;
+  
+  /**
+   * @ORM\Column(type="datetime")
+   */
+  protected $timestamp;
 
   /**
    * Get id

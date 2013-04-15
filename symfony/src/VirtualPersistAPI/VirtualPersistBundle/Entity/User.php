@@ -12,7 +12,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="UserRepsitory")
- * @ORM\Table(name="User")
+ * @ORM\Table(
+    name="User",
+    uniqueConstraints={
+      @ORM\UniqueConstraint(
+        name="user_uuid",columns={"uuid"}
+      )
+    })
  */
 class User { //implements UserInterface {
 
