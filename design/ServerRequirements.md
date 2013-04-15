@@ -7,6 +7,11 @@ VirtualPersistAPI is developed using Symfony2 and Doctrine, so it has the requir
 
 Since we're using Composer to install these components and manage their dependencies, our most basic requirements are those of Composer.
 
+Diagram
+-------
+
+![vpa_server_modules.png](/Users/paul/VirtualPersistAPI/design/vpa_server_modules.png "vpa_server_modules.png")
+
 PHP
 ---
 
@@ -25,7 +30,7 @@ Database
 --------
 
 - Compatible with PHP's PDO
-- We choose MySQL v.5.5.x.
+- We target MySQL v.5.5.x.
 
 Apache
 ------
