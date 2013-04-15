@@ -3,6 +3,8 @@
 Paul Mitchum, paul@mile23.com
 2013-04-13
 
+Markdown version of this document here: https://github.com/paul-m/VirtualPersistAPI/blob/master/design/Homework2.md
+
 Client Requirements
 ===================
 
@@ -15,12 +17,12 @@ There are two main consumers: Clients making http requests to the API, and clien
 API Request Client
 ------------------
 
-API requests can come from any source over http. The main use case is from within the virtual world of Second Life. Another important use case is a client for testing the app.
+API requests can come from any source over http. The main use case is from within the virtual world of Second Life, using the LSL scripting language. Another important use case is a client for testing the app.
 
 Requirements:
 
 - Able to perform HTTP requests.
-- Optional: Capable of authenticating.
+- Capable of generating hashes for authentication.
 
 Web Browser Client
 ------------------
@@ -87,13 +89,11 @@ The PHP files which use this system are in this directory: https://github.com/pa
 For instance, the Record entity is simply a class in PHP which has been marked as representing a table in the database. The many-to-one relationship between this entity and User is annotated this way:
 
     /**
-     * @ORM\Column(type="string", length=36)
+     * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
      */
     protected $owner_id;
-
-
 
 Here is a graphical diagram of the relationship between User and Record, generated with MySQL Workbench:
 

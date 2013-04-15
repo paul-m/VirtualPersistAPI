@@ -10,12 +10,12 @@ There are two main consumers: Clients making http requests to the API, and clien
 API Request Client
 ------------------
 
-API requests can come from any source over http. The main use case is from within the virtual world of Second Life. Another important use case is a client for testing the app.
+API requests can come from any source over http. The main use case is from within the virtual world of Second Life, using the LSL scripting language. Another important use case is a client for testing the app.
 
 Requirements:
 
 - Able to perform HTTP requests.
-- Optional: Capable of authenticating.
+- Capable of generating hashes for authentication.
 
 Web Browser Client
 ------------------

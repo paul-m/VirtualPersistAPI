@@ -13,13 +13,11 @@ The PHP files which use this system are in this directory: https://github.com/pa
 For instance, the Record entity is simply a class in PHP which has been marked as representing a table in the database. The many-to-one relationship between this entity and User is annotated this way:
 
     /**
-     * @ORM\Column(type="string", length=36)
+     * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
      */
     protected $owner_id;
-
-
 
 Here is a graphical diagram of the relationship between User and Record, generated with MySQL Workbench:
 
