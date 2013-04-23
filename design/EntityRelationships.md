@@ -1,6 +1,10 @@
 VirtualPersistAPI Entity Relationships
 ======================================
 
+by Paul Mitchum, April 28, 2012
+
+A Markdown version of this document exists here: https://github.com/paul-m/VirtualPersistAPI/blob/master/design/EntityRelationships.md
+
 Currently...
 ------------
 
@@ -26,3 +30,6 @@ The main difference between this and the previous version is the addition of the
 
 You can see the evidence of this in the semi-random constraint names, such as `UNIQ_AC016BC157698A6A` and `FK_8F02BF9DA76ED395`.
 
+This SQL results in an ERD such as this:
+
+![vpa_erd_group.png](vpa_erd_group.png "vpa_erd_group.png")
