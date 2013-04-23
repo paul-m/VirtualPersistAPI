@@ -1,7 +1,7 @@
 VirtualPersistAPI Entity Relationships
 ======================================
 
-by Paul Mitchum, April 28, 2012
+by Paul Mitchum, April 23, 2012
 
 A Markdown version of this document exists here: https://github.com/paul-m/VirtualPersistAPI/blob/master/design/EntityRelationships.md
 
