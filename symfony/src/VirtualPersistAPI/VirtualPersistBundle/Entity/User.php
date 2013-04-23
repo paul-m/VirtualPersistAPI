@@ -1,9 +1,10 @@
 <?php
 namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
-//use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+//use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * @file
@@ -20,7 +21,7 @@ use Doctrine\Common\Collections\ArrayCollection;
       )
     })
  */
-class User { //implements UserInterface {
+class User implements AdvancedUserInterface, \Serializable {
 
   /**
    * @ORM\ID
@@ -30,14 +31,24 @@ class User { //implements UserInterface {
   protected $id;
 
   /**
-   * @ORM\Column(type="string", length=36)
+   * @ORM\Column(type="string", length=255)
    */
-  protected $uuid;
+  protected $password;
 
   /**
    * @ORM\Column(type="string", length=255)
    */
-  protected $password;
+  protected $username;
+
+  /**
+   * @ORM\Column(type="string", length=255)
+   */
+  protected $email;
+
+  /**
+   * @ORM\Column(type="string", length=36)
+   */
+  protected $uuid;
 
   /**
    * @ORM\Column(type="string", length=255)
@@ -51,13 +62,31 @@ class User { //implements UserInterface {
   protected $permission;
 
   /**
+   * @ORM\Column(name="is_active", type="boolean")
+   */
+  private $isActive;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
+     *
+     */
+    private $groups;
+
+  /**
    * @_ORM\OneToMany(targetEntity="Record", mappedBy="owner_uuid")
    */
 //  protected $records;
   
-/*  public function __construct() {
-    $this->records = new \Doctrine\Common\Collections\ArrayCollection();
-  }*/
+  public function __construct() {
+      $this->groups = new ArrayCollection();
+      $this->isActive = true;
+      $this->salt = md5(uniqid(null, true));
+  }
+
+    public function getRoles()
+    {
+        return $this->groups->toArray();
+    }
 
   /**
    * Get id
@@ -130,6 +159,74 @@ class User { //implements UserInterface {
   public function getPermission() {
     return $this->permission;
   }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+        ) = unserialize($serialized);
+    }
+
+/*  public function isEqualTo(UserInterface $user) {
+      return $this->id === $user->getId();
+  }*/
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
 
 }
 
