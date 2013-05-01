@@ -41,10 +41,10 @@ class APIControllerPathTest extends AppTestCase {
             '/api/00000000-0000-0000-0000-000000000000/nonexistantCategory',
         ),
         array(
-            '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantCategory/nonexistantKey',
+            '/api/categories/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/',
         ),
         array(
-            '/api/categories/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/',
+            '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantCategory/nonexistantKey',
         ),
         array(
             '/api/keys/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantCategory',

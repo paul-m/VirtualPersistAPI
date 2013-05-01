@@ -1,0 +1,1 @@
+call RecordForUUID('A4CB1C9C-24BB-43D7-B6D9-8E57B8FAA5D5', 'cat', 'key');

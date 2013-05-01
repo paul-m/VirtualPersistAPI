@@ -34,7 +34,7 @@ class Record {
    * @ORM\ManyToOne(targetEntity="User")
    * @ORM\JoinColumn(name="owner_uuid", referencedColumnName="uuid", nullable=false)
    */
-  protected $owner_uuid;
+  //protected $owner_uuid;
 
   /**
    * @ORM\Column(type="string", length=255)

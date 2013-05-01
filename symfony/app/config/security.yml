@@ -21,6 +21,8 @@ security:
 
     firewalls:
         main:
+              ## change this pattern to reinstate the firewall
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
             http_basic: ~
             stateless:  true
 #        dev:
