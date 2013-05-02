@@ -7,7 +7,7 @@ php: 5.4
 before_script:
   - mysql -e 'create database vpa;'
   - cd ./symfony
-  - wget https://getcomposer.org/installer | php
+  - curl -s https://getcomposer.org/installer | php
   - ./composer.phar -v -o --no-progress update
   - php ./app/console cache:clear -e=test
 
