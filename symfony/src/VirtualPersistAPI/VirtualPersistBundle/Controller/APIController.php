@@ -194,7 +194,7 @@ class APIController extends Controller {
    * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"GET"})
    */
-  public function userGetAction($uuid) {
+/*  public function userGetAction($uuid) {
     $user = $this->getDoctrine()
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
@@ -210,7 +210,7 @@ class APIController extends Controller {
    * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"POST"})
    */
-  public function userPostAction($uuid) {
+/*  public function userPostAction($uuid) {
     $user = new User();
     $user->setUuid($request->get('uuid'));
     $user->setPassword($request->get('password'));
@@ -219,13 +219,13 @@ class APIController extends Controller {
     $em->persist($user);
     $em->flush();
     return new Response('User added.');
-  }
+  }*/
   
   /**
    * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"DELETE"})
    */
-  public function userDeleteAction($uuid) {
+/*  public function userDeleteAction($uuid) {
     $user = $this->getDoctrine()
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
@@ -236,7 +236,7 @@ class APIController extends Controller {
       return new Response('User deleted.');
     }
     return new Response('No such user.', 404);
-  }
+  }*/
 
 }
 

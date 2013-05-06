@@ -16,18 +16,26 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        main:
-            entity: { class: VirtualPersistBundle:User }
+        in_memory:
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+
+#    providers:
+#        main:
+#            entity: { class: VirtualPersistBundle:User }
 
     firewalls:
-        main:
+#        main:
               ## change this pattern to reinstate the firewall
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            http_basic: ~
-            stateless:  true
-#        dev:
 #            pattern:  ^/(_(profiler|wdt)|css|images|js)/
 #            security: false
+#            http_basic: ~
+#            stateless:  true
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
 
         login:
             pattern:  ^/demo/secured/login$

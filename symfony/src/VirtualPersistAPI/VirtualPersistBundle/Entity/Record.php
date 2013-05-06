@@ -3,6 +3,7 @@
 namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @file
@@ -25,16 +26,14 @@ class Record {
   /**
    * @ORM\Column(type="integer")
    * @ORM\ManyToOne(targetEntity="User")
-   * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false)
+   * ORM\JoinColumn(name="user_", referencedColumnName="id", nullable=false)
    */
   protected $owner_id;
 
   /**
    * @ORM\Column(type="string", length=36)
-   * @ORM\ManyToOne(targetEntity="User")
-   * @ORM\JoinColumn(name="owner_uuid", referencedColumnName="uuid", nullable=false)
    */
-  //protected $owner_uuid;
+  protected $owner_uuid;
 
   /**
    * @ORM\Column(type="string", length=255)
