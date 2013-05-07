@@ -29,14 +29,9 @@ class Group implements RoleInterface {
      */
     private $role;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="groups")
-     */
-    private $users;
-
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+  //      $this->users = new ArrayCollection();
     }
 
     // ... getters and setters for each property
@@ -93,38 +88,5 @@ class Group implements RoleInterface {
         $this->role = $role;
     
         return $this;
-    }
-
-    /**
-     * Add users
-     *
-     * @param \VirtualPersistAPI\VirtualPersistBundle\Entity\User $users
-     * @return Group
-     */
-    public function addUser(\VirtualPersistAPI\VirtualPersistBundle\Entity\User $users)
-    {
-        $this->users[] = $users;
-    
-        return $this;
-    }
-
-    /**
-     * Remove users
-     *
-     * @param \VirtualPersistAPI\VirtualPersistBundle\Entity\User $users
-     */
-    public function removeUser(\VirtualPersistAPI\VirtualPersistBundle\Entity\User $users)
-    {
-        $this->users->removeElement($users);
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
-    {
-        return $this->users;
     }
 }

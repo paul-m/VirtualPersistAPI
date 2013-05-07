@@ -22,6 +22,10 @@
         "phpunit/phpunit": "3.7.*@dev",
         "phpunit/dbunit": "1.2.*@dev"
     },
+    "require-dev": {
+        "doctrine/data-fixtures": "1.0.*@dev",
+        "doctrine/doctrine-fixtures-bundle": "*@dev"
+    },
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
