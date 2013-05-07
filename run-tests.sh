@@ -1,8 +1,9 @@
 #!/bin/sh
 
-curl -s https://getcomposer.org/installer | php -- --install-dir="symfony"
+cd symfony
 
-php ./symfony/composer.phar -v -o -d=symfony/ update
+curl -s https://getcomposer.org/installer | php
 
-./symfony/vendor/bin/phpunit -c ./symfony/app
+./composer.phar -v -o --dev update
 
+./bin/phpunit -c app
