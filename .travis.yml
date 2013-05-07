@@ -10,4 +10,4 @@ before_script:
   - rm composer.lock
   - ./composer.phar -v -o --dev --no-progress install
 
-script: ./bin/phpunit -c ./app --coverage-text
+script: ./bin/phpunit -c ./app
