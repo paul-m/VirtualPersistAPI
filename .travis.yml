@@ -5,11 +5,9 @@ php: 5.4
 #  - 5.4
 
 before_script:
-  - mysql -e 'create database vpa;'
   - cd ./symfony
   - curl -s https://getcomposer.org/installer | php
-  - ./composer.phar -v -o --no-progress update
-  - php ./app/console cache:clear -e=test
+  - rm composer.lock
+  - ./composer.phar -v -o --dev --no-progress install
 
-script: ./vendor/bin/phpunit -c ./app --coverage-text
-
+script: ./bin/phpunit -c ./app --coverage-text

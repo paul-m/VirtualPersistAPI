@@ -25,9 +25,9 @@ class Record {
 
   /**
    * @ORM\ManyToOne(targetEntity="User", inversedBy="records")
-   * @ORM\JoinColumn(name="record_user", referencedColumnName="id", nullable=false)
+   * @ORM\JoinColumn(name="owner", referencedColumnName="id", nullable=false)
    */
-  protected $owner_id;
+  protected $owner;
 
   /**
    * @ORM\Column(type="string", length=36)
@@ -86,11 +86,11 @@ class Record {
   }
   
   public function getOwner() {
-    return $this->owner_id;
+    return $this->owner;
   }
   
   public function setOwner($owner) {
-    $this->owner_id = $owner;
+    $this->owner = $owner;
     return $this;
   }
 
