@@ -24,9 +24,8 @@ class Record {
   protected $id;
 
   /**
-   * @ORM\Column(type="integer")
-   * @ORM\ManyToOne(targetEntity="User")
-   * ORM\JoinColumn(name="user_", referencedColumnName="id", nullable=false)
+   * @ORM\ManyToOne(targetEntity="User", inversedBy="records")
+   * @ORM\JoinColumn(name="record_user", referencedColumnName="id", nullable=false)
    */
   protected $owner_id;
 
@@ -56,6 +55,15 @@ class Record {
    */
   protected $timestamp;
 
+  public function setTimestamp($timestamp) {
+    $this->timestamp = $timestamp;
+    return $this;
+  }
+  
+  public function getTimestamp() {
+    return $this->timestamp;
+  }
+
   /**
    * Get id
    *
@@ -74,6 +82,15 @@ class Record {
   public function setOwnerUuid($ownerUuid) {
     $this->owner_uuid = $ownerUuid;
 
+    return $this;
+  }
+  
+  public function getOwner() {
+    return $this->owner_id;
+  }
+  
+  public function setOwner($owner) {
+    $this->owner_id = $owner;
     return $this;
   }
 

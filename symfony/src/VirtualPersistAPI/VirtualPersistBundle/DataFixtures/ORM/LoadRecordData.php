@@ -7,30 +7,29 @@
 
 namespace VirtualPersisAPI\VirtualPersistBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
-//use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+//use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
 
-class LoadRecordData implements FixtureInterface
+class LoadRecordData extends AbstractFixture implements OrderedFixtureInterface
 {
 
-  public function userFixtureDataSource() {
-  return array();
-    $data = array(
-      array(
-        'uuid' => '6CA62CA0-5651-40AB-9EFD-43661889224A',
-        'password' => 'foo',
-        'username' => 'you',
-        'email' => 'foo@foo.com',
-      ),
-      array(
-        'uuid' => 'FF56D32A-DB4D-4E15-8C4C-29295118A61D',
-        'password' => 'foo',
-        'username' => 'me',
-        'email' => 'foo2@foo.com',
-      ),
-    );
+  public function recordFixtureDataSource() {
+    $data = array();
+    $uuid = '6CA62CA0-5651-40AB-9EFD-43661889224A';
+    $letters = array('a','b','c','d','e','f');
+    foreach ($letters as $catLetter) {
+      foreach ($letters as $keyLetter) {
+        $data[] = array(
+          'owner_uuid' => $uuid,
+          'category' => $catLetter,
+          'aKey' => $keyLetter,
+          'data' => $catLetter . $keyLetter,
+        );
+      }
+    }
     return $data;
   }
 
@@ -44,11 +43,13 @@ class LoadRecordData implements FixtureInterface
     // or else they can't be flushed all at once.
     $records = array();
     foreach ($data as $item) {
-      $record = new User();
-      $record->setUuid($record['uuid'])
-        ->setPassword($record['password'])
-        ->setUsername($record['username'])
-        ->setEmail($record['email']);
+      $record = new Record();
+      $record->setOwnerUuid($item['owner_uuid'])
+        ->setCategory($item['category'])
+        ->setKey($item['aKey'])
+        ->setData($item['data'])
+        ->setTimestamp(new \DateTime('now'))
+        ->setOwner($manager->merge($this->getReference($item['owner_uuid'])));
       $records[] = $record;
       $manager->persist($record);
     }

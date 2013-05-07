@@ -7,12 +7,13 @@
 
 namespace VirtualPersisAPI\VirtualPersistBundle\DataFixtures\ORM;
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
-//use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
 
-class LoadUserData implements FixtureInterface
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 {
 
   public function userFixtureDataSource() {
@@ -42,15 +43,15 @@ class LoadUserData implements FixtureInterface
     // Have to keep a reference to all the user objects
     // or else they can't be flushed all at once.
     $users = array();
-    foreach ($data as $record) {
+    foreach ($data as $item) {
       $user = new User();
-      $user->setUuid($record['uuid'])
-        ->setPassword($record['password'])
-        ->setUsername($record['username'])
-        ->setEmail($record['email']);
+      $user->setUuid($item['uuid'])
+        ->setPassword($item['password'])
+        ->setUsername($item['username'])
+        ->setEmail($item['email']);
+      $this->addReference($user->getUuid(), $user);
       $users[] = $user;
       $manager->persist($user);
-      $this->addReference($user->getUuid(), $user);
     }
     $manager->flush();
   }
