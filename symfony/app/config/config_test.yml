@@ -1,7 +1,7 @@
 # Will be used by all CI systems, including travis.
 
 imports:
-    - { resource: parameters_test.yml }
+#    - { resource: parameters_test.yml }
     - { resource: config_dev.yml }
 
 framework:
@@ -15,3 +15,12 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+doctrine:
+    dbal:
+        driver:   pdo_sqlite
+        path:     :memory:
+        memory:   true
+    orm:
+        auto_generate_proxy_classes: true
+        auto_mapping: true

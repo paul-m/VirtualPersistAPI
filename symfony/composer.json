@@ -22,8 +22,8 @@
     "require-dev": {
         "doctrine/data-fixtures": "1.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "2.1.*",
-        "phpunit/phpunit": "3.7.*@dev",
-        "phpunit/dbunit": "1.2.*@dev"
+        "phpunit/phpunit": "3.7.*",
+        "phpunit/dbunit": "1.2.*"
     },
     "scripts": {
         "post-install-cmd": [

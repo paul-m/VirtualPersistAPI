@@ -3,10 +3,16 @@
 namespace VirtualPersistAPI\VirtualPersistBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Response;
-use VirtualPersistAPI\VirtualPersistBundle\Tests\Testing\EnvironmentTestCase;
+//use Symfony\Component\BrowserKit\Response;
 
-use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppTestCase;
+//use VirtualPersistAPI\VirtualPersistBundle\Tests\Testing\EnvironmentTestCase;
+//use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppTestCase;
+
+use Doctrine\Common\DataFixtures\Loader;
+//use MyDataFixtures\LoadUserData;
+use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTestData;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
 /**
  * Functional tests for the VirtualPersistAPI controller.
@@ -18,7 +24,22 @@ use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppTestCase;
  * @TODO: Make a fixture
  * @TODO: test authentication.
  */
-class APIControllerPathTest extends AppTestCase {
+class APIControllerPathTest extends WebTestCase {
+
+  public function setUp() {
+    $client = static::createClient();
+    $em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+    
+    $purger = new ORMPurger($em);
+    $purger->setPurgeMode(ORMPurger::PURGE_MODE_DELETE);
+
+    $executor = new ORMExecutor($em, $purger);
+
+    $loader = new Loader();
+    $loader->addFixture(new LoadAPIControllerTestData());
+
+    $executor->execute($loader->getFixtures(), FALSE);
+  }
 
   /**
    * Data provider for paths that should result in 404
@@ -74,13 +95,24 @@ class APIControllerPathTest extends AppTestCase {
    * @TODO: Once the authentication system is in place,
    * this test should result in 401 or 500.
    */
-  public function testPaths404($path) {
+  public function testPaths404($path = '') {
     // We assume the controller's prefix is /api
-    $client = static::createClientForApp();
+    $client = static::createClient();
     $crawler = $client->request('GET', $path);
     $status = $client->getResponse()->getStatusCode();
-    $this->assertEquals(404, $status, "Status code: $status");
+    $this->assertEquals(404, $status, "Status code: $status path: $path");
   }
 
+  /**
+   * @dataProvider goodPathDataProvider
+   * @TODO: Once the authentication system is in place,
+   * this test should result in 401 or 500.
+   */
+  public function testPaths200($path = 'verybadpath') {
+    // We assume the controller's prefix is /api
+    $client = static::createClient();
+    $crawler = $client->request('GET', $path);
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(200, $status, "Status code: $status path: $path");
+  }
 }
-

@@ -7,10 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="Group")
- * @ORM\Entity()
+ * _ORM\Table(name="Group")
+ * _ORM\Entity()
  */
-class Group implements RoleInterface {
+class Group { //implements RoleInterface {
 
     /**
      * @ORM\Column(name="id", type="integer")
