@@ -45,9 +45,6 @@ class LoadAPIControllerTestData extends AbstractFixture // implements OrderedFix
    */
   public function load(ObjectManager $manager)
   {
-  
-  error_log('api fixture');
-  
     $data = $this->userFixtureDataSource();
     // Have to keep a reference to all the user objects
     // or else they can't be flushed all at once.

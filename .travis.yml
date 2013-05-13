@@ -9,5 +9,6 @@ before_script:
   - curl -s https://getcomposer.org/installer | php
   - rm composer.lock
   - ./composer.phar -v -o --dev --no-progress install
+  - php app/console doctrine:schema:update --force
 
 script: ./bin/phpunit -c ./app
