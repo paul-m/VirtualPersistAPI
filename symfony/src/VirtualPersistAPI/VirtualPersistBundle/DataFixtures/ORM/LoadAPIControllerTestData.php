@@ -8,13 +8,13 @@
 namespace VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\FixtureInterface;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+//use Doctrine\Common\DataFixtures\FixtureInterface;
+//use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
 
-class LoadAPIControllerTestData extends AbstractFixture // implements OrderedFixtureInterface
+class LoadAPIControllerTestData extends AbstractFixture
 {
 
   public function userFixtureDataSource() {
