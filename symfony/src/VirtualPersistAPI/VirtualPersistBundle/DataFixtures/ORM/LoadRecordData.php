@@ -16,17 +16,26 @@ use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
 class LoadRecordData extends AbstractFixture implements OrderedFixtureInterface
 {
 
+class LoadRecordData extends AbstractFixture implements OrderedFixtureInterface
+{
+
   public function recordFixtureDataSource() {
     $data = array();
+    $oldDate = new \DateTime('2000-01-01');
+    $dateInterval = new \DateInterval('P1M');
     $uuid = '6CA62CA0-5651-40AB-9EFD-43661889224A';
     $letters = array('a','b','c','d','e','f');
     foreach ($letters as $catLetter) {
       foreach ($letters as $keyLetter) {
+        $newDate = clone $oldDate;
+        $newDate->add($dateInterval);
+        $oldDate = $newDate;
         $data[] = array(
           'owner_uuid' => $uuid,
           'category' => $catLetter,
           'aKey' => $keyLetter,
           'data' => $catLetter . $keyLetter,
+          'timestamp' => $newDate,
         );
       }
     }
