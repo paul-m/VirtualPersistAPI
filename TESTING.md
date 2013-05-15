@@ -3,7 +3,7 @@ VirtualPersistAPI Testing Notes
 
 Unit and functional tests are located in the bundle /Tests directory. So: `symfony/src/VirtualPersistAPI/Bundle/VirtualPeristAPIBundle/Tests`.
 
-Tests can be run in the shell with `run-tests.sh`.
+Run them by installing dependencies through Composer with the --dev flag, and then `./bin/phpunit -c app`
 
-See also `.travis.yml` for continuous integration through GitHub.
+See `.travis.yml` for continuous integration through GitHub.
 

@@ -61,7 +61,7 @@ class User { //implements AdvancedUserInterface, \Serializable {
   private $isActive;
   
   /**
-   * @ORM\OneToMany(targetEntity="Record", mappedBy="owner_id")
+   * @ORM\OneToMany(targetEntity="Record", mappedBy="owner")
    */
   private $records;
   
