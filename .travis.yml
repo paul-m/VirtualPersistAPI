@@ -11,6 +11,6 @@ before_script:
   - ./composer.phar --dev --no-progress install
   - touch ./vpa.sqlite
   - php app/console doctrine:database:create --env=test
-  - php app/console doctrine:schema:update --force --env=test
+  - php app/console doctrine:schema:create --env=test
 
 script: ./bin/phpunit -c ./app
