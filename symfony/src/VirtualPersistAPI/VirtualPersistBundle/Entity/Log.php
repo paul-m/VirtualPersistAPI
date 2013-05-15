@@ -24,7 +24,7 @@ class Log {
   protected $id;
 
   /**
-   * @ORM\ManyToOne(targetEntity="User", inversedBy="records")
+   * @ORM\ManyToOne(targetEntity="User")
    * @ORM\JoinColumn(name="user", referencedColumnName="id")
    */
   protected $user;

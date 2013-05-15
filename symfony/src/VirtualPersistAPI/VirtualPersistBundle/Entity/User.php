@@ -60,13 +60,7 @@ class User { //implements AdvancedUserInterface, \Serializable {
    */
   private $isActive;
   
-  /**
-   * @ORM\OneToMany(targetEntity="Record", mappedBy="owner")
-   */
-  private $records;
-  
   public function __construct() {
-    $this->records = new ArrayCollection();
       $this->isActive = true;
       $this->salt = md5(uniqid(null, true));
   }

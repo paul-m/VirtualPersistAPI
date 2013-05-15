@@ -24,7 +24,7 @@ class Record {
   protected $id;
 
   /**
-   * @ORM\ManyToOne(targetEntity="User", inversedBy="records")
+   * @ORM\ManyToOne(targetEntity="User")
    * @ORM\JoinColumn(name="owner", referencedColumnName="id", nullable=false)
    */
   protected $owner;
