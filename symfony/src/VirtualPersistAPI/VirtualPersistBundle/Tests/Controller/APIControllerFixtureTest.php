@@ -9,6 +9,9 @@ use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
+//use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+
 /**
  * Functional tests for the VirtualPersistAPI controller.
  *

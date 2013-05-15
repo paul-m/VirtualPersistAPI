@@ -2,8 +2,15 @@
 
 namespace VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases;
 
-// Very clearly a rip-off of Symfony\Bundle\FrameworkBundle\Test\WebTestCase
-// Other inspiration: http://blog.sznapka.pl/fully-isolated-tests-in-symfony2/
+/**
+ * @file
+ * Assign an app-level fixture for functional testing.
+ * We want to set up a fixture once, run many tests, and then clean
+ * up after all the tests.
+ *
+ * Very clearly a rip-off of Symfony\Bundle\FrameworkBundle\Test\WebTestCase
+ * Other inspiration: http://blog.sznapka.pl/fully-isolated-tests-in-symfony2/
+ */
 
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\Finder\Finder;
@@ -172,9 +179,12 @@ abstract class AppFixtureTestCase extends \PHPUnit_Framework_TestCase implements
     $kernel = static::createKernel(array('environment' => 'test'));
     $kernel->boot();
     $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+    if (!$em) throw new Exception('no em');
     $purger = new ORMPurger($em);
+    if (!$purger) throw new Exception('no purger');
     $purger->setPurgeMode(ORMPurger::PURGE_MODE_DELETE);
     $executor = new ORMExecutor($em, $purger);
+    if (!$executor) throw new Exception('no purger');
     $loader = new Loader();
     $loader->addFixture(new $fixtureClass());
     $executor->execute($loader->getFixtures(), FALSE);

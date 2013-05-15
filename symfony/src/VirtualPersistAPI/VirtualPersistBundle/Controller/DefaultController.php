@@ -20,7 +20,7 @@ class DefaultController extends Controller {
       'users' => array(),
       'categories' => array(),
     );
-    try {
+//    try {
       $userRepo = $this->getDoctrine()
         ->getRepository('VirtualPersistBundle:User');
       $recordRepo = $this->getDoctrine()
@@ -30,8 +30,8 @@ class DefaultController extends Controller {
       $categories = $recordRepo->uniqueCategories();
       $resultArray['users'] = $users;
       $resultArray['categories'] = $categories;
-    } catch (\Exception $e) {
-    }
+//    } catch (\Exception $e) {
+ //   }
     return $resultArray;
   }
 

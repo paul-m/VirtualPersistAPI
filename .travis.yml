@@ -6,13 +6,10 @@ php: 5.4
 
 before_script:
   - cd ./symfony
-  - rm app/config/config_test.php
-  - cp app/config/travis.config_test.php app/config/config_test.php
-  - php app/console doctrine:database:create
-  - php app/console doctrine:schema:update --force
   - curl -s https://getcomposer.org/installer | php
   - rm composer.lock
   - ./composer.phar -v -o --dev --no-progress install
-  - php app/console doctrine:schema:update --force
+  - php app/console doctrine:database:create --env=test
+  - php app/console doctrine:schema:update --force --env=test
 
 script: ./bin/phpunit -c ./app
