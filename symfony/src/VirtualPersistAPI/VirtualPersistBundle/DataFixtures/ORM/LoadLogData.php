@@ -11,16 +11,16 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 //use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
+use VirtualPersistAPI\VirtualPersistBundle\Entity\Log;
 
-class LoadRecordData extends AbstractFixture implements OrderedFixtureInterface
+class LoadLogData extends AbstractFixture implements OrderedFixtureInterface
 {
 
   public function recordFixtureDataSource() {
     $data = array();
-    $oldDate = new \DateTime('2000-01-01');
+    $oldDate = new \DateTime();
     $dateInterval = new \DateInterval('P1M');
-    $uuid = '6CA62CA0-5651-40AB-9EFD-43661889224A';
+    $dateInterval->invert = 1;
     $letters = array('a','b','c','d','e','f');
     foreach ($letters as $catLetter) {
       foreach ($letters as $keyLetter) {
@@ -28,10 +28,8 @@ class LoadRecordData extends AbstractFixture implements OrderedFixtureInterface
         $newDate->add($dateInterval);
         $oldDate = $newDate;
         $data[] = array(
-          'owner_uuid' => $uuid,
-          'category' => $catLetter,
-          'aKey' => $keyLetter,
-          'data' => $catLetter . $keyLetter,
+          'type' => $catLetter,
+          'message' => $catLetter . $keyLetter,
           'timestamp' => $newDate,
         );
       }
@@ -45,17 +43,17 @@ class LoadRecordData extends AbstractFixture implements OrderedFixtureInterface
   public function load(ObjectManager $manager)
   {
     $data = $this->recordFixtureDataSource();
-    // Have to keep a reference to all the user objects
+    // Have to keep a reference to all the objects
     // or else they can't be flushed all at once.
     $records = array();
     foreach ($data as $item) {
-      $record = new Record();
-      $record->setOwnerUuid($item['owner_uuid'])
-        ->setCategory($item['category'])
-        ->setKey($item['aKey'])
-        ->setData($item['data'])
-        ->setTimestamp(new \DateTime('now'))
-        ->setOwner($manager->merge($this->getReference($item['owner_uuid'])));
+      $record = new Log();
+      $record->setType($item['type'])
+        ->setMessage($item['message'])
+        ->setTimestamp($item['timestamp'])
+        ->setUser($manager
+          ->merge($this->getReference('6CA62CA0-5651-40AB-9EFD-43661889224A'))
+        );
       $records[] = $record;
       $manager->persist($record);
     }
@@ -63,6 +61,6 @@ class LoadRecordData extends AbstractFixture implements OrderedFixtureInterface
   }
   
   public function getOrder() {
-    return 2;
+    return 3;
   }
 }

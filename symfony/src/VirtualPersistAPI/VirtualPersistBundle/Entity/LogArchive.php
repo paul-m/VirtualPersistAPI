@@ -6,14 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @file
- * The Log entity.
+ * The LogArchive entity.
  */
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Log")
+ * @ORM\Table(name="LogArchive")
  */
-class Log {
+class LogArchive {
 
   /**
    * @ORM\ID
