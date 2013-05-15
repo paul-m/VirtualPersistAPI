@@ -1,0 +1,1 @@
+call log_archive();
