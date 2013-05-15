@@ -8,7 +8,8 @@ before_script:
   - cd ./symfony
   - curl -s https://getcomposer.org/installer | php
   - rm composer.lock
-  - ./composer.phar -v -o --dev --no-progress install
+  - ./composer.phar --dev --no-progress install
+  - touch ./vpa.sqlite
   - php app/console doctrine:database:create --env=test
   - php app/console doctrine:schema:update --force --env=test
 
