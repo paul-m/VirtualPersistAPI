@@ -24,7 +24,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class User { //implements AdvancedUserInterface, \Serializable {
 
   /**
-   * @ORM\ID
+   * @ORM\Id
    * @ORM\Column(type="integer")
    * @ORM\GeneratedValue(strategy="AUTO")
    */
