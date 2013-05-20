@@ -194,7 +194,7 @@ class APIController extends Controller {
    * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"GET"})
    */
-/*  public function userGetAction($uuid) {
+  public function userGetAction($uuid) {
     $user = $this->getDoctrine()
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
@@ -211,10 +211,13 @@ class APIController extends Controller {
    * @Method({"POST"})
    */
 /*  public function userPostAction($uuid) {
+    $request = Request::createFromGlobals();
     $user = new User();
-    $user->setUuid($request->get('uuid'));
-    $user->setPassword($request->get('password'));
-    $user->setPermission($request->get('permission'));
+    $user->setUuid($uuid);
+    $user->setEmail($request->get('email'));
+    $user->setUsername($request->get('username'));
+    error_log('email: ' . $request->get('email'));
+//    error_log(print_r($user, TRUE));
     $em = $this->getDoctrine()->getEntityManager();
     $em->persist($user);
     $em->flush();

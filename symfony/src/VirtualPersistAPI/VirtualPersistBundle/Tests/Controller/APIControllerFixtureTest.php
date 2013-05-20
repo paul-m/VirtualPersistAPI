@@ -42,6 +42,9 @@ class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixt
       array(
         '/api/keys/00000000-0000-0000-0000-000000000000/extantCategory',
       ),
+      array(
+        '/api/user/00000000-0000-0000-0000-000000000000',
+      ),
     );
   }
 
@@ -57,5 +60,20 @@ class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixt
     $status = $client->getResponse()->getStatusCode();
     $this->assertEquals(200, $status, "Status code: $status path: $path");
   }
+
+/*  public function testPostUser() {
+    $client = static::createClientForApp();
+    $client->request(
+      'POST',
+      'api/user/11111111-1111-1111-1111-111111111111',
+      array(
+        'email'=>'mr1@one.example.com',
+        'username'=>'mrone',
+      )
+    );
+    $crawler = $client->request('GET', 'api/user/11111111-1111-1111-1111-111111111111');
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(200, $status, 'Added user + round trip.');
+  }*/
 
 }
