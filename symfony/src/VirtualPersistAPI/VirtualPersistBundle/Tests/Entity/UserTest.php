@@ -7,7 +7,9 @@ class UserEntityTest extends \PHPUnit_Framework_TestCase
 {
 
   public function testCreate() {
-    $this->assertNotNull(new User());
+    $user = new User();
+    $this->assertNotNull($user);
+    $this->assertNotNull($user->getSalt());
   }
 
 }
