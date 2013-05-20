@@ -174,7 +174,7 @@ abstract class AppFixtureTestCase extends \PHPUnit_Framework_TestCase implements
   public static function setUpBeforeClass() {
     $fixtureClass = static::getFixtureClass();
     if (empty($fixtureClass)) {
-      throw new Exception('Subclass does not implement getFixtureClass().');
+      throw new \Exception('Subclass does not implement getFixtureClass().');
     }
     $kernel = static::createKernel(array('environment' => 'test'));
     $kernel->boot();

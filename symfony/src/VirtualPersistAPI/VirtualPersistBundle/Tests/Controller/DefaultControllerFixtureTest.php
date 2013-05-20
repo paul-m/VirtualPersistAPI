@@ -2,15 +2,21 @@
 
 namespace VirtualPersistAPI\VirtualPersistBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCase;
+use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCaseInterface;
+use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTestData;
 
 /**
  * Functional tests for the default front page controller.
- * Testing behavior without fixtures.
+ * Uses LoadAPIControllerTestData fixture.
  *
  * @TODO: Make a fixture and test authentication.
  */
-class DefaultControllerTest extends WebTestCase {
+class DefaultControllerFixtureTest extends AppFixtureTestCase implements AppFixtureTestCaseInterface {
+
+  public static function getFixtureClass() {
+    return 'VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTestData';
+  }
 
   public function goodPathDataProvider() {
     return array(
@@ -25,7 +31,7 @@ class DefaultControllerTest extends WebTestCase {
    */
   public function testPaths200($path) {
     // We assume the controller's prefix is /api
-    $client = static::createClient();
+    $client = static::createClientForApp();
     $crawler = $client->request('GET', $path);
     $this->assertTrue($client->getResponse()->isSuccessful(),
       'Result: ' . $client->getResponse()->getStatusCode()
