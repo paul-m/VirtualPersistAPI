@@ -30,9 +30,9 @@ class Record {
   protected $owner;
 
   /**
-   * @ORM\Column(type="string", length=36)
+   * _ORM\Column(type="string", length=36)
    */
-  protected $owner_uuid;
+  //protected $owner_uuid;
 
   /**
    * @ORM\Column(type="string", length=255)

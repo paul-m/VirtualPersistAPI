@@ -21,26 +21,25 @@ class APIController extends Controller {
    * @Method({"GET"})
    */
   public function getAction($uuid, $category, $key) {
-//    return new Response('404: No Such Item.', 404);
     try {
       $doctrine = $this->getDoctrine();
-      $record = $doctrine
-              ->getRepository('VirtualPersistBundle:Record')
-              ->findOneByUUIDCategoryKey($uuid, $category, $key);
-  
-      // Did we get a record?
-      if ($record) {
-        $user = $doctrine 
-          ->getRepository('VirtualPersistBundle:User')
-          ->findOneByUuid($uuid);
-        if ($user) { // if($user->has_authentication)
+      $user = $doctrine 
+        ->getRepository('VirtualPersistBundle:User')
+        ->findOneByUuid($uuid);
+      if ($user) { // if($user->has_authentication)
+        $record = $doctrine
+          ->getRepository('VirtualPersistBundle:Record')
+          ->findOneByUserCategoryKey($user, $category, $key);
+        // Did we get a record?
+        if ($record) {
           return new TextPlainResponse($record->getData(), 200);
         }
-        return new TextPlainResponse('bad access.', 401);
       }
     } catch (\Exception $e) {
       // no-op
     }
+    // Always return 404 so no one can brute-force hack the
+    // UUIDs or categories or keys.
     return new TextPlainResponse('404: No Such Item.', 404);
   }
 

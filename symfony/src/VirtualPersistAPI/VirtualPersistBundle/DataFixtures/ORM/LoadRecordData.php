@@ -50,7 +50,7 @@ class LoadRecordData extends AbstractFixture implements OrderedFixtureInterface
     $records = array();
     foreach ($data as $item) {
       $record = new Record();
-      $record->setOwnerUuid($item['owner_uuid'])
+      $record//->setOwnerUuid($item['owner_uuid'])
         ->setCategory($item['category'])
         ->setKey($item['aKey'])
         ->setData($item['data'])

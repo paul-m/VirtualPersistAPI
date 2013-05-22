@@ -18,17 +18,32 @@ class LoadAPIControllerTestData extends AbstractFixture
 {
 
   public function userFixtureDataSource() {
+    // The same data for two users, one blocked and one not blocked.
     $users = array(
       array(
         'uuid' => '00000000-0000-0000-0000-000000000000',
         'password' => 'foo',
         'username' => 'thisUserExists',
         'email' => 'extant@foo.com',
+        'is_active' => 1,
+      ),
+      array(
+        'uuid' => 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF',
+        'password' => 'foo',
+        'username' => 'thisUserIsBlocked',
+        'email' => 'extantButBlocked@foo.com',
+        'is_active' => 0,
       ),
     );
     $records = array(
       array(
         'owner_uuid' => '00000000-0000-0000-0000-000000000000',
+        'category' => 'extantCategory',
+        'aKey' => 'extantKey',
+        'data' => 'extantData',
+      ),
+      array(
+        'owner_uuid' => 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF',
         'category' => 'extantCategory',
         'aKey' => 'extantKey',
         'data' => 'extantData',
@@ -54,7 +69,8 @@ class LoadAPIControllerTestData extends AbstractFixture
       $user->setUuid($item['uuid'])
         ->setPassword($item['password'])
         ->setUsername($item['username'])
-        ->setEmail($item['email']);
+        ->setEmail($item['email'])
+        ->setIsActive($item['is_active']);
       $this->addReference($user->getUuid(), $user);
       $items[] = $user;
       $manager->persist($user);
@@ -64,7 +80,7 @@ class LoadAPIControllerTestData extends AbstractFixture
     $items = array();
     foreach ($data['Record'] as $item) {
       $record = new Record();
-      $record->setOwnerUuid($item['owner_uuid'])
+      $record//->setOwnerUuid($item['owner_uuid'])
         ->setCategory($item['category'])
         ->setKey($item['aKey'])
         ->setData($item['data'])

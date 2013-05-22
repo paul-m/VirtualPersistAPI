@@ -13,7 +13,25 @@ use Doctrine\ORM\NoResultException;
  */
 class RecordRepsitory extends EntityRepository {
 
-  public function findOneByUUIDCategoryKey($uuid, $category, $key) {
+  public function findOneByUserCategoryKey(User $user, $category, $key) {
+    $query = $this->getEntityManager()
+            ->createQuery('
+              SELECT r FROM VirtualPersistBundle:Record r
+              WHERE r.owner = :user AND r.category = :category AND r.aKey = :key'
+            )
+            ->setParameter('user', $user->getId())
+            ->setParameter('category', $category)
+            ->setParameter('key', $key);
+    try {
+      $result = $query->getSingleResult();
+      return $result;
+    } catch (\Exception $e) {
+      // The show must go on.
+      return null;
+    }
+  }
+
+/*  public function findOneByUUIDCategoryKey($uuid, $category, $key) {
     $query = $this->getEntityManager()
             ->createQuery('
               SELECT r FROM VirtualPersistBundle:Record r
@@ -29,13 +47,13 @@ class RecordRepsitory extends EntityRepository {
       // The show must go on.
       return null;
     }
-  }
+  }*/
 
   public function findAllByUUIDCategoryKey($uuid, $category, $key) {
     $query = $this->getEntityManager()
             ->createQuery('
               SELECT r FROM VirtualPersistBundle:Record r
-              WHERE r.owner_uuid = :uuid AND r.category = :category AND r.aKey = :key'
+              WHERE r.owner.uuid = :uuid AND r.category = :category AND r.aKey = :key'
             )
             ->setParameter('uuid', $uuid)
             ->setParameter('category', $category)
@@ -50,32 +68,46 @@ class RecordRepsitory extends EntityRepository {
   }
 
   public function categoriesForUUID($uuid) {
-    $query = $this->getEntityManager()
-            ->createQuery('
-        SELECT DISTINCT r.category FROM VirtualPersistBundle:Record r
-        WHERE r.owner_uuid = :uuid'
-            )
-            ->setParameter('uuid', $uuid);
-    try {
-      return $query->getResult();
-    } catch (\Exception $e) {
-      return null;
+    $em = $this->getEntityManager();
+    $user = $em
+      ->getRepository('VirtualPersistBundle:User')
+      ->userForUUID($uuid);
+    if ($user) {
+      $query = $em
+        ->createQuery('
+          SELECT DISTINCT r.category FROM VirtualPersistBundle:Record r
+          WHERE r.owner = :owner'
+        )
+        ->setParameter('owner', $user->getId());
+      try {
+        return $query->getResult();
+      } catch (\Exception $e) {
+        return null;
+      }
     }
+    return null;
   }
 
   public function keysForUUIDCategory($uuid, $category) {
-    $query = $this->getEntityManager()
-            ->createQuery('
-        SELECT DISTINCT r.aKey FROM VirtualPersistBundle:Record r
-        WHERE r.owner_uuid = :uuid AND r.category = :category'
-            )
-            ->setParameter('uuid', $uuid)
-            ->setParameter('category', $category);
-    try {
-      return $query->getResult();
-    } catch (\Exception $e) {
-      return null;
+    $em = $this->getEntityManager();
+    $user = $em
+      ->getRepository('VirtualPersistBundle:User')
+      ->userForUUID($uuid);
+    if ($user) {
+      $query = $this->getEntityManager()
+              ->createQuery('
+          SELECT DISTINCT r.aKey FROM VirtualPersistBundle:Record r
+          WHERE r.owner = :owner AND r.category = :category'
+              )
+              ->setParameter('owner', $user->getId())
+              ->setParameter('category', $category);
+      try {
+        return $query->getResult();
+      } catch (\Exception $e) {
+        return null;
+      }
     }
+    return null;
   }
   
   public function uniqueCategories() {

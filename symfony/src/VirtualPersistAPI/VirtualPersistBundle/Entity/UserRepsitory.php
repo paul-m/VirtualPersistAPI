@@ -52,6 +52,15 @@ class UserRepsitory extends EntityRepository implements UserProviderInterface
       });
     }
 
+    /**
+     * It just so happens that loadUserByUsername() can
+     * do this for us.
+     */
+    public function userForUUID($uuid)
+    {
+      return $this->loadUserByUsername($uuid);
+    }
+
     public function loadUserByUsername($username)
     {
         $q = $this

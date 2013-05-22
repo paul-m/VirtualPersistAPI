@@ -65,6 +65,15 @@ class User { //implements AdvancedUserInterface, \Serializable {
       $this->salt = md5(uniqid(null, true));
   }
 
+  public function getIsActive() {
+    return $this->isActive;
+  }
+  
+  public function setIsActive($active) {
+    $this->isActive = $active;
+    return $this;
+  }
+
   /**
    * Get id
    *
