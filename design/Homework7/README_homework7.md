@@ -3,6 +3,12 @@ Homework 7
 
 Paul Mitchum, paul@mile23.com, paulm77@uw.edu
 
+Homework 7 files exist on github here: https://github.com/paul-m/VirtualPersistAPI/tree/master/design/Homework7
+
+This file specifically is located here: https://github.com/paul-m/VirtualPersistAPI/blob/master/design/Homework7/README_homework7.md
+
+PDF version: https://github.com/paul-m/VirtualPersistAPI/blob/master/design/Homework7/README_homework7.pdf
+
 What is it?
 -----------
 
