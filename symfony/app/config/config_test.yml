@@ -1,7 +1,6 @@
 # Will be used by all CI systems, including travis.
 
 imports:
-#    - { resource: parameters_test.yml }
     - { resource: config_dev.yml }
 
 framework:
@@ -13,8 +12,8 @@ web_profiler:
     toolbar: false
     intercept_redirects: false
 
-swiftmailer:
-    disable_delivery: true
+#swiftmailer:
+#    disable_delivery: true
 
 doctrine:
     dbal:

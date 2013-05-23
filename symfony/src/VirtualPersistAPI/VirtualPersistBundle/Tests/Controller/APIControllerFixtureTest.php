@@ -90,28 +90,12 @@ class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixt
    * This is a test for whether non-authorized requests for blocked user's data
    * results in 404. It should.
    */
-  public function testPaths404($path = 'verybadpath') {
+  public function testPaths404($path = '') {
     // We assume the controller's prefix is /api
     $client = static::createClientForApp();
     $crawler = $client->request('GET', $path);
     $status = $client->getResponse()->getStatusCode();
     $this->assertEquals(404, $status, "Status code: $status path: $path");
   }
-
-
-/*  public function testPostUser() {
-    $client = static::createClientForApp();
-    $client->request(
-      'POST',
-      'api/user/11111111-1111-1111-1111-111111111111',
-      array(
-        'email'=>'mr1@one.example.com',
-        'username'=>'mrone',
-      )
-    );
-    $crawler = $client->request('GET', 'api/user/11111111-1111-1111-1111-111111111111');
-    $status = $client->getResponse()->getStatusCode();
-    $this->assertEquals(200, $status, 'Added user + round trip.');
-  }*/
 
 }
