@@ -26,7 +26,7 @@ class APIController extends Controller {
       $user = $doctrine 
         ->getRepository('VirtualPersistBundle:User')
         ->findOneByUuid($uuid);
-      if ($user) { // if($user->has_authentication)
+      if ($user && $user->isEnabled()) {
         $record = $doctrine
           ->getRepository('VirtualPersistBundle:Record')
           ->findOneByUserCategoryKey($user, $category, $key);
@@ -133,7 +133,7 @@ class APIController extends Controller {
         $user = $doctrine
                 ->getRepository('VirtualPersistBundle:User')
                 ->findOneByUuid($uuid);
-        if ($user) { // if($user->has_authentication)
+        if ($user && $user->isEnabled()) { // if($user->has_authentication)
           $categoryArray = array();
           foreach ($categories as $category) {
             $categoryArray[] = $category['category'];
@@ -169,7 +169,7 @@ class APIController extends Controller {
         $user = $doctrine
                 ->getRepository('VirtualPersistBundle:User')
                 ->findOneByUuid($uuid);
-        if ($user) { // if($user->has_authentication)
+        if ($user && $user->isEnabled()) { // if($user->has_authentication)
           $keyArray = array();
           foreach ($keys as $key) {
             $keyArray[] = $key['aKey'];
@@ -199,7 +199,7 @@ class APIController extends Controller {
       ->findOneByUuid($uuid);
     $request = Request::createFromGlobals();
     $method = $request->getMethod();
-    if ($user) {
+    if ($user && $user->isEnabled()) {
       return new Response('User: ' . $user->getUUID());
     }
     return new Response('User? LOSER!', 404);

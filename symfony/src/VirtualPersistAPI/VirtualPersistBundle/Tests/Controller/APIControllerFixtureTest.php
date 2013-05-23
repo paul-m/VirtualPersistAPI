@@ -49,6 +49,29 @@ class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixt
   }
 
   /**
+   * Data provider for paths that should result in 404
+   *
+   * User EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE should exist, but is blocked.
+   */
+  public function blockedUserDataProvider() {
+    return array(
+      array(
+        '/api/EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE/extantCategory/extantKey',
+      ),
+      array(
+        '/api/categories/EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE',
+      ),
+      array(
+        '/api/keys/EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE/extantCategory',
+      ),
+      array(
+        '/api/user/EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE',
+      ),
+    );
+  }
+
+
+  /**
    * @dataProvider goodPathDataProvider
    * @TODO: Once the authentication system is in place,
    * this test should result in 401 or 500.
@@ -60,6 +83,21 @@ class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixt
     $status = $client->getResponse()->getStatusCode();
     $this->assertEquals(200, $status, "Status code: $status path: $path");
   }
+
+  /**
+   * @dataProvider blockedUserDataProvider
+   *
+   * This is a test for whether non-authorized requests for blocked user's data
+   * results in 404. It should.
+   */
+  public function testPaths404($path = 'verybadpath') {
+    // We assume the controller's prefix is /api
+    $client = static::createClientForApp();
+    $crawler = $client->request('GET', $path);
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(404, $status, "Status code: $status path: $path");
+  }
+
 
 /*  public function testPostUser() {
     $client = static::createClientForApp();
