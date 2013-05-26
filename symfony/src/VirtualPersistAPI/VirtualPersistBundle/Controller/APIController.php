@@ -23,7 +23,7 @@ class APIController extends Controller {
   public function getAction($uuid, $category, $key) {
     try {
       $doctrine = $this->getDoctrine();
-      $user = $doctrine 
+      $user = $doctrine
         ->getRepository('VirtualPersistBundle:User')
         ->findOneByUuid($uuid);
       if ($user && $user->isEnabled()) {
@@ -64,10 +64,9 @@ class APIController extends Controller {
       }
       $entityManager->flush();
 
-      $request = Request::createFromGlobals();
-      
+      $request = $this->get('request');
+
       $data = $request->request->get('data');
-      echo ('data: ' . $data);
       $record = new Record();
       $record->setOwner($user);
       $record->setCategory($category);
@@ -105,7 +104,7 @@ class APIController extends Controller {
         $entityManager = $doctrine->getEntityManager();
         $entityManager->remove($record);
         $entityManager->flush();
-  
+
         // Tell the user.
         $response = new TextPlainResponse('Item deleted.', 200);
         return $response;
@@ -124,7 +123,7 @@ class APIController extends Controller {
       $categories = $doctrine
               ->getRepository('VirtualPersistBundle:Record')
               ->categoriesForUUID($uuid);
-  
+
       // Did we get an answer?
       if ($categories) {
         $user = $doctrine
@@ -143,7 +142,7 @@ class APIController extends Controller {
           );
         }
       }
-  
+
       return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
     } catch (\Exception $e) {
     }
@@ -160,7 +159,7 @@ class APIController extends Controller {
       $keys = $doctrine
               ->getRepository('VirtualPersistBundle:Record')
               ->keysForUUIDCategory($uuid, $category);
-  
+
       // Did we get an answer?
       if ($keys) {
         $user = $doctrine
@@ -179,7 +178,7 @@ class APIController extends Controller {
           );
         }
       }
-  
+
       return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
     } catch (\Exception $e) {
     }
@@ -194,7 +193,7 @@ class APIController extends Controller {
     $user = $this->getDoctrine()
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
-    $request = Request::createFromGlobals();
+    $request = $this->get('request');
     $method = $request->getMethod();
     if ($user && $user->isEnabled()) {
       return new Response('User: ' . $user->getUUID());
@@ -219,7 +218,7 @@ class APIController extends Controller {
     $em->flush();
     return new Response('User added.');
   }*/
-  
+
   /**
    * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"DELETE"})
