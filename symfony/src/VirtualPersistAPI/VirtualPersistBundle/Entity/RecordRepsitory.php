@@ -49,16 +49,15 @@ class RecordRepsitory extends EntityRepository {
     }
   }*/
 
-  public function findAllByUUIDCategoryKey($uuid, $category, $key) {
+  public function findByUserCategoryKey($user, $category, $key) {
     $query = $this->getEntityManager()
-            ->createQuery('
-              SELECT r FROM VirtualPersistBundle:Record r
-              WHERE r.owner.uuid = :uuid AND r.category = :category AND r.aKey = :key'
-            )
-            ->setParameter('uuid', $uuid)
-            ->setParameter('category', $category)
-            ->setParameter('key', $key);
-
+      ->createQuery('
+        SELECT r FROM VirtualPersistBundle:Record r
+        WHERE r.owner = :owner AND r.category = :category AND r.aKey = :key'
+      )
+      ->setParameter('owner', $user->getId())
+      ->setParameter('category', $category)
+      ->setParameter('key', $key);
     try {
       return $query->getResult();
     } catch (\Exception $e) {
@@ -66,6 +65,7 @@ class RecordRepsitory extends EntityRepository {
       return null;
     }
   }
+
 
   public function categoriesForUUID($uuid) {
     $em = $this->getEntityManager();

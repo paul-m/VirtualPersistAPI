@@ -55,6 +55,10 @@ class Record {
    */
   protected $timestamp;
 
+  public function __construct() {
+    $this->setTimestamp(new \DateTime('now'));
+  }
+
   public function setTimestamp($timestamp) {
     $this->timestamp = $timestamp;
     return $this;

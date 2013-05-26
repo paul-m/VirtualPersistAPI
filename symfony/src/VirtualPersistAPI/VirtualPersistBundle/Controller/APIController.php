@@ -56,21 +56,20 @@ class APIController extends Controller {
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
     if ($user) { // if($user->has_authentication)
-
       $records = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
-        ->findAllByUUIDCategoryKey($uuid, $category, $key);
-      if (!empty($records)) {
-        foreach($records as $record) {
-          $entityManager->remove($record);
-        }
-        $entityManager->flush();
+        ->findByUserCategoryKey($user, $category, $key);
+      foreach($records as $record) {
+        $entityManager->remove($record);
       }
+      $entityManager->flush();
 
       $request = Request::createFromGlobals();
-      $data = $request->get('data');
+      
+      $data = $request->request->get('data');
+      echo ('data: ' . $data);
       $record = new Record();
-      $record->setOwnerUUID($uuid);
+      $record->setOwner($user);
       $record->setCategory($category);
       $record->setKey($key);
       $record->setData($data);
