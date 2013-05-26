@@ -28,6 +28,13 @@ class LoadAPIControllerTestData extends AbstractFixture
         'is_active' => 1,
       ),
       array(
+        'uuid' => '11111111-1111-1111-1111-111111111111',
+        'password' => 'foo',
+        'username' => 'anotherUser',
+        'email' => 'another@foo.com',
+        'is_active' => 1,
+      ),
+      array(
         'uuid' => 'EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE',
         'password' => 'foo',
         'username' => 'thisUserIsBlocked',
@@ -41,6 +48,12 @@ class LoadAPIControllerTestData extends AbstractFixture
         'category' => 'extantCategory',
         'aKey' => 'extantKey',
         'data' => 'extantData',
+      ),
+      array(
+        'owner_uuid' => '11111111-1111-1111-1111-111111111111',
+        'category' => 'anotherCategory',
+        'aKey' => 'anotherKey',
+        'data' => 'discoveryData',
       ),
       array(
         'owner_uuid' => 'EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE',

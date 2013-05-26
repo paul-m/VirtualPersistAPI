@@ -5,12 +5,6 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Tests\Controller;
 use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCase;
 use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCaseInterface;
 use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTestData;
-use Doctrine\Common\DataFixtures\Loader;
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-
-//use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
 
 /**
  * Functional tests for the VirtualPersistAPI controller.
@@ -44,12 +38,27 @@ class APIControllerDeleteTest extends AppFixtureTestCase implements AppFixtureTe
   /**
    * Test data to post
    */
-  public function deleteTheseRecordsBadUser() {
+  public function deleteTheseRecordsError() {
     return array(
       array(
         'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF',
         'extantCategory',
         'extantKey',
+      ),
+      array(
+        '00000000-0000-0000-0000-000000000000',
+        'badCategory',
+        'extantKey',
+      ),
+      array(
+        '00000000-0000-0000-0000-000000000000',
+        'extantCategory',
+        'badKey',
+      ),
+      array(
+        'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF',
+        'badCategory',
+        'badKey',
       ),
     );
   }
@@ -67,7 +76,7 @@ class APIControllerDeleteTest extends AppFixtureTestCase implements AppFixtureTe
   }
 
   /**
-   * @dataProvider deleteTheseRecordsBadUser
+   * @dataProvider deleteTheseRecordsError
    */
   public function testBadDelete($uuid, $category, $key) {
     // We assume the controller's prefix is /api

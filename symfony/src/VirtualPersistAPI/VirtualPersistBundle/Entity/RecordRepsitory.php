@@ -31,24 +31,6 @@ class RecordRepsitory extends EntityRepository {
     }
   }
 
-/*  public function findOneByUUIDCategoryKey($uuid, $category, $key) {
-    $query = $this->getEntityManager()
-            ->createQuery('
-              SELECT r FROM VirtualPersistBundle:Record r
-              WHERE r.owner_uuid = :uuid AND r.category = :category AND r.aKey = :key'
-            )
-            ->setParameter('uuid', $uuid)
-            ->setParameter('category', $category)
-            ->setParameter('key', $key);
-    try {
-      $result = $query->getSingleResult();
-      return $result;
-    } catch (\Exception $e) {
-      // The show must go on.
-      return null;
-    }
-  }*/
-
   public function findByUserCategoryKey($user, $category, $key) {
     $query = $this->getEntityManager()
       ->createQuery('
@@ -109,7 +91,7 @@ class RecordRepsitory extends EntityRepository {
     }
     return null;
   }
-  
+
   public function uniqueCategories() {
     $query = $this->getEntityManager()
       ->createQuery('

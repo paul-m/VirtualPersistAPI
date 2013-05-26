@@ -5,21 +5,16 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Tests\Controller;
 use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCase;
 use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCaseInterface;
 use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTestData;
-use Doctrine\Common\DataFixtures\Loader;
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-
-//use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
 
 /**
  * Functional tests for the VirtualPersistAPI controller.
+ *
+ * These tests are against a fixture, set up in AppFixtureTestCase.
  *
  * Note that we assume FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF
  * is always a bad UUID, and that 00000000-0000-0000-0000-000000000000
  * is good.
  *
- * @TODO: Make a fixture
  * @TODO: test authentication.
  */
 class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixtureTestCaseInterface {

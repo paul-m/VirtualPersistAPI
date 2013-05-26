@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /**
  * Functional tests for the VirtualPersistAPI controller.
  *
+ * These tests are against an app with no fixture or even a database.
+ *
  * Note that we assume FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF
  * is always a bad UUID, and that 00000000-0000-0000-0000-000000000000
  * is good.
