@@ -95,16 +95,20 @@ class APIController extends Controller {
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
     if ($user) { // if($user->has_authentication)
-      $record = $doctrine
+      $records = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
-        ->findOneByUserCategoryKey($user, $category, $key);
+        ->findByUserCategoryKey($user, $category, $key);
       // Did we get a record?
-      if ($record) {
-        // Do the delete.
+      if (count($records)) {
+        $theRecords = array();
         $entityManager = $doctrine->getEntityManager();
-        $entityManager->remove($record);
+        foreach($records as $record) {
+          // Store a reference.
+          $theRecords[] = $record;
+          // Tell ORM to remove.
+          $entityManager->remove($record);
+        }
         $entityManager->flush();
-
         // Tell the user.
         $response = new TextPlainResponse('Item deleted.', 200);
         return $response;
@@ -121,14 +125,14 @@ class APIController extends Controller {
     try {
       $doctrine = $this->getDoctrine();
       $categories = $doctrine
-              ->getRepository('VirtualPersistBundle:Record')
-              ->categoriesForUUID($uuid);
+        ->getRepository('VirtualPersistBundle:Record')
+        ->categoriesForUUID($uuid);
 
       // Did we get an answer?
       if ($categories) {
         $user = $doctrine
-                ->getRepository('VirtualPersistBundle:User')
-                ->findOneByUuid($uuid);
+          ->getRepository('VirtualPersistBundle:User')
+          ->findOneByUuid($uuid);
         if ($user && $user->isEnabled()) { // if($user->has_authentication)
           $categoryArray = array();
           foreach ($categories as $category) {
@@ -136,9 +140,9 @@ class APIController extends Controller {
           }
           // for now we just return json.
           return new Response(
-                          json_encode($categoryArray),
-                          200,
-                          array('content-type' => 'application/json')
+            json_encode($categoryArray),
+            200,
+            array('content-type' => 'application/json')
           );
         }
       }
@@ -157,14 +161,14 @@ class APIController extends Controller {
     try {
       $doctrine = $this->getDoctrine();
       $keys = $doctrine
-              ->getRepository('VirtualPersistBundle:Record')
-              ->keysForUUIDCategory($uuid, $category);
+        ->getRepository('VirtualPersistBundle:Record')
+        ->keysForUUIDCategory($uuid, $category);
 
       // Did we get an answer?
       if ($keys) {
         $user = $doctrine
-                ->getRepository('VirtualPersistBundle:User')
-                ->findOneByUuid($uuid);
+          ->getRepository('VirtualPersistBundle:User')
+          ->findOneByUuid($uuid);
         if ($user && $user->isEnabled()) { // if($user->has_authentication)
           $keyArray = array();
           foreach ($keys as $key) {
@@ -172,9 +176,9 @@ class APIController extends Controller {
           }
           // for now we just return json.
           return new Response(
-                      json_encode($keyArray),
-                      200,
-                      array('content-type' => 'application/json')
+            json_encode($keyArray),
+            200,
+            array('content-type' => 'application/json')
           );
         }
       }
@@ -194,47 +198,11 @@ class APIController extends Controller {
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
     $request = $this->get('request');
-    $method = $request->getMethod();
     if ($user && $user->isEnabled()) {
       return new Response('User: ' . $user->getUUID());
     }
     return new Response('User? LOSER!', 404);
   }
-
-  /**
-   * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
-   * @Method({"POST"})
-   */
-/*  public function userPostAction($uuid) {
-    $request = Request::createFromGlobals();
-    $user = new User();
-    $user->setUuid($uuid);
-    $user->setEmail($request->get('email'));
-    $user->setUsername($request->get('username'));
-    error_log('email: ' . $request->get('email'));
-//    error_log(print_r($user, TRUE));
-    $em = $this->getDoctrine()->getEntityManager();
-    $em->persist($user);
-    $em->flush();
-    return new Response('User added.');
-  }*/
-
-  /**
-   * @Route("/user/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
-   * @Method({"DELETE"})
-   */
-/*  public function userDeleteAction($uuid) {
-    $user = $this->getDoctrine()
-      ->getRepository('VirtualPersistBundle:User')
-      ->findOneByUuid($uuid);
-    if ($user) {
-      $em = $this->getDoctrine()->getEntityManager();
-      $em->remove($user);
-      $em->flush();
-      return new Response('User deleted.');
-    }
-    return new Response('No such user.', 404);
-  }*/
 
 }
 

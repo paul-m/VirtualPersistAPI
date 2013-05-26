@@ -25,7 +25,7 @@ class APIControllerDeleteTest extends AppFixtureTestCase implements AppFixtureTe
   /**
    * Test data to post
    */
-  public function deleteTheseRecordsNoErrors() {
+  public function deleteTheseRecordsNoError() {
     return array(
       array(
         '00000000-0000-0000-0000-000000000000',
@@ -64,7 +64,7 @@ class APIControllerDeleteTest extends AppFixtureTestCase implements AppFixtureTe
   }
 
   /**
-   * @dataProvider deleteTheseRecordsNoErrors
+   * @dataProvider deleteTheseRecordsNoError
    */
   public function testDelete($uuid, $category, $key) {
     // We assume the controller's prefix is /api
@@ -73,6 +73,10 @@ class APIControllerDeleteTest extends AppFixtureTestCase implements AppFixtureTe
     $crawler = $client->request('DELETE', $path);
     $status = $client->getResponse()->getStatusCode();
     $this->assertEquals(200, $status, "Deleted record for path: $path");
+
+    $crawler = $client->request('GET', $path);
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(404, $status, 'Confirmed delete:' . $path);
   }
 
   /**

@@ -6,9 +6,6 @@ use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCase;
 use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCaseInterface;
 use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTestData;
 
-//use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-
 /**
  * Functional tests for the VirtualPersistAPI controller.
  *
