@@ -92,27 +92,25 @@ class APIController extends Controller {
    */
   public function deleteAction($uuid, $category, $key) {
     $doctrine = $this->getDoctrine();
-    $record = $doctrine
-            ->getRepository('VirtualPersistBundle:Record')
-            ->findOneByUUIDCategoryKey($uuid, $category, $key);
-
-    // Did we get a record?
-    if ($record) {
-      $user = $doctrine
-              ->getRepository('VirtualPersistBundle:User')
-              ->findOneByUuid($uuid);
-      if ($user) { // if($user->has_authentication)
+    $user = $doctrine
+      ->getRepository('VirtualPersistBundle:User')
+      ->findOneByUuid($uuid);
+    if ($user) { // if($user->has_authentication)
+      $record = $doctrine
+        ->getRepository('VirtualPersistBundle:Record')
+        ->findOneByUserCategoryKey($user, $category, $key);
+      // Did we get a record?
+      if ($record) {
         // Do the delete.
         $entityManager = $doctrine->getEntityManager();
         $entityManager->remove($record);
         $entityManager->flush();
-
+  
         // Tell the user.
         $response = new TextPlainResponse('Item deleted.', 200);
         return $response;
       }
     }
-
     return new TextPlainResponse('No Such Item.', 404);
   }
 
