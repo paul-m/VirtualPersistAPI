@@ -11,7 +11,7 @@ use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTes
  *
  * Note that we assume FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF
  * is always a bad UUID, and that 00000000-0000-0000-0000-000000000000
- * is good.
+ * is in the fixture.
  *
  * @TODO: Make a fixture
  * @TODO: test authentication.

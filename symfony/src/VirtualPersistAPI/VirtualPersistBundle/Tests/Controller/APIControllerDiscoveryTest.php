@@ -9,8 +9,9 @@ use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTes
 /**
  * Functional tests for the VirtualPersistAPI controller.
  *
- * Note that we assume that 11111111-1111-1111-1111-111111111111
- * is an existing user.
+ * User UUID 11111111-1111-1111-1111-111111111111
+ * is in the fixture and only has one record, the
+ * one we test for.
  *
  * @TODO: Make a fixture
  * @TODO: test authentication.
@@ -34,6 +35,7 @@ class APIControllerDiscoveryTest extends AppFixtureTestCase implements AppFixtur
     
     $categories = json_decode($response->getContent());
     $category = reset($categories);
+    $this->assertEquals($category, 'anotherCategory', 'Got expected category: ' . $category);
     $path = '/api/keys/11111111-1111-1111-1111-111111111111/' . $category;
     $crawler = $client->request('GET', $path);
     $response = $client->getResponse();
@@ -41,6 +43,7 @@ class APIControllerDiscoveryTest extends AppFixtureTestCase implements AppFixtur
     
     $keys = json_decode($response->getContent());
     $key = reset($keys);
+    $this->assertEquals($key, 'anotherKey', 'Got expected key: ' . $key);
     $path = '/api/11111111-1111-1111-1111-111111111111/' . $category . '/' . $key;
     $crawler = $client->request('GET', $path);
     $response = $client->getResponse();
