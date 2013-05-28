@@ -35,7 +35,7 @@ abstract class AppFixtureTestCase extends \PHPUnit_Framework_TestCase implements
 
   protected static $class;
   protected static $kernel;
-  protected static $application;
+//  protected static $application;
 
   /**
    * Creates a Client.

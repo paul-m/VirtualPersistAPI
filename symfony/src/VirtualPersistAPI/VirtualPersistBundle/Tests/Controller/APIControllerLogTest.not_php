@@ -4,7 +4,7 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Tests\Controller;
 
 use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCase;
 use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCaseInterface;
-use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTestData;
+use VirtualPersistAPI\VirtualPersistBundle\Entity\Log;
 
 /**
  * Functional tests for the VirtualPersistAPI controller.
@@ -31,18 +31,6 @@ class APIControllerLogTest extends AppFixtureTestCase implements AppFixtureTestC
         'this is a message',
       ),
     );
-  }
-
-  /**
-   * @dataProvider logData
-   */
-  public function testWriteLogs($uuid, $message) {
-    // We assume the controller's prefix is /api
-    
-    $client = static::createClientForApp();
-    $crawler = $client->request('DELETE', $path);
-    $status = $client->getResponse()->getStatusCode();
-    $this->assertEquals(404, $status, 'Error deleting path: ' . $path);
   }
 
 }

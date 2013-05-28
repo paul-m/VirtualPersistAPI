@@ -206,16 +206,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "2.4.0-RC2",
+            "version": "2.4.0-RC3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "2.4.0-RC2"
+                "reference": "2.4.0-RC3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/2.4.0-RC2",
-                "reference": "2.4.0-RC2",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/2.4.0-RC3",
+                "reference": "2.4.0-RC3",
                 "shasum": ""
             },
             "require": {
@@ -261,9 +261,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -276,20 +276,20 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-05-09 21:35:24"
+            "time": "2013-05-27 19:11:46"
         },
         {
             "name": "doctrine/dbal",
-            "version": "2.4.0-BETA2",
+            "version": "2.4.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "2.4.0-BETA2"
+                "reference": "2.4.0-RC1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2.4.0-BETA2",
-                "reference": "2.4.0-BETA2",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2.4.0-RC1",
+                "reference": "2.4.0-RC1",
                 "shasum": ""
             },
             "require": {
@@ -346,7 +346,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-05-11 08:21:40"
+            "time": "2013-05-27 19:17:11"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -535,16 +535,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.4.0-BETA2",
+            "version": "2.4.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "2.4.0-BETA2"
+                "reference": "2.4.0-RC1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/2.4.0-BETA2",
-                "reference": "2.4.0-BETA2",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/2.4.0-RC1",
+                "reference": "2.4.0-RC1",
                 "shasum": ""
             },
             "require": {
@@ -605,7 +605,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2013-05-10 21:31:27"
+            "time": "2013-05-27 19:47:16"
         },
         {
             "name": "jdorn/sql-formatter",

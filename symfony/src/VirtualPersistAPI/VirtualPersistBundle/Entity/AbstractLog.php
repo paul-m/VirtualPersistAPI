@@ -42,6 +42,9 @@ class AbstractLog {
    */
   protected $timestamp;
 
+  public function __construct() {
+    $this->setTimestamp(new \DateTime('now'));
+  }
 
     /**
      * Get id

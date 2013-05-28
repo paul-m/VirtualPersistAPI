@@ -7,13 +7,14 @@ use VirtualPersistAPI\VirtualPersistBundle\Tests\TestCases\AppFixtureTestCaseInt
 use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTestData;
 
 /**
- * Functional tests for the VirtualPersistAPI controller.
+ * Functional test to discover categories and keys for a user, and then
+ * retrieve the data.
  *
  * User UUID 11111111-1111-1111-1111-111111111111
  * is in the fixture and only has one record, the
  * one we test for.
  *
- * @TODO: Make a fixture
+ * @TODD: Change this for LSLON when that happens.
  * @TODO: test authentication.
  */
 class APIControllerDiscoveryTest extends AppFixtureTestCase implements AppFixtureTestCaseInterface {
