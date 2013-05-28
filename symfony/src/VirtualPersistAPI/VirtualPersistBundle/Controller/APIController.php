@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
+use VirtualPersistAPI\VirtualPersistBundle\Entity\Log;
 use VirtualPersistAPI\VirtualPersistBundle\Response\TextPlainResponse;
 
 /**
@@ -43,7 +44,6 @@ class APIController extends Controller {
     return new TextPlainResponse('404: No Such Item.', 404);
   }
 
-
   /**
    * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"POST"})
@@ -67,6 +67,7 @@ class APIController extends Controller {
       $request = $this->get('request');
 
       $data = $request->request->get('data');
+
       $record = new Record();
       $record->setOwner($user);
       $record->setCategory($category);
@@ -75,6 +76,14 @@ class APIController extends Controller {
 
       $entityManager->persist($record);
       $entityManager->flush();
+      
+/*      $log = new Log();
+      $log->setType('post')
+        ->setUser($user)
+        ->setMessage('Added data: ' . md5($data));
+      $entityManager->persist($log);
+      $entityManager->flush();
+*/
 
       return new TextPlainResponse('Item added.', 200);
     } else {
