@@ -22,13 +22,13 @@ class AppKernel extends Kernel
             new VirtualPersistAPI\VirtualPersistBundle\VirtualPersistBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        //if (in_array($this->getEnvironment(), array('dev', 'test'))) {
           // We might eventually move DoctrineFixturesBundle back to prod.
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-        }
+        //}
 
         return $bundles;
     }
