@@ -40,7 +40,6 @@ web1:
         - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
         - 'php symfony/composer.phar install -d="symfony" --no-progress'
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
-        - "php bin/composer.phar install"
         - "rm app/config/parameters.yml"
         - "echo 'parameters:' >> app/config/parameters.yml"
         - "echo ' database_driver: pdo_mysql' >> app/config/parameters.yml"
