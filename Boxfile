@@ -2,6 +2,13 @@ db1:
     name: symfony
     type: mysql
 
+# web1:
+#     name: mysf2site
+#     document_root: web
+#     default_gateway: app.php
+#     index_list: [app.php]
+#     php_version: 5.3.8
+
 web1:
     shared_writable_dirs:
      - app/cache
@@ -34,6 +41,7 @@ web1:
         - 'php symfony/composer.phar update -n -o -d="symfony" --no-progress'
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
 #        - "php vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/data/build-data.php"
+
     before_deploy:
         - export SYMFONY_DATABASE_USER=DB1_USER
         - export SYMFONY_DATABASE_PASS=DB1_PASS
