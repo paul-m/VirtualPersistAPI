@@ -15,7 +15,7 @@ web1:
      - app/logs
      - app/sessions
 
-    document_root: web
+    document_root: symfony/web
     default_gateway: app.php
     index_list: [app.php]
 
