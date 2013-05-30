@@ -38,7 +38,7 @@ web1:
     after_build:
 #        - "cp symfony/app/config/parameters.pagoda.yml symfony/app/config/parameters.yml"
         - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
-        - 'php symfony/composer.phar install -o -d="symfony" --no-progress'
+        - 'php symfony/composer.phar install -d="symfony" --no-progress'
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
 #        - "php vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/data/build-data.php"
 
