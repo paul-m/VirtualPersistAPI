@@ -33,4 +33,29 @@ class APIControllerLogTest extends AppFixtureTestCase implements AppFixtureTestC
     );
   }
 
+  /**
+   * This test tries to persist a Log entity to the database.
+   */
+  public function testWriteLogEntity() {
+    $doctrine = $this->getContainer()->get('doctrine');
+    $entityManager = $doctrine->getEntityManager();
+
+    $user = $doctrine
+      ->getRepository('VirtualPersistBundle:User')
+      ->findOneByUuid('00000000-0000-0000-0000-000000000000');
+
+    $record = new Record();
+    
+    
+    
+    $log = new Log();
+    $log->setMessage('this is a message');
+    $log->setType('test');
+    $log->setUser($user);
+    $entityManager->persist($log);
+    $entityManager->flush();
+
+    $this->assertNotEquals(0, $log->getId(), 'Log entity was written to the database.');
+  }
+
 }
