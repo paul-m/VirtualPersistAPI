@@ -5,10 +5,10 @@ db1:
 web1:
     name: symfony_web
     shared_writable_dirs:
-     - app/cache
-     - app/cache/prod
-     - app/logs
-     - app/sessions
+     - symfony/app/cache
+     - symfony/app/cache/prod
+     - symfony/app/logs
+     - symfony/app/sessions
 
     document_root: symfony/web
     default_gateway: app_dev.php
@@ -48,8 +48,6 @@ web1:
         - "echo ' mailer_password: ~' >> symfony/app/config/parameters.yml"
         - "echo ' locale: en' >> symfony/app/config/parameters.yml"
         - "echo ' secret: [secret]' >> symfony/app/config/parameters.yml"
-
-#        - "php vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/data/build-data.php"
 
     before_deploy:
         - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
