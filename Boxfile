@@ -16,8 +16,8 @@ web1:
      - app/sessions
 
     document_root: symfony/web
-    default_gateway: app.php
-    index_list: [app.php]
+    default_gateway: app_dev.php
+    index_list: [app_dev.php]
 
     php_version: 5.3.10
     php_extensions:
