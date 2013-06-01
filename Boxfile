@@ -6,6 +6,7 @@ web1:
     name: symfony_web
     shared_writable_dirs:
      - app/cache
+     - app/cache/prod
      - app/logs
      - app/sessions
 
