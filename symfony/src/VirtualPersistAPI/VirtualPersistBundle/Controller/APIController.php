@@ -57,8 +57,8 @@ class APIController extends Controller {
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
     if ($user) { // if($user->has_authentication)
-//      $oldTransactionIsolation = $em->getConnection()->getTransactionIsolation();
-//      $em->getConnection()->setTransactionIsolation(Connection::TRANSACTION_READ_COMMITTED);
+      $oldTransactionIsolation = $em->getConnection()->getTransactionIsolation();
+      $em->getConnection()->setTransactionIsolation(Connection::TRANSACTION_READ_COMMITTED);
       // Implicit transaction isolation on delete thanks to flush().
       $records = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
@@ -98,7 +98,10 @@ class APIController extends Controller {
         $em->close();
         throw $e;
       }
-      
+
+      // Re-set the transaction isolation.
+      $em->getConnection()->setTransactionIsolation($oldTransactionIsolation);
+
 /*      $log = new Log();
       $log->setType('post')
         ->setUser($user)
