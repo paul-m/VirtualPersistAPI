@@ -34,7 +34,6 @@ web1:
         - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
         - 'php symfony/composer.phar install -d="symfony" --no-progress'
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
-#        - "rm symfony/app/config/parameters.yml"
         - "echo 'parameters:' >> symfony/app/config/parameters.yml"
         - "echo ' database_driver: pdo_mysql' >> symfony/app/config/parameters.yml"
         - "echo ' database_host: ' $DB1_HOST >> symfony/app/config/parameters.yml"
