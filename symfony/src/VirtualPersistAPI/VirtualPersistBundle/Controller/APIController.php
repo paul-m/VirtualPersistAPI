@@ -11,6 +11,7 @@ use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Log;
 use VirtualPersistAPI\VirtualPersistBundle\Response\TextPlainResponse;
+use VirtualPersistAPI\VirtualPersistBundle\Response\VirtualPersistAPIResponse;
 
 /**
  * Our prefix:
@@ -35,6 +36,12 @@ class APIController extends Controller {
         // Did we get a record?
         if ($record) {
           return new TextPlainResponse($record->getData(), 200);
+/*          $response = VirtualPersistAPIResponse::createForRequest(
+            $this->get('request'),
+            $record->getData(),
+            200
+          );
+          return $response;*/
         }
       }
     } catch (\Exception $e) {
@@ -42,9 +49,13 @@ class APIController extends Controller {
     }
     // Always return 404 so no one can brute-force hack the
     // UUIDs or categories or keys.
-    $response = new TextPlainResponse('404: No Such Item.', 404);
-    $response->headers->set('X-VPA-Debug', 'debuggy!');
-    return $response;
+    return new TextPlainResponse('404: No Such Item.', 404);
+/*    $response = VirtualPersistAPIResponse::createForRequest(
+      $this->get('request'),
+      '404: No Such Item.',
+      404
+    );
+    return $response;*/
   }
 
   /**
