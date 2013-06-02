@@ -42,7 +42,9 @@ class APIController extends Controller {
     }
     // Always return 404 so no one can brute-force hack the
     // UUIDs or categories or keys.
-    return new TextPlainResponse('404: No Such Item.', 404);
+    $response = new TextPlainResponse('404: No Such Item.', 404);
+    $response->headers->set('X-VPA-Debug', 'debuggy!');
+    return $response;
   }
 
   /**
@@ -56,7 +58,7 @@ class APIController extends Controller {
     $user = $doctrine
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
-    if ($user) { // if($user->has_authentication)
+    if ($user) {
       $oldTransactionIsolation = $em->getConnection()->getTransactionIsolation();
       $em->getConnection()->setTransactionIsolation(Connection::TRANSACTION_READ_COMMITTED);
       // Implicit transaction isolation on delete thanks to flush().
@@ -70,7 +72,7 @@ class APIController extends Controller {
             $em->remove($record);
           }
           $em->flush();
-          $em->commit();
+          $em->getConnection()->commit();
         } catch (\Exception $e) {
           $em->rollback();
           $em->close();
