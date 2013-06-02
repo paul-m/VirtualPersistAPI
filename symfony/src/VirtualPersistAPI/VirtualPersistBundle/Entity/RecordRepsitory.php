@@ -104,16 +104,18 @@ class RecordRepsitory extends EntityRepository {
     }
   }
 
-  /*  public function deleteUUIDCategoryKey($uuid, $category, $key) {
+/*  public function deleteAllForUserCategoryKey($user, $category, $key) {
+//  error_log('deleteallforusercategorykey');
+    $id = $user->getId();
     $query = $this->getEntityManager()
-    ->createQuery('
-    DELETE VirtualPersistBundle:Record r
-    WHERE r.owner_uuid = :uuid AND r.category = :category AND r.aKey = :key'
-    )
-    ->setParameter('uuid', $uuid)
-    ->setParameter('category', $category)
-    ->setParameter('key', $key)
-    ->execute();
-    } */
+      ->createQuery('
+        DELETE VirtualPersistBundle:Record r
+        WHERE r.id = :id AND r.category = :category AND r.aKey = :key'
+      )
+      ->setParameter('id', $id)
+      ->setParameter('category', $category)
+      ->setParameter('key', $key)
+      ->execute();
+  }*/
 }
 

@@ -39,7 +39,7 @@ class APIControllerPathTest extends WebTestCase {
         '/api/00000000-0000-0000-0000-000000000000/nonexistantCategory',
       ),
       array(
-        '/api/categories/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/',
+        '/api/categories/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF',
       ),
       array(
         '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantCategory/nonexistantKey',
@@ -63,4 +63,54 @@ class APIControllerPathTest extends WebTestCase {
     $this->assertEquals(404, $status, "Status code: $status path: $path");
   }
 
+  /**
+   * Data provider for paths that should result in 405 in POST requests
+   */
+  public function _405PathDataProvider() {
+    return array(
+      array(
+        '/api/categories/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF',
+      ),
+      array(
+        '/api/keys/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantCategory',
+      ),
+    );
+  }
+
+
+  /**
+   * @dataProvider _405PathDataProvider
+   * Test post-not-allowed paths.
+   */
+  public function test405PostPaths($path = '') {
+    // We assume the controller's prefix is /api
+    $client = static::createClient();
+    $crawler = $client->request('POST', $path, array('data'=>'someData'));
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(405, $status, "Status code: $status path: $path");    
+  }
+
+  /**
+   * Test posting some data when there's no database.
+   */
+  public function testBadPost() {
+    // We assume the controller's prefix is /api
+    $path = '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/noCat/nokey';
+    $client = static::createClient();
+    $crawler = $client->request('POST', $path, array('data'=>'someData'));
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(404, $status, "Status code: $status path: $path");
+  }
+
+  /**
+   * Test deleting some data when there's no database.
+   */
+  public function testBadDelete() {
+    // We assume the controller's prefix is /api
+    $path = '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/noCat/nokey';
+    $client = static::createClient();
+    $crawler = $client->request('DELETE', $path);
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(404, $status, "Status code: $status path: $path");
+  }
 }

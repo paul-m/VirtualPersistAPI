@@ -1,6 +1,7 @@
 <?php
 namespace VirtualPersistAPI\VirtualPersistBundle\Controller;
 
+use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,32 +51,53 @@ class APIController extends Controller {
    */
   public function postAction($uuid, $category, $key) {
     $doctrine = $this->getDoctrine();
-    $entityManager = $doctrine->getEntityManager();
+    $em = $doctrine->getEntityManager();
 
     $user = $doctrine
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
     if ($user) { // if($user->has_authentication)
+//      $oldTransactionIsolation = $em->getConnection()->getTransactionIsolation();
+//      $em->getConnection()->setTransactionIsolation(Connection::TRANSACTION_READ_COMMITTED);
+      // Implicit transaction isolation on delete thanks to flush().
       $records = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
         ->findByUserCategoryKey($user, $category, $key);
-      foreach($records as $record) {
-        $entityManager->remove($record);
+      if (count($records)) {
+        $em->getConnection()->beginTransaction();
+        try {
+          foreach($records as $record) {
+            $em->remove($record);
+          }
+          $em->flush();
+          $em->commit();
+        } catch (\Exception $e) {
+          $em->rollback();
+          $em->close();
+          throw $e;
+        }
       }
-      $entityManager->flush();
-
+      
+      // Glean the data to post.
       $request = $this->get('request');
-
       $data = $request->request->get('data');
 
-      $record = new Record();
-      $record->setOwner($user);
-      $record->setCategory($category);
-      $record->setKey($key);
-      $record->setData($data);
-
-      $entityManager->persist($record);
-      $entityManager->flush();
+      // Isolate writing the new record in a transaction.
+      $em->getConnection()->beginTransaction();
+      try {
+        $record = new Record();
+        $record->setOwner($user);
+        $record->setCategory($category);
+        $record->setKey($key);
+        $record->setData($data);
+        $em->persist($record);
+        $em->flush();
+        $em->getConnection()->commit();
+      } catch (\Exception $e) {
+        $em->getConnection()->rollback();
+        $em->close();
+        throw $e;
+      }
       
 /*      $log = new Log();
       $log->setType('post')
@@ -87,14 +109,12 @@ class APIController extends Controller {
 
       return new TextPlainResponse('Item added.', 200);
     } else {
-      return new TextPlainResponse('bad access.', 401);
+      return new TextPlainResponse('No such item.', 404);
     }
     return new TextPlainResponse('Huh?', 503);
   }
 
   /**
-   * TODO: Delete action works from cli curl, hopefully we can get
-   * fixtures working soon.
    * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"DELETE"})
    */
@@ -104,16 +124,14 @@ class APIController extends Controller {
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
     if ($user) { // if($user->has_authentication)
+      // Get all the records that match.
       $records = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
         ->findByUserCategoryKey($user, $category, $key);
-      // Did we get a record?
+      // Did we get any records?
       if (count($records)) {
-        $theRecords = array();
         $entityManager = $doctrine->getEntityManager();
         foreach($records as $record) {
-          // Store a reference.
-          $theRecords[] = $record;
           // Tell ORM to remove.
           $entityManager->remove($record);
         }
@@ -124,42 +142,6 @@ class APIController extends Controller {
       }
     }
     return new TextPlainResponse('No Such Item.', 404);
-  }
-
-  /**
-   * @Route("/categories/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
-   * @Method({"GET"})
-   */
-  public function categoriesAction($uuid) {
-    try {
-      $doctrine = $this->getDoctrine();
-      $categories = $doctrine
-        ->getRepository('VirtualPersistBundle:Record')
-        ->categoriesForUUID($uuid);
-
-      // Did we get an answer?
-      if ($categories) {
-        $user = $doctrine
-          ->getRepository('VirtualPersistBundle:User')
-          ->findOneByUuid($uuid);
-        if ($user && $user->isEnabled()) { // if($user->has_authentication)
-          $categoryArray = array();
-          foreach ($categories as $category) {
-            $categoryArray[] = $category['category'];
-          }
-          // for now we just return json.
-          return new Response(
-            json_encode($categoryArray),
-            200,
-            array('content-type' => 'application/json')
-          );
-        }
-      }
-
-      return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
-    } catch (\Exception $e) {
-    }
-    return new Response('Item not found.', 404);
   }
 
   /**
@@ -186,6 +168,42 @@ class APIController extends Controller {
           // for now we just return json.
           return new Response(
             json_encode($keyArray),
+            200,
+            array('content-type' => 'application/json')
+          );
+        }
+      }
+
+      return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
+    } catch (\Exception $e) {
+    }
+    return new Response('Item not found.', 404);
+  }
+
+  /**
+   * @Route("/categories/{uuid}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+   * @Method({"GET"})
+   */
+  public function categoriesAction($uuid) {
+    try {
+      $doctrine = $this->getDoctrine();
+      $categories = $doctrine
+        ->getRepository('VirtualPersistBundle:Record')
+        ->categoriesForUUID($uuid);
+
+      // Did we get an answer?
+      if ($categories) {
+        $user = $doctrine
+          ->getRepository('VirtualPersistBundle:User')
+          ->findOneByUuid($uuid);
+        if ($user && $user->isEnabled()) { // if($user->has_authentication)
+          $categoryArray = array();
+          foreach ($categories as $category) {
+            $categoryArray[] = $category['category'];
+          }
+          // for now we just return json.
+          return new Response(
+            json_encode($categoryArray),
             200,
             array('content-type' => 'application/json')
           );
