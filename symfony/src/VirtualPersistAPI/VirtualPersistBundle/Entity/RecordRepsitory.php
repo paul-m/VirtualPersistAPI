@@ -4,6 +4,7 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * RecordRepsitory
@@ -12,6 +13,41 @@ use Doctrine\ORM\NoResultException;
  * repository methods below.
  */
 class RecordRepsitory extends EntityRepository {
+
+  // NOTE: This method requires the existence of a view called
+  // RecordForActiveUser
+  public function findOneByUuidCategoryKey_View($uuid, $category, $key) {
+// select * from RecordForActiveUser
+// where uuid = '00000000-0000-0000-0000-000000000000'
+// 	and category = 'extantCategory'
+// 	and aKey = 'extantKey';	
+// ## Create the view
+// ##
+// create or replace view RecordForActiveUser as
+// 	select u.uuid, u.id as 'uid', u.is_active, r.id, r.category, r.aKey, r.data
+// 	from `User` as u
+// 	left join `Record` as r
+// 	on u.id = r.owner
+// 	where u.is_active != 0;
+
+    // Equivalent DQL query: "select u from User u where u.name=?1"
+    // User owns no associations.
+    $rsm = new ResultSetMapping;
+    $rsm->addEntityResult('Record', 'r');
+    $rsm->addFieldResult('r', 'id', 'id');
+    
+    $em = $this->getEntityManager();
+    $query = $em->createNativeQuery(
+      'SELECT id FROM RecordForActiveUser WHERE uuid = ? AND category = ? AND aKey = ? LIMIT 1',
+      $rsm
+    );
+    $query->setParameter(1, $uuid);
+    $query->setParameter(2, $category);
+    $query->setParameter(2, $key);
+    
+    $record = $query->getResult();
+    return $record;
+  }
 
   public function findOneByUserCategoryKey(User $user, $category, $key) {
     $query = $this->getEntityManager()

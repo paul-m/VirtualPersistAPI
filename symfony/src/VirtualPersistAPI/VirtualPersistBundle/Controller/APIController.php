@@ -32,7 +32,7 @@ class APIController extends Controller {
       if ($user && $user->isEnabled()) {
         $record = $doctrine
           ->getRepository('VirtualPersistBundle:Record')
-          ->findOneByUserCategoryKey($user, $category, $key);
+          ->findOneByUuidCategoryKey_View($uuid, $category, $key);
         // Did we get a record?
         if ($record) {
           return new TextPlainResponse($record->getData(), 200);
