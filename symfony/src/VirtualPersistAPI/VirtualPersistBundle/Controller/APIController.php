@@ -62,7 +62,7 @@ class APIController extends Controller {
    * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"POST"})
    */
-  public function postAction($uuid, $category, $key) {
+  public function postAction(Request $request, $uuid, $category, $key) {
     $doctrine = $this->getDoctrine();
     $em = $doctrine->getEntityManager();
 
@@ -92,7 +92,7 @@ class APIController extends Controller {
       }
       
       // Glean the data to post.
-      $request = $this->get('request');
+      //$request = $this->getRequest();
       $data = $request->request->get('data');
 
       // Isolate writing the new record in a transaction.
@@ -240,7 +240,6 @@ class APIController extends Controller {
     $user = $this->getDoctrine()
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
-    $request = $this->get('request');
     if ($user && $user->isEnabled()) {
       return new Response('User: ' . $user->getUUID());
     }

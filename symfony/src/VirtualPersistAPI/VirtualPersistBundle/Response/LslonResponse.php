@@ -38,5 +38,7 @@ class LslonResponse extends Response {
     $this->data = $data;
     return $this;
   }
+  
+  
 
 }
