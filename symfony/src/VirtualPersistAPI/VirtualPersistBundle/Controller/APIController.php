@@ -23,7 +23,7 @@ class APIController extends Controller {
    * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"GET"})
    */
-  public function getAction($uuid, $category, $key) {
+  public function getAction(Request $request, $uuid, $category, $key) {
     try {
       $doctrine = $this->getDoctrine();
       $user = $doctrine
@@ -36,12 +36,16 @@ class APIController extends Controller {
         // Did we get a record?
         if ($record) {
           $response = new TextPlainResponse($record->getData(), 200);
-          $response->headers->set('X-VPA-Debug', 'Some debuggy info.');
+          $reqDebug = $request->query->get('debug', 0);
+          if ($reqDebug) {
+            $response->headers->set('X-VPA-Debug', 'Some debuggy info.', TRUE);
+          }
           return $response;
         }
       }
     } catch (\Exception $e) {
-      // no-op
+      // Catch exceptions so GET always results in 404.
+      //throw $e;
     }
     // Always return 404 so no one can brute-force hack the
     // UUIDs or categories or keys.
@@ -84,8 +88,7 @@ class APIController extends Controller {
       }
       
       // Glean the data to post.
-      //$request = $this->getRequest();
-      $data = $request->request->get('data');
+      $data = $request->request->get('data', '');
 
       // Isolate writing the new record in a transaction.
       $em->getConnection()->beginTransaction();
