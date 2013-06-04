@@ -35,13 +35,9 @@ class APIController extends Controller {
           ->findOneByUuidCategoryKey_View($uuid, $category, $key);
         // Did we get a record?
         if ($record) {
-          return new TextPlainResponse($record->getData(), 200);
-/*          $response = VirtualPersistAPIResponse::createForRequest(
-            $this->get('request'),
-            $record->getData(),
-            200
-          );
-          return $response;*/
+          $response = new TextPlainResponse($record->getData(), 200);
+          $response->headers->set('X-VPA-Debug', 'Some debuggy info.');
+          return $response;
         }
       }
     } catch (\Exception $e) {
@@ -50,12 +46,6 @@ class APIController extends Controller {
     // Always return 404 so no one can brute-force hack the
     // UUIDs or categories or keys.
     return new TextPlainResponse('404: No Such Item.', 404);
-/*    $response = VirtualPersistAPIResponse::createForRequest(
-      $this->get('request'),
-      '404: No Such Item.',
-      404
-    );
-    return $response;*/
   }
 
   /**
@@ -70,9 +60,11 @@ class APIController extends Controller {
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
     if ($user) {
+      // Perform bogus locking strategy.
+      // Should really be pessimistic locking:
+      // http://docs.doctrine-project.org/en/latest/reference/transactions-and-concurrency.html#pessimistic-locking
       $oldTransactionIsolation = $em->getConnection()->getTransactionIsolation();
-      $em->getConnection()->setTransactionIsolation(Connection::TRANSACTION_READ_COMMITTED);
-      // Implicit transaction isolation on delete thanks to flush().
+      $em->getConnection()->setTransactionIsolation(Connection::TRANSACTION_SERIALIZABLE);
       $records = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
         ->findByUserCategoryKey($user, $category, $key);

@@ -16,11 +16,6 @@ class RecordRepsitory extends EntityRepository {
 
   // NOTE: This method requires the existence of a view called
   // RecordForActiveUser
-  public function findOneByUuidCategoryKey_View($uuid, $category, $key) {
-// select * from RecordForActiveUser
-// where uuid = '00000000-0000-0000-0000-000000000000'
-// 	and category = 'extantCategory'
-// 	and aKey = 'extantKey';	
 // ## Create the view
 // ##
 // create or replace view RecordForActiveUser as
@@ -29,35 +24,35 @@ class RecordRepsitory extends EntityRepository {
 // 	left join `Record` as r
 // 	on u.id = r.owner
 // 	where u.is_active != 0;
-
-    // Equivalent DQL query: "select u from User u where u.name=?1"
-    // User owns no associations.
+  public function findOneByUuidCategoryKey_View($uuid, $category, $key) { 
     $rsm = new ResultSetMapping;
-    $rsm->addEntityResult('Record', 'r');
+    $rsm->addEntityResult('VirtualPersistBundle:Record', 'r');
     $rsm->addFieldResult('r', 'id', 'id');
-    
-    $em = $this->getEntityManager();
-    $query = $em->createNativeQuery(
-      'SELECT id FROM RecordForActiveUser WHERE uuid = ? AND category = ? AND aKey = ? LIMIT 1',
+    $rsm->addFieldResult('r', 'category', 'category');
+    $rsm->addFieldResult('r', 'data', 'data');
+    $rsm->addFieldResult('r', 'key', 'aKey');
+
+    $query = $this->getEntityManager()->createNativeQuery(
+      'SELECT id, category, aKey, data FROM RecordForActiveUser WHERE uuid = ? AND category = ? AND aKey = ? LIMIT 1',
       $rsm
     );
     $query->setParameter(1, $uuid);
     $query->setParameter(2, $category);
-    $query->setParameter(2, $key);
-    
+    $query->setParameter(3, $key);
+
     $record = $query->getResult();
-    return $record;
+    return reset($record);
   }
 
   public function findOneByUserCategoryKey(User $user, $category, $key) {
     $query = $this->getEntityManager()
-            ->createQuery('
-              SELECT r FROM VirtualPersistBundle:Record r
-              WHERE r.owner = :user AND r.category = :category AND r.aKey = :key'
-            )
-            ->setParameter('user', $user->getId())
-            ->setParameter('category', $category)
-            ->setParameter('key', $key);
+      ->createQuery('
+        SELECT r FROM VirtualPersistBundle:Record r
+        WHERE r.owner = :user AND r.category = :category AND r.aKey = :key'
+      )
+      ->setParameter('user', $user->getId())
+      ->setParameter('category', $category)
+      ->setParameter('key', $key);
     try {
       $result = $query->getSingleResult();
       return $result;
