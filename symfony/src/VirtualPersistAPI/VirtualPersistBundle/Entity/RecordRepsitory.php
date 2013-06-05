@@ -63,6 +63,22 @@ class RecordRepsitory extends EntityRepository {
     }
   }
 
+  public function findByUserCategory(User $user, $category) {
+    $query = $this->getEntityManager()
+      ->createQuery('
+        SELECT r FROM VirtualPersistBundle:Record r WHERE r.owner = :owner AND r.category = :category'
+      )
+      ->setParameter('owner', $user->getId())
+      ->setParameter('category', $category);
+    try {
+      return $query->getResult();
+    } catch (\Exception $e) {
+    throw $e;
+      // The show must go on.
+      return null;
+    }
+  }
+
   public function findByUserCategoryKey($user, $category, $key) {
     $query = $this->getEntityManager()
       ->createQuery('

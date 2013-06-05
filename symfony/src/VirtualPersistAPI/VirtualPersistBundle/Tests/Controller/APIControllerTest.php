@@ -33,12 +33,6 @@ class APIControllerPathTest extends WebTestCase {
         '/api/00000000-0000-0000-0000-000000000000',
       ),
       array(
-        '/api/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF/nonexistantCategory',
-      ),
-      array(
-        '/api/00000000-0000-0000-0000-000000000000/nonexistantCategory',
-      ),
-      array(
         '/api/categories/FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF',
       ),
       array(

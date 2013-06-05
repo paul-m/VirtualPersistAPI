@@ -2,9 +2,10 @@
 namespace VirtualPersistAPI\VirtualPersistBundle\Response;
 
 use Symfony\Component\HttpFoundation\Response;
+use VirtualPersistAPI\VirtualPersistBundle\Response\VPADebugResponse;
 
 /**
- * Response class for text/plain error responses.
+ * Response class for text/plain responses.
  *
  */
 class TextPlainResponse extends Response {

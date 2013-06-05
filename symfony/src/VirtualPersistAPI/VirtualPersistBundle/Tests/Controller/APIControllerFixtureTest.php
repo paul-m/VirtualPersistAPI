@@ -32,6 +32,9 @@ class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixt
         '/api/00000000-0000-0000-0000-000000000000/extantCategory/extantKey',
       ),
       array(
+        '/api/00000000-0000-0000-0000-000000000000/extantCategory',
+      ),
+      array(
         '/api/categories/00000000-0000-0000-0000-000000000000',
       ),
       array(
@@ -52,6 +55,9 @@ class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixt
     return array(
       array(
         '/api/EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE/extantCategory/extantKey',
+      ),
+      array(
+        '/api/EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE/extantCategory',
       ),
       array(
         '/api/categories/EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE',
