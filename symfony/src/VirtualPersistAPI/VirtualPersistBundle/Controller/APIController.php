@@ -184,11 +184,19 @@ class APIController extends Controller {
       // Did we get any records?
       if (count($records)) {
         $entityManager = $doctrine->getEntityManager();
+
+
+
         foreach($records as $record) {
           // Tell ORM to remove.
           $entityManager->remove($record);
         }
         $entityManager->flush();
+
+
+
+
+
         // Tell the user.
         $response = new TextPlainResponse('Item deleted.', 200);
       }
