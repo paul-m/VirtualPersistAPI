@@ -4,6 +4,7 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Controller;
 use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -12,6 +13,7 @@ use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Log;
 use VirtualPersistAPI\VirtualPersistBundle\Response\TextPlainResponse;
 use VirtualPersistAPI\VirtualPersistBundle\Response\VirtualPersistAPIResponse;
+use VirtualPersistAPI\VirtualPersistBundle\Response\ResponseDebugInfoInjector;
 
 /**
  * Our prefix:
@@ -19,11 +21,56 @@ use VirtualPersistAPI\VirtualPersistBundle\Response\VirtualPersistAPIResponse;
  */
 class APIController extends Controller {
 
+  public function addDebugInfo(Response $response) {
+    $debug = $this->getRequest()->query->get('debug');
+    if (!$debug) $debug = $this->getRequest()->request->get('debug');
+    if ($debug) {
+      $response->headers->set('X-VPA-Debug', 'debuggy!', TRUE);
+    }
+    return $response;
+  }
+
+  /**
+   * Get all the records for a given category, keyed by their key.
+   *
+   * @Route("/{uuid}/{category}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+   * @Method({"GET"})
+   */
+  public function getCategoryAction(Request $request, $uuid, $category) {
+    // Return 404 by default so no one can brute-force hack the
+    // UUIDs or categories or keys.
+    $response = new TextPlainResponse('404: No Such Item.', 404);
+    try {
+      $doctrine = $this->getDoctrine();
+      $user = $doctrine
+        ->getRepository('VirtualPersistBundle:User')
+        ->findOneByUuid($uuid);
+      if ($user && $user->isEnabled()) {
+        $records = $doctrine
+          ->getRepository('VirtualPersistBundle:Record')
+          ->findByUserCategory($user, $category);
+        // Did we get a record?
+        if (count($records)) {
+          error_log(print_r($records,true));
+          $response = new JsonResponse($records, 200);
+        }
+      }
+    } catch (\Exception $e) {
+      // Catch exceptions so GET always results in 404.
+      //throw $e;
+    }
+    return $this->addDebugInfo($response);
+  }
+
+
   /**
    * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"GET"})
    */
-  public function getAction($uuid, $category, $key) {
+  public function getAction(Request $request, $uuid, $category, $key) {
+    // Return 404 by default so no one can brute-force hack the
+    // UUIDs or categories or keys.
+    $response = new TextPlainResponse('404: No Such Item.', 404);
     try {
       $doctrine = $this->getDoctrine();
       $user = $doctrine
@@ -35,27 +82,14 @@ class APIController extends Controller {
           ->findOneByUserCategoryKey($user, $category, $key);
         // Did we get a record?
         if ($record) {
-          return new TextPlainResponse($record->getData(), 200);
-/*          $response = VirtualPersistAPIResponse::createForRequest(
-            $this->get('request'),
-            $record->getData(),
-            200
-          );
-          return $response;*/
+          $response = new TextPlainResponse($record->getData(), 200);
         }
       }
     } catch (\Exception $e) {
-      // no-op
+      // Catch exceptions so GET always results in 404.
+      //throw $e;
     }
-    // Always return 404 so no one can brute-force hack the
-    // UUIDs or categories or keys.
-    return new TextPlainResponse('404: No Such Item.', 404);
-/*    $response = VirtualPersistAPIResponse::createForRequest(
-      $this->get('request'),
-      '404: No Such Item.',
-      404
-    );
-    return $response;*/
+    return $this->addDebugInfo($response);
   }
 
   /**
@@ -63,6 +97,7 @@ class APIController extends Controller {
    * @Method({"POST"})
    */
   public function postAction(Request $request, $uuid, $category, $key) {
+    $response = new TextPlainResponse('Huh?', 503);
     $doctrine = $this->getDoctrine();
     $em = $doctrine->getEntityManager();
 
@@ -70,9 +105,11 @@ class APIController extends Controller {
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
     if ($user) {
+      // Perform bogus locking strategy.
+      // Should really be pessimistic locking:
+      // http://docs.doctrine-project.org/en/latest/reference/transactions-and-concurrency.html#pessimistic-locking
       $oldTransactionIsolation = $em->getConnection()->getTransactionIsolation();
-      $em->getConnection()->setTransactionIsolation(Connection::TRANSACTION_READ_COMMITTED);
-      // Implicit transaction isolation on delete thanks to flush().
+      $em->getConnection()->setTransactionIsolation(Connection::TRANSACTION_SERIALIZABLE);
       $records = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
         ->findByUserCategoryKey($user, $category, $key);
@@ -85,24 +122,23 @@ class APIController extends Controller {
           $em->flush();
           $em->getConnection()->commit();
         } catch (\Exception $e) {
-          $em->rollback();
+          $em->getConnection()->rollback();
           $em->close();
           throw $e;
         }
       }
       
       // Glean the data to post.
-      //$request = $this->getRequest();
-      $data = $request->request->get('data');
+      $data = $request->request->get('data', '');
 
+      $record = new Record();
+      $record->setOwner($user);
+      $record->setCategory($category);
+      $record->setKey($key);
+      $record->setData($data);
       // Isolate writing the new record in a transaction.
       $em->getConnection()->beginTransaction();
       try {
-        $record = new Record();
-        $record->setOwner($user);
-        $record->setCategory($category);
-        $record->setKey($key);
-        $record->setData($data);
         $em->persist($record);
         $em->flush();
         $em->getConnection()->commit();
@@ -123,11 +159,11 @@ class APIController extends Controller {
       $entityManager->flush();
 */
 
-      return new TextPlainResponse('Item added.', 200);
+      $response = new TextPlainResponse('Item added.', 200);
     } else {
-      return new TextPlainResponse('No such item.', 404);
+      $response = new TextPlainResponse('No such item.', 404);
     }
-    return new TextPlainResponse('Huh?', 503);
+    return $this->addDebugInfo($response);
   }
 
   /**
@@ -135,11 +171,12 @@ class APIController extends Controller {
    * @Method({"DELETE"})
    */
   public function deleteAction($uuid, $category, $key) {
+    $response = new TextPlainResponse('No Such Item.', 404);
     $doctrine = $this->getDoctrine();
     $user = $doctrine
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
-    if ($user) { // if($user->has_authentication)
+    if ($user) { // && $user->isActive()) {
       // Get all the records that match.
       $records = $doctrine
         ->getRepository('VirtualPersistBundle:Record')
@@ -147,17 +184,24 @@ class APIController extends Controller {
       // Did we get any records?
       if (count($records)) {
         $entityManager = $doctrine->getEntityManager();
+
+
+
         foreach($records as $record) {
           // Tell ORM to remove.
           $entityManager->remove($record);
         }
         $entityManager->flush();
+
+
+
+
+
         // Tell the user.
         $response = new TextPlainResponse('Item deleted.', 200);
-        return $response;
       }
     }
-    return new TextPlainResponse('No Such Item.', 404);
+    return $this->addDebugInfo($response);
   }
 
   /**
