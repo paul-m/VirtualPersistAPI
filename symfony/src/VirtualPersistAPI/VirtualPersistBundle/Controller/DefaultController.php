@@ -43,7 +43,7 @@ class DefaultController extends Controller {
    */
   public function logsAction() {
     $resultArray = array(
-      'header' => 'Your logs...',
+      'header' => 'VirtualPersistAPI Log Entries',
       'logs' => array(),
     );
     $logsRepo = $this->getDoctrine()

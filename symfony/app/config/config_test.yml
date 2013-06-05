@@ -18,7 +18,7 @@ web_profiler:
 doctrine:
     dbal:
         driver:   pdo_sqlite
-        path:     ./vpa.sqlite
+        path:     "%kernel.root_dir%/vpa.sqlite"
         memory:   true
     orm:
         auto_generate_proxy_classes: true
