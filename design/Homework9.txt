@@ -1,0 +1,24 @@
+Homework 9
+
+My project is in Symfony, which has a number of debugging and metric tools built in. Here are two of them:
+
+Symfony allows you to specify different environments in the URL. exapmle.com/app.php is the front controller, but you can specify app_dev.php for development environment, or app_test.php for testing. By default, if you specify app_dev.php, Symfony puts a debug/metrics toolbar on the page.
+
+Debugging can also be turned on as an option without the toolbar. This gives you a header called X-Debug, with a token string you can feed back into the profiler. Grab the token and slot it into a URL like this: example.com/_profiler/[token] and you get the same profiling page.
+
+I've tried to put some of this profiling info into a header, particularly DB metrics since this is a DB class.
+
+I managed to modify the header if you specify ?debug=1 in the request, but Symfony's profiler remains a bit of a mystery and now it only adds a header called X-VPA-Debug with a value of 'Debuggy!'
+
+So, to see this in action, you can do this at the command line:
+
+curl -v -D - http://vpa.pagodabox.com/api/6d286553-59ae-409a-887d-ee75df67b834/cat/key?debug=1 -o /dev/null
+
+You'll see the response header info, and it will contain X-VPA-Debug.
+
+This is possible through the addDebugInfo() method I added to the API's routing controller. You can see it here:
+
+https://github.com/paul-m/VirtualPersistAPI/commit/a5edc93b7c0034edd7470fada65283e073dea878#L1R24
+
+It's not much to talk about, but it represents an end result of a lot of trying to make other things work, such as a Symfony event subscriber, and a chain of classes and decorators.
+
