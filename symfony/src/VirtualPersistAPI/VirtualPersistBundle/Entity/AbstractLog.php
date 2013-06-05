@@ -61,6 +61,16 @@ class AbstractLog {
     }
 
     /**
+     * Get uuid
+     *
+     * @return integer 
+     */
+    public function getUserUuid()
+    {
+        return $this->userUUID;
+    }
+
+    /**
      * Set type
      *
      * @param string $type
@@ -127,6 +137,16 @@ class AbstractLog {
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+
+    /**
+     * Get readable timestamp
+     *
+     * @return \string 
+     */
+    public function getReadableTimestamp()
+    {
+      return $this->timestamp->format('Y-m-d H:i:s');;
     }
 
 

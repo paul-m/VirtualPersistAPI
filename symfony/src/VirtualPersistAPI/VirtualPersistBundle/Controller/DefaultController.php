@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
+use VirtualPersistAPI\VirtualPersistBundle\Entity\Log;
+
 class DefaultController extends Controller {
 
   /**
@@ -32,6 +34,24 @@ class DefaultController extends Controller {
       $resultArray['categories'] = $categories;
 //    } catch (\Exception $e) {
  //   }
+    return $resultArray;
+  }
+
+  /**
+   * @Route("/logs")
+   * @Template()
+   */
+  public function logsAction() {
+    $resultArray = array(
+      'header' => 'Your logs...',
+      'logs' => array(),
+    );
+    $logsRepo = $this->getDoctrine()
+      ->getRepository('VirtualPersistBundle:Log');
+
+    $logs = $logsRepo->getNewest(30);
+    error_log(print_r($logs, TRUE));
+    $resultArray['logs'] = $logs;
     return $resultArray;
   }
 
