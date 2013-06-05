@@ -122,7 +122,7 @@ class APIController extends Controller {
           $em->flush();
           $em->getConnection()->commit();
         } catch (\Exception $e) {
-          $em->rollback();
+          $em->getConnection()->rollback();
           $em->close();
           throw $e;
         }
@@ -131,14 +131,14 @@ class APIController extends Controller {
       // Glean the data to post.
       $data = $request->request->get('data', '');
 
+      $record = new Record();
+      $record->setOwner($user);
+      $record->setCategory($category);
+      $record->setKey($key);
+      $record->setData($data);
       // Isolate writing the new record in a transaction.
       $em->getConnection()->beginTransaction();
       try {
-        $record = new Record();
-        $record->setOwner($user);
-        $record->setCategory($category);
-        $record->setKey($key);
-        $record->setData($data);
         $em->persist($record);
         $em->flush();
         $em->getConnection()->commit();
@@ -176,7 +176,7 @@ class APIController extends Controller {
     $user = $doctrine
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
-    if ($user) { // if($user->has_authentication)
+    if ($user) { // && $user->isActive()) {
       // Get all the records that match.
       $records = $doctrine
         ->getRepository('VirtualPersistBundle:Record')

@@ -26,7 +26,7 @@ class Record {
   /**
    * @ORM\ManyToOne(targetEntity="User")
    * @ORM\JoinColumn(name="owner", referencedColumnName="id", nullable=false)
-   * ....onDelete="CASCADE"
+   * Maybe add onDelete="CASCADE"
    */
   protected $owner;
 
