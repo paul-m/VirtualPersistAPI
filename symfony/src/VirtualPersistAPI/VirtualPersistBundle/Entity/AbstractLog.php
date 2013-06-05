@@ -22,10 +22,14 @@ class AbstractLog {
   protected $id;
 
   /**
-   * @ORM\ManyToOne(targetEntity="User")
-   * @ORM\JoinColumn(name="user", referencedColumnName="id")
+   * @ORM\Column(type="integer")
    */
   protected $user;
+  
+  /**
+   * @ORM\Column(type="string", length=36)
+   */
+  protected $userUUID;
 
   /**
    * @ORM\Column(type="string", length=128)
@@ -54,6 +58,16 @@ class AbstractLog {
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get uuid
+     *
+     * @return integer 
+     */
+    public function getUserUuid()
+    {
+        return $this->userUUID;
     }
 
     /**
@@ -125,6 +139,16 @@ class AbstractLog {
         return $this->timestamp;
     }
 
+    /**
+     * Get readable timestamp
+     *
+     * @return \string 
+     */
+    public function getReadableTimestamp()
+    {
+      return $this->timestamp->format('Y-m-d H:i:s');;
+    }
+
 
     /**
      * Set user
@@ -134,7 +158,8 @@ class AbstractLog {
      */
     public function setUser(\VirtualPersistAPI\VirtualPersistBundle\Entity\User $user)
     {
-        $this->user = $user;
+        $this->user = $user->getId();
+        $this->userUUID = $user->getUuid();
 
         return $this;
     }
@@ -144,8 +169,8 @@ class AbstractLog {
      *
      * @return \VirtualPersistAPI\VirtualPersistBundle\Entity\User 
      */
-    public function getUser()
+/*    public function getUser()
     {
         return $this->user;
-    }
+    }*/
 }

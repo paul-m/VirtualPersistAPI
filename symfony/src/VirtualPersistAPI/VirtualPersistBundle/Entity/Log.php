@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="LogRepository")
  * @ORM\Table(name="Log")
  */
 class Log extends AbstractLog {
