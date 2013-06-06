@@ -1,5 +1,7 @@
 Homework 9
 
+Paul Mitchum, paul@mile.23.com, paulm77@uw.edu
+
 My project is in Symfony, which has a number of debugging and metric tools built in. Here are two of them:
 
 Symfony allows you to specify different environments in the URL. exapmle.com/app.php is the front controller, but you can specify app_dev.php for development environment, or app_test.php for testing. By default, if you specify app_dev.php, Symfony puts a debug/metrics toolbar on the page.
@@ -18,7 +20,14 @@ You'll see the response header info, and it will contain X-VPA-Debug.
 
 This is possible through the addDebugInfo() method I added to the API's routing controller. You can see it here:
 
-https://github.com/paul-m/VirtualPersistAPI/commit/a5edc93b7c0034edd7470fada65283e073dea878#L1R24
+https://github.com/paul-m/VirtualPersistAPI/blob/master/symfony/src/VirtualPersistAPI/VirtualPersistBundle/Controller/APIController.php#L35
 
 It's not much to talk about, but it represents an end result of a lot of trying to make other things work, such as a Symfony event subscriber, and a chain of classes and decorators.
 
+Also, logging into the database occurs here:
+
+https://github.com/paul-m/VirtualPersistAPI/blob/master/symfony/src/VirtualPersistAPI/VirtualPersistBundle/Controller/APIController.php#L24
+
+This can be called on the controller making a log for whichever event you'd want to log.
+
+You can see the current logs at /logs: http://vpa.pagodabox.com/logs
