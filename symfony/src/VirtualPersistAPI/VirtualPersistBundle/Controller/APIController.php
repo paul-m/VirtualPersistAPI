@@ -21,6 +21,17 @@ use VirtualPersistAPI\VirtualPersistBundle\Response\ResponseDebugInfoInjector;
  */
 class APIController extends Controller {
 
+  public function log(User $user, $type, $message) {
+    $log = new Log();
+    $log->setUser($user);
+    $log->setType($type);
+    $log->setMessage($message);
+    $doctrine = $this->getDoctrine();
+    $em = $doctrine->getEntityManager();
+    $em->persist($log);
+    $em->flush();
+  }
+
   public function addDebugInfo(Response $response) {
     $debug = $this->getRequest()->query->get('debug');
     if (!$debug) $debug = $this->getRequest()->request->get('debug');
@@ -160,6 +171,7 @@ class APIController extends Controller {
 */
 
       $response = new TextPlainResponse('Item added.', 200);
+      $this->log($user, 'post', 'Added record.');
     } else {
       $response = new TextPlainResponse('No such item.', 404);
     }
@@ -199,6 +211,7 @@ class APIController extends Controller {
 
         // Tell the user.
         $response = new TextPlainResponse('Item deleted.', 200);
+        $this->log($user, 'post', 'Deleted record.');
       }
     }
     return $this->addDebugInfo($response);
