@@ -4,7 +4,7 @@ VPA Entities
 VPA needs two entities:
 
 - Record
-  - UUID of owner
+  - index to owner
   - category
   - key
   - data
@@ -14,4 +14,3 @@ VPA needs two entities:
   - Password (hash)
   - Permission
   - Salt (the salt that was used to generate the password hash)
-

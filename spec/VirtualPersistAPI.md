@@ -10,12 +10,26 @@ The data stored is a simple category->key->value relationship.
 
 The value will be sent through a POST request. This really should be a PUT for RESTful semantic accuracy but PUT is a pain to configure in many circumstances. Part of the rationale for this API is so that non-experts can use it with relative ease, so we'll use POST.
 
-There will be minimal user authentication, to start with.
-
-Initially, there will be few user permission levels. The assumption will be that this system is instantiated per project or some-such.
+There will be minimal user authentication, to start with. We'll iterate forward as more use-cases appear.
 
 The API
 -------
+
+#### The Chart:
+
+| Type | Path | Action |
+| --- | --- | --- |
+| GET | `[endpoint]/[uuid]/[category]/[key]` | Query for data. |
+| POST | `[endpoint]/[uuid]/[category]/[key]` | Add data, replacing old. |
+| DELETE | `[endpoint]/[uuid]/[category]/[key]` | Remove data and key. |
+| GET | `[endpoint]/[uuid]/[category]` | Query for all data for category. |
+| GET | `[endpoint]/categories/[uuid]` | Query for categories |
+| GET | `[endpoint]/keys/[uuid]/[category]` | Query for keys for this category |
+| GET | `[endpoint]/user/[uuid]` | Query for user data. |
+| POST | `[endpoint]/user/[uuid]` | Add user. |
+| DELETE | `[endpoint]/user/[uuid]` | Remove user. |
+
+#### The Description:
 
 The URI paths for the API are defined as:
 
@@ -27,7 +41,7 @@ Data POSTed will be a urlencoded form submission, in the form:
 
 `data=[payload]`
 
-GET will return the URI contents as text/plain, since it's always the data you POSTed.
+GET will return the URI contents as text/plain by default, but can also return JSON or LSLON in the form `data=[data]`.
 
 The authorized consumer can query for categories and keys:
 
@@ -35,7 +49,18 @@ The authorized consumer can query for categories and keys:
 
 `[endpoint]/keys/[useruuid]/[category]`
 
-These can return JSON or CSV or LSLON specified by `?type=[whichever]`. (Currently only JSON is supported.)
+These can return JSON or LSLON specified by `?type=[whichever]`. (Currently only JSON is supported.)
+
+Finally, the consumer can query for all keys and data belonging to a category:
+
+`GET [endpoint]/[useruuid]/[category]`
+
+This can return structured JSON or LSLON as specified by `?type=[whichever]`.
+
+Note that the whole-category query could return a larger amount of data than can pass through the Second Life http system. In this case, category and key discovery is a better solution.
+
+Examples
+--------
 
 Example:
 
