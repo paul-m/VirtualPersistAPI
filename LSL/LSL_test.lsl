@@ -7,7 +7,7 @@
 key gHttpRequestID;
 
 // don't include slashes.
-string gService = "http://vpa.pagodabox.com";
+string gService = "http://vpa.gopagoda.com";
 string gPrefix = "api";
 
 integer gCurrentRequest = 0;
