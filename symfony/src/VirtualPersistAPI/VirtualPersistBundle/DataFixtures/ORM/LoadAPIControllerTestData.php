@@ -33,6 +33,13 @@ class LoadAPIControllerTestData extends AbstractFixture
         'is_active' => 1,
       ),
       array(
+        'uuid' => '22222222-2222-2222-2222-222222222222',
+        'password' => 'foo',
+        'username' => 'categoryTestUser',
+        'email' => 'category@foo.com',
+        'is_active' => 1,
+      ),
+      array(
         'uuid' => 'EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE',
         'password' => 'foo',
         'username' => 'thisUserIsBlocked',
@@ -52,6 +59,24 @@ class LoadAPIControllerTestData extends AbstractFixture
         'category' => 'anotherCategory',
         'aKey' => 'anotherKey',
         'data' => 'discoveryData',
+      ),
+      array(
+        'owner_uuid' => '22222222-2222-2222-2222-222222222222',
+        'category' => 'categoryTest',
+        'aKey' => 'a',
+        'data' => 'aData',
+      ),
+      array(
+        'owner_uuid' => '22222222-2222-2222-2222-222222222222',
+        'category' => 'categoryTest',
+        'aKey' => 'b',
+        'data' => 'bData',
+      ),
+      array(
+        'owner_uuid' => '22222222-2222-2222-2222-222222222222',
+        'category' => 'categoryTest',
+        'aKey' => 'c',
+        'data' => 'cData',
       ),
       array(
         'owner_uuid' => 'EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE',

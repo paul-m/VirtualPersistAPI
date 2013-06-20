@@ -21,7 +21,7 @@ use VirtualPersistAPI\VirtualPersistBundle\Response\ResponseDebugInfoInjector;
  */
 class APIController extends Controller {
 
-  public function log(User $user, $type, $message) {
+/*  public function log(User $user, $type, $message) {
     $log = new Log();
     $log->setUser($user);
     $log->setType($type);
@@ -30,7 +30,7 @@ class APIController extends Controller {
     $em = $doctrine->getEntityManager();
     $em->persist($log);
     $em->flush();
-  }
+  }*/
 
   public function addDebugInfo(Response $response) {
     $debug = $this->getRequest()->query->get('debug');
@@ -56,14 +56,17 @@ class APIController extends Controller {
       $user = $doctrine
         ->getRepository('VirtualPersistBundle:User')
         ->findOneByUuid($uuid);
-      if ($user && $user->isEnabled()) {
+      if ($user) { // && $user->isEnabled()) {
         $records = $doctrine
           ->getRepository('VirtualPersistBundle:Record')
           ->findByUserCategory($user, $category);
         // Did we get a record?
         if (count($records)) {
-          error_log(print_r($records,true));
-          $response = new JsonResponse($records, 200);
+          $resultRecords = array('category' => $category);
+          foreach ($records as $record) {
+            $resultRecords['results'][] = array($record->getKey() => $record->getData());
+          }
+          $response = new JsonResponse($resultRecords, 200);
         }
       }
     } catch (\Exception $e) {
@@ -171,7 +174,7 @@ class APIController extends Controller {
 */
 
       $response = new TextPlainResponse('Item added.', 200);
-      $this->log($user, 'post', 'Added record.');
+//      $this->log($user, 'post', 'Added record.');
     } else {
       $response = new TextPlainResponse('No such item.', 404);
     }
@@ -211,7 +214,7 @@ class APIController extends Controller {
 
         // Tell the user.
         $response = new TextPlainResponse('Item deleted.', 200);
-        $this->log($user, 'post', 'Deleted record.');
+//        $this->log($user, 'post', 'Deleted record.');
       }
     }
     return $this->addDebugInfo($response);

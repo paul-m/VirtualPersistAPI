@@ -40,14 +40,24 @@ class RecordRepsitory extends EntityRepository {
       ->setParameter('owner', $user->getId())
       ->setParameter('category', $category)
       ->setParameter('key', $key);
-    try {
+//    try {
       return $query->getResult();
-    } catch (\Exception $e) {
+/*    } catch (\Exception $e) {
       // The show must go on.
       return null;
-    }
+    }*/
   }
 
+  public function findByUserCategory($user, $category) {
+    $query = $this->getEntityManager()
+      ->createQuery('
+        SELECT r FROM VirtualPersistBundle:Record r
+        WHERE r.owner = :owner AND r.category = :category'
+      )
+      ->setParameter('owner', $user->getId())
+      ->setParameter('category', $category);
+    return $query->getResult();
+  }
 
   public function categoriesForUUID($uuid) {
     $em = $this->getEntityManager();
