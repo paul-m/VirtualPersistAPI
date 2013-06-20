@@ -67,6 +67,7 @@ class APIController extends Controller {
             $resultRecords['results'][] = array($record->getKey() => $record->getData());
           }
           $response = new JsonResponse($resultRecords, 200);
+          //error_log($response->getContent());
         }
       }
     } catch (\Exception $e) {

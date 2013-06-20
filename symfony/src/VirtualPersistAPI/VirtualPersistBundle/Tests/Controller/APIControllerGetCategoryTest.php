@@ -45,6 +45,10 @@ class APIControllerGetCategoryTest extends AppFixtureTestCase implements AppFixt
     $response = $client->getResponse();
     $status = $response->getStatusCode();
     $this->assertEquals(200, $status, 'Confirmed record exists:' . $path);
+    $this->assertEquals('{"category":"categoryTest","results":[{"a":"aData"},{"b":"bData"},{"c":"cData"}]}',
+      $response->getContent(),
+      'JSON category response is correct'
+    );
   }
 
 }
