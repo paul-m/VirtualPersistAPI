@@ -48,14 +48,15 @@ class RecordRepsitory extends EntityRepository {
     }*/
   }
 
-  public function findByUserCategory($user, $category) {
+  public function findByUserCategorySince($user, $category, \DateTime $since) {
     $query = $this->getEntityManager()
       ->createQuery('
         SELECT r FROM VirtualPersistBundle:Record r
-        WHERE r.owner = :owner AND r.category = :category'
+        WHERE r.owner = :owner AND r.category = :category AND r.timestamp > :since'
       )
       ->setParameter('owner', $user->getId())
-      ->setParameter('category', $category);
+      ->setParameter('category', $category)
+      ->setParameter('since', $since);
     return $query->getResult();
   }
 

@@ -32,6 +32,25 @@ class APIController extends Controller {
     $em->flush();
   }*/
 
+  /**
+   * Pull a 'since' value out of request parameters.
+   *
+   * @param $request the request in question.
+   * @param $default the unix timestamp to use if no 'since' is found.
+   * @return /DateTime for 'since.'
+   */
+  public function requestSince(Request $request, $default = 0) {
+    $timestamp = $default;
+    if ($request->query->has('since')) {
+      $timestamp = $request->query->get('since');
+    }
+    else if ($request->request->has('since')) {
+      $timestamp = $request->request->get('since');
+    }
+    $since = new \DateTime();
+    return $since->setTimestamp($timestamp);
+  }
+
   public function addDebugInfo(Response $response) {
     $debug = $this->getRequest()->query->get('debug');
     if (!$debug) $debug = $this->getRequest()->request->get('debug');
@@ -59,15 +78,18 @@ class APIController extends Controller {
       if ($user) { // && $user->isEnabled()) {
         $records = $doctrine
           ->getRepository('VirtualPersistBundle:Record')
-          ->findByUserCategory($user, $category);
+          ->findByUserCategorySince($user, $category, $this->requestSince($request, 0));
         // Did we get a record?
         if (count($records)) {
           $resultRecords = array('category' => $category);
           foreach ($records as $record) {
-            $resultRecords['results'][] = array($record->getKey() => $record->getData());
+            $resultRecords['results'][] = array(
+              $record->getKey() => $record->getData(),
+              'timestamp' => $record->getTimestamp()->getTimestamp(), // extract unixtime
+            );
           }
           $response = new JsonResponse($resultRecords, 200);
-          //error_log($response->getContent());
+          error_log($response->getContent());
         }
       }
     } catch (\Exception $e) {

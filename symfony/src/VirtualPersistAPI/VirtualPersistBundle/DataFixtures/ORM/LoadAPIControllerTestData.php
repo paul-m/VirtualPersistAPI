@@ -65,18 +65,21 @@ class LoadAPIControllerTestData extends AbstractFixture
         'category' => 'categoryTest',
         'aKey' => 'a',
         'data' => 'aData',
+        'timestamp' => 1, // using 0 results in empty value for logic.
       ),
       array(
         'owner_uuid' => '22222222-2222-2222-2222-222222222222',
         'category' => 'categoryTest',
         'aKey' => 'b',
         'data' => 'bData',
+        'timestamp' => 315554400, // 1980/1/1
       ),
       array(
         'owner_uuid' => '22222222-2222-2222-2222-222222222222',
         'category' => 'categoryTest',
         'aKey' => 'c',
         'data' => 'cData',
+        'timestamp' => 978328800, // 2001/1/1
       ),
       array(
         'owner_uuid' => 'EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE',
@@ -120,8 +123,12 @@ class LoadAPIControllerTestData extends AbstractFixture
         ->setCategory($item['category'])
         ->setKey($item['aKey'])
         ->setData($item['data'])
-        ->setTimestamp(new \DateTime('now'))
         ->setOwner($manager->merge($this->getReference($item['owner_uuid'])));
+      $timestamp = new \DateTime('now');
+      if (!empty($item['timestamp'])) {
+        $timestamp->setTimestamp($item['timestamp']);
+      }
+      $record->setTimestamp($timestamp);
       $items[] = $record;
       $manager->persist($record);
     }
