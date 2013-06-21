@@ -2,6 +2,7 @@
 namespace VirtualPersistAPI\VirtualPersistBundle\Controller;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\LockMode;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -80,7 +81,6 @@ class APIController extends Controller {
             );
           }
           $response = new JsonResponse($resultRecords, 200);
-          error_log($response->getContent());
         }
       }
     } catch (\Exception $e) {
@@ -124,68 +124,53 @@ class APIController extends Controller {
     $response = new TextPlainResponse('Huh?', 503);
     $doctrine = $this->getDoctrine();
     $em = $doctrine->getEntityManager();
+    $conn = $em->getConnection();
+    $recordRepository = $doctrine->getRepository('VirtualPersistBundle:Record');
 
     $user = $doctrine
       ->getRepository('VirtualPersistBundle:User')
       ->findOneByUuid($uuid);
     if ($user) {
-      // Perform bogus locking strategy.
-      // Should really be pessimistic locking:
-      // http://docs.doctrine-project.org/en/latest/reference/transactions-and-concurrency.html#pessimistic-locking
-      $oldTransactionIsolation = $em->getConnection()->getTransactionIsolation();
-      $em->getConnection()->setTransactionIsolation(Connection::TRANSACTION_SERIALIZABLE);
-      $records = $doctrine
-        ->getRepository('VirtualPersistBundle:Record')
-        ->findByUserCategoryKey($user, $category, $key);
-      if (count($records)) {
-        $em->getConnection()->beginTransaction();
+      $record = $recordRepository
+        ->findOneByUserCategoryKey($user, $category, $key);
+      if ($record) {
         try {
-          foreach($records as $record) {
-            $em->remove($record);
-          }
+          $conn->beginTransaction();
+          $record->setData($request->request->get('data', ''));
+          $record->setTimestamp(new \DateTime('now'));
+          $em->persist($record);
           $em->flush();
-          $em->getConnection()->commit();
+          $conn->commit();
         } catch (\Exception $e) {
-          $em->getConnection()->rollback();
+          $conn->rollback();
+          $em->close();
+        }
+      }
+      else { // no record
+        // Glean the data to post.
+        $data = $request->request->get('data', '');
+
+        $record = new Record();
+        $record->setOwner($user);
+        $record->setCategory($category);
+        $record->setKey($key);
+        $record->setData($data);
+        $record->setTimestamp(new \DateTime('now'));
+        // Isolate writing the new record in a transaction.
+        $conn->beginTransaction();
+        try {
+          $em->persist($record);
+          $em->flush();
+          $conn->commit();
+        } catch (\Exception $e) {
+          $conn->rollback();
           $em->close();
           throw $e;
         }
       }
-      
-      // Glean the data to post.
-      $data = $request->request->get('data', '');
-
-      $record = new Record();
-      $record->setOwner($user);
-      $record->setCategory($category);
-      $record->setKey($key);
-      $record->setData($data);
-      // Isolate writing the new record in a transaction.
-      $em->getConnection()->beginTransaction();
-      try {
-        $em->persist($record);
-        $em->flush();
-        $em->getConnection()->commit();
-      } catch (\Exception $e) {
-        $em->getConnection()->rollback();
-        $em->close();
-        throw $e;
-      }
-
-      // Re-set the transaction isolation.
-      $em->getConnection()->setTransactionIsolation($oldTransactionIsolation);
-
-/*      $log = new Log();
-      $log->setType('post')
-        ->setUser($user)
-        ->setMessage('Added data: ' . md5($data));
-      $entityManager->persist($log);
-      $entityManager->flush();
-*/
-
       $response = new TextPlainResponse('Item added.', 200);
-//      $this->log($user, 'post', 'Added record.');
-    } else {
+    }
+    else { // no such user
       $response = new TextPlainResponse('No such item.', 404);
     }
     return $this->addDebugInfo($response);

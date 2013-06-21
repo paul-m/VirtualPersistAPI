@@ -43,6 +43,7 @@ class APIControllerRoundTripTest extends AppFixtureTestCase implements AppFixtur
     // We assume the controller's prefix is /api
     $path = '/api/' . $uuid . '/' . $category . '/' . $key;
     $client = static::createClientForApp();
+
     $crawler = $client->request('POST', $path, array('data'=>$data));
     $status = $client->getResponse()->getStatusCode();
     $this->assertEquals(200, $status, "Posted record to path: $path");
@@ -52,6 +53,19 @@ class APIControllerRoundTripTest extends AppFixtureTestCase implements AppFixtur
     $this->assertEquals(200, $status, "Retrieved record with code: $status");
     $result = $client->getResponse()->getContent();
     $this->assertEquals($data, $result, 'Round-trip.');
+
+    // Modify the data
+    $updatedData = 'updatedData';
+    $crawler = $client->request('POST', $path, array('data'=>$updatedData));
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(200, $status, "Posted record to path: $path");
+
+    // Check modified data
+    $crawler = $client->request('GET', $path);
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(200, $status, "Retrieved record with code: $status");
+    $result = $client->getResponse()->getContent();
+    $this->assertEquals($updatedData, $result, 'Updated existing record.');
   }
 
 }
