@@ -222,22 +222,14 @@ class APIController extends Controller {
       // Did we get any records?
       if (count($records)) {
         $entityManager = $doctrine->getEntityManager();
-
-
-
         foreach($records as $record) {
           // Tell ORM to remove.
           $entityManager->remove($record);
         }
         $entityManager->flush();
 
-
-
-
-
         // Tell the user.
         $response = new TextPlainResponse('Item deleted.', 200);
-//        $this->log($user, 'post', 'Deleted record.');
       }
     }
     return $this->addDebugInfo($response);
@@ -248,6 +240,7 @@ class APIController extends Controller {
    * @Method({"GET"})
    */
   public function keysAction($uuid, $category) {
+    $response = new TextPlainResponse('Keys not found.', 404);
     try {
       $doctrine = $this->getDoctrine();
       $keys = $doctrine
@@ -265,18 +258,12 @@ class APIController extends Controller {
             $keyArray[] = $key['aKey'];
           }
           // for now we just return json.
-          return new Response(
-            json_encode($keyArray),
-            200,
-            array('content-type' => 'application/json')
-          );
+          $response = new JsonResponse($keyArray, 200);
         }
       }
-
-      return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
     } catch (\Exception $e) {
     }
-    return new Response('Item not found.', 404);
+    return $this->addDebugInfo($response);
   }
 
   /**
@@ -284,6 +271,7 @@ class APIController extends Controller {
    * @Method({"GET"})
    */
   public function categoriesAction($uuid) {
+    $response = new TextPlainResponse('Categories not found.', 404);
     try {
       $doctrine = $this->getDoctrine();
       $categories = $doctrine
@@ -300,19 +288,12 @@ class APIController extends Controller {
           foreach ($categories as $category) {
             $categoryArray[] = $category['category'];
           }
-          // for now we just return json.
-          return new Response(
-            json_encode($categoryArray),
-            200,
-            array('content-type' => 'application/json')
-          );
+          $response = new JsonResponse($categoryArray, 200);
         }
       }
-
-      return new Response('Item not found.', 404, array('content-type' => 'text/plain'));
     } catch (\Exception $e) {
     }
-    return new Response('Item not found.', 404);
+    return $this->addDebugInfo($response);
   }
 
   /**
