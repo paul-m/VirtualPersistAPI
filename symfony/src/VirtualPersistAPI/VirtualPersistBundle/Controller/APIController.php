@@ -3,34 +3,20 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Controller;
 
 use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
-use VirtualPersistAPI\VirtualPersistBundle\Entity\Log;
 use VirtualPersistAPI\VirtualPersistBundle\Response\TextPlainResponse;
-use VirtualPersistAPI\VirtualPersistBundle\Response\VirtualPersistAPIResponse;
-use VirtualPersistAPI\VirtualPersistBundle\Response\ResponseDebugInfoInjector;
 
 /**
  * Our prefix:
  * @Route("/api")
  */
 class APIController extends Controller {
-
-/*  public function log(User $user, $type, $message) {
-    $log = new Log();
-    $log->setUser($user);
-    $log->setType($type);
-    $log->setMessage($message);
-    $doctrine = $this->getDoctrine();
-    $em = $doctrine->getEntityManager();
-    $em->persist($log);
-    $em->flush();
-  }*/
 
   /**
    * Pull a 'since' value out of request parameters.
@@ -51,6 +37,11 @@ class APIController extends Controller {
     return $since->setTimestamp($timestamp);
   }
 
+  /**
+   * Add X-VPA-Debug header if appropriate.
+   *
+   * @todo: Make this meaningful.
+   */
   public function addDebugInfo(Response $response) {
     $debug = $this->getRequest()->query->get('debug');
     if (!$debug) $debug = $this->getRequest()->request->get('debug');
@@ -93,8 +84,6 @@ class APIController extends Controller {
         }
       }
     } catch (\Exception $e) {
-      // Catch exceptions so GET always results in 404.
-      //throw $e;
     }
     return $this->addDebugInfo($response);
   }
@@ -123,8 +112,6 @@ class APIController extends Controller {
         }
       }
     } catch (\Exception $e) {
-      // Catch exceptions so GET always results in 404.
-      //throw $e;
     }
     return $this->addDebugInfo($response);
   }
