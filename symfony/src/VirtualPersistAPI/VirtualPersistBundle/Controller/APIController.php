@@ -76,7 +76,8 @@ class APIController extends Controller {
           $resultRecords = array('category' => $category);
           foreach ($records as $record) {
             $resultRecords['results'][] = array(
-              $record->getKey() => $record->getData(),
+              'key' => $record->getKey(),
+              'data' => $record->getData(),
               'timestamp' => $record->getTimestamp()->getTimestamp(), // extract unixtime
             );
           }

@@ -41,7 +41,7 @@ class APIControllerGetCategoryTest extends AppFixtureTestCase implements AppFixt
     $response = $client->getResponse();
     $status = $response->getStatusCode();
     $this->assertEquals(200, $status, 'Confirmed record exists:' . $path);
-    $this->assertEquals('{"category":"categoryTest","results":[{"a":"aData","timestamp":1},{"b":"bData","timestamp":315554400},{"c":"cData","timestamp":978328800}]}',
+    $this->assertEquals('{"category":"categoryTest","results":[{"key":"a","data":"aData","timestamp":1},{"key":"b","data":"bData","timestamp":315554400},{"key":"c","data":"cData","timestamp":978328800}]}',
       $response->getContent(),
       'JSON category response is correct'
     );
@@ -59,7 +59,7 @@ class APIControllerGetCategoryTest extends AppFixtureTestCase implements AppFixt
     $response = $client->getResponse();
     $status = $response->getStatusCode();
     $this->assertEquals(200, $status, 'Confirmed record exists:' . $path);
-    $this->assertEquals('{"category":"categoryTest","results":[{"b":"bData","timestamp":315554400},{"c":"cData","timestamp":978328800}]}',
+    $this->assertEquals('{"category":"categoryTest","results":[{"key":"b","data":"bData","timestamp":315554400},{"key":"c","data":"cData","timestamp":978328800}]}',
       $response->getContent(),
       'JSON category response is correct'
     );
