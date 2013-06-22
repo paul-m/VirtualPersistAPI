@@ -52,7 +52,7 @@ class RecordRepsitory extends EntityRepository {
     $query = $this->getEntityManager()
       ->createQuery('
         SELECT r FROM VirtualPersistBundle:Record r
-        WHERE r.owner = :owner AND r.category = :category AND r.timestamp > :since'
+        WHERE r.owner = :owner AND r.category = :category AND r.timestamp > :since ORDER BY r.timestamp ASC'
       )
       ->setParameter('owner', $user->getId())
       ->setParameter('category', $category)
