@@ -144,6 +144,7 @@ class APIController extends Controller {
         } catch (\Exception $e) {
           $conn->rollback();
           $em->close();
+          throw $e;
         }
       }
       else { // no record
