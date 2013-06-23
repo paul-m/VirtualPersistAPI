@@ -4,6 +4,7 @@ namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\HeaderBag;
 
 /**
  * @file
@@ -45,6 +46,11 @@ class Record {
    */
   protected $data;
   
+  /**
+   * @ORM\Column(type="text", nullable=true)
+   */
+  protected $inworldHeader;
+
   /**
    * @ORM\Column(type="datetime")
    */
@@ -162,6 +168,27 @@ class Record {
    * @return string 
    */
   public function getData() {
+    return $this->data;
+  }
+
+  /**
+   * Set inworldHeader
+   *
+   * @param HeaderBag $inworldHeaders
+   * @return Record
+   */
+  public function setInworldHeader(HeaderBag $inworldHeaders) {
+    $this->inworldHeaders = $inworldHeaders;
+
+    return $this;
+  }
+
+  /**
+   * Get inworldHeader
+   *
+   * @return HeaderBag 
+   */
+  public function getInworldData() {
     return $this->data;
   }
 

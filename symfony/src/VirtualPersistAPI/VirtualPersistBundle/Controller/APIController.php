@@ -20,7 +20,34 @@ use VirtualPersistAPI\VirtualPersistBundle\Response\TextPlainResponse;
 class APIController extends Controller {
 
   /**
-   * Pull a 'since' value out of request parameters.
+   * Determine if a request came from in-world.
+   */
+  public function requestIsInworld(Request $request) {
+    $headerBag = $request->headers;
+//    error_log($headerBag);
+    return ($headerBag->has('User-Agent') &&
+      $headerBag->has('X-SecondLife-Shard'));
+  }
+
+  /**
+   * Extract all inworld-related headers.
+   */
+  public function inworldHeaders(Request $request) {
+    $result = array();
+    $headersWeLike = array('User-Agent', 'X-SecondLife-Shard', 'X-SecondLife-Object-Name',
+      'X-SecondLife-Object-Key', 'X-SecondLife-Region', 'X-SecondLife-OwnerName',
+      'X-SecondLife-Owner-Key');
+    $headerBag = $request->headers;
+    foreach($headersWeLike as $query) {
+      if ($headerBag->has($query)) {
+        $result[$query] = $headerBag->get($query, '');
+      }
+    }
+    return new HeaderBag($result);
+  }
+
+  /**
+   * Pull a 'since' value out of request parameters, convert to DateTime.
    *
    * @param $request the request in question.
    * @param $default the unix timestamp to use if no 'since' is found.
@@ -53,7 +80,7 @@ class APIController extends Controller {
   }
 
   /**
-   * Get all the records for a given category, keyed by their key.
+   * Get all the records for a given category.
    *
    * @Route("/{uuid}/{category}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
    * @Method({"GET"})
@@ -97,6 +124,7 @@ class APIController extends Controller {
   public function getAction(Request $request, $uuid, $category, $key) {
     // Return 404 by default so no one can brute-force hack the
     // UUIDs or categories or keys.
+    $this->requestIsInworld($request);
     $response = new TextPlainResponse('404: No Such Item.', 404);
     try {
       $doctrine = $this->getDoctrine();
