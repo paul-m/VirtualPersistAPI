@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<h2>{{ header }}</h2>
+<div class="content">
+<table border="1">
+    <tr><th>Region</th><th>Count</th><th>Time</th></tr>
+    {% for record in records %}
+        <tr>
+            <td>{{ record.getKey }}</td>
+            <td>{{ record.getData }}</td>
+            <td>{{ record.getTimestamp.format('Y-m-d H:i:s') }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+</div>
+{% javascripts
+  '@VirtualPersistBundle/Resources/public/js/jqplot/jquery.jqplot.min.js'
+  '@VirtualPersistBundle/Resources/public/js/traffic/*' 
+  output='js/compiled/traffic.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}

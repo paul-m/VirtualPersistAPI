@@ -128,5 +128,22 @@ class RecordRepsitory extends EntityRepository {
       ->setParameter('key', $key)
       ->execute();
   }*/
+
+  /**
+   * Query only the category and key
+   */
+  public function findByCategoryKeySince($category, $key, \DateTime $since) {
+    $query = $this->getEntityManager()
+      ->createQuery('
+        SELECT r FROM VirtualPersistBundle:Record r
+        WHERE r.category = :category AND r.aKey = :key AND r.timestamp > :since ORDER BY r.timestamp ASC'
+      )
+      ->setParameter('category', $category)
+      ->setParameter('key', $key)
+      ->setParameter('since', $since);
+    return $query->getResult();
+  }
+
+
 }
 

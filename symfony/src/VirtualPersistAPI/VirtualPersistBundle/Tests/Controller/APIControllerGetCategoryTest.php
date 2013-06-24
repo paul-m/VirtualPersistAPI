@@ -65,4 +65,22 @@ class APIControllerGetCategoryTest extends AppFixtureTestCase implements AppFixt
     );
   }
 
+  /**
+   * @dataProvider categoryTestDataProvider
+   */
+  public function testJsonP($uuid, $category) {
+    // We assume the controller's prefix is /api
+    $path = "/api/$uuid/$category";
+    $client = static::createClientForApp();
+
+    $crawler = $client->request('GET', $path, array('since'=>'200', 'callback'=>'callback'));
+    $response = $client->getResponse();
+    $status = $response->getStatusCode();
+    $this->assertEquals(200, $status, 'Confirmed record exists:' . $path);
+    $this->assertEquals('callback({"category":"categoryTest","results":[{"key":"b","data":"bData","timestamp":315554400},{"key":"c","data":"cData","timestamp":978328800}]});',
+      $response->getContent(),
+      'JSON category response is correct'
+    );
+  }
+
 }

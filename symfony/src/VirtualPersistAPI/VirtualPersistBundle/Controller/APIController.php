@@ -46,6 +46,23 @@ class APIController extends Controller {
     return new HeaderBag($result);
   }
 
+  public function jsonpCallback(Request $request, $response) {
+    if (is_a($response, 'Symfony\Component\HttpFoundation\JsonResponse')) {
+      $callback = '';
+      if ($request->query->has('callback')) {
+        $callback = $request->query->get('callback');
+      }
+      else if ($request->request->has('callback')) {
+        $callback = $request->request->get('callback');
+      }
+      if ($callback) {
+        $response->setCallback($callback);
+      }
+      error_log($callback);
+    }
+    return $response;
+  }
+
   /**
    * Pull a 'since' value out of request parameters, convert to DateTime.
    *
@@ -113,6 +130,7 @@ class APIController extends Controller {
       }
     } catch (\Exception $e) {
     }
+    $response = $this->jsonpCallback($request, $response);
     return $this->addDebugInfo($response);
   }
 
