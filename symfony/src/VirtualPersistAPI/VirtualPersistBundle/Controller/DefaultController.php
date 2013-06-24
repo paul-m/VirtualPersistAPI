@@ -88,7 +88,8 @@ class DefaultController extends Controller {
    */
   public function regionTrafficAction(Request $request, $region) {
     $resultArray = array(
-      'header' => "Traffic for $region",
+      'regionName' => $region,
+      'header' => "Traffic For Region: $region",
       'records' => array(),
     );
     $since = new \DateTime();
