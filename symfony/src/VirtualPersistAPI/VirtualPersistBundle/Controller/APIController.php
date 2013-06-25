@@ -58,7 +58,6 @@ class APIController extends Controller {
       if ($callback) {
         $response->setCallback($callback);
       }
-      error_log($callback);
     }
     return $response;
   }
