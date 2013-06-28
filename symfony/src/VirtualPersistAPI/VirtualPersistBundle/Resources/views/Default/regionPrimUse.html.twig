@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<h2>{{ header }}</h2>
+<div class="content">
+<div id="primuse-graph" data-regionname="{{ regionName }}"></div>
+<noscript>
+<table id="primuse-table" border="1">
+    <tr><th>Region</th><th>Count</th><th>Time</th></tr>
+    {% for record in records %}
+        <tr>
+            <td>{{ record.getKey }}</td>
+            <td>{{ record.getData }}</td>
+            <td>{{ record.getTimestamp.format('Y-m-d H:i:s') }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</div>
+</noscript>
+
+{% for record in records %}
+<div class="primuse-data" data-timestamp="{{
+    record.getTimestamp.getTimestamp
+  }}" data-data="{{  
+    record.getData
+  }}" style="display: none;">&nbsp;</div>
+{% endfor %}
+
+{% javascripts
+  '@VirtualPersistBundle/Resources/public/js/jqplot/jquery.jqplot.min.js'
+  '@VirtualPersistBundle/Resources/public/js/jqplot/plugins/jqplot.dateAxisRenderer.min.js'
+  '@VirtualPersistBundle/Resources/public/js/primuse/*' 
+  output='js/compiled/traffic.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}

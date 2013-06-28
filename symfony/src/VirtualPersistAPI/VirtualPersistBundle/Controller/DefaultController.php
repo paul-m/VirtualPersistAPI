@@ -103,5 +103,26 @@ class DefaultController extends Controller {
     return $resultArray;
   }
 
+  /**
+   * @Route("/region/primuse/{region}")
+   * @Template()
+   */
+  public function regionPrimuseAction(Request $request, $region) {
+    $resultArray = array(
+      'regionName' => $region,
+      'header' => "Traffic For Region: $region",
+      'records' => array(),
+    );
+    $since = new \DateTime();
+    $since->setTimestamp(0);
+//    $since->sub(new \DateInterval('P30D'));
+    $doctrine = $this->getDoctrine();
+    $records = $doctrine
+      ->getRepository('VirtualPersistBundle:Record')
+      ->findByCategoryKeySince('lea_prim_use', $region, $since);
+    if ($records) $resultArray['records'] = $records;
+    return $resultArray;
+  }
+
 }
 
