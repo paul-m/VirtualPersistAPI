@@ -20,16 +20,6 @@ use VirtualPersistAPI\VirtualPersistBundle\Response\TextPlainResponse;
 class APIController extends Controller {
 
   /**
-   * Determine if a request came from in-world.
-   */
-  public function requestIsInworld(Request $request) {
-    $headerBag = $request->headers;
-//    error_log($headerBag);
-    return ($headerBag->has('User-Agent') &&
-      $headerBag->has('X-SecondLife-Shard'));
-  }
-
-  /**
    * Extract all inworld-related headers.
    */
   public function inworldHeaders(Request $request) {
@@ -141,7 +131,7 @@ class APIController extends Controller {
   public function getAction(Request $request, $uuid, $category, $key) {
     // Return 404 by default so no one can brute-force hack the
     // UUIDs or categories or keys.
-    $this->requestIsInworld($request);
+//    $this->requestIsInworld($request);
     $response = new TextPlainResponse('404: No Such Item.', 404);
     try {
       $doctrine = $this->getDoctrine();
