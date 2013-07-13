@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use VirtualPersistAPI\VirtualPersistBundle\Response\vpaJsonResponse;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
@@ -114,7 +116,7 @@ class APIController extends Controller {
               'timestamp' => $record->getTimestamp()->getTimestamp(), // extract unixtime
             );
           }
-          $response = new JsonResponse($resultRecords, 200);
+          $response = new vpaJsonResponse($resultRecords, 200);
         }
       }
     } catch (\Exception $e) {
