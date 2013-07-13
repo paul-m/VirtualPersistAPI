@@ -66,6 +66,27 @@ class APIControllerRoundTripTest extends AppFixtureTestCase implements AppFixtur
     $this->assertEquals(200, $status, "Retrieved record with code: $status");
     $result = $client->getResponse()->getContent();
     $this->assertEquals($updatedData, $result, 'Updated existing record.');
+
+    // Store JSON
+    $jsonArray = array(
+      'uuid' => $uuid,
+      'category' => $category,
+      'key' => $key,
+      'jsondata' => $data,
+    );
+    $updatedData = json_encode($jsonArray);
+    $crawler = $client->request('POST', $path, array('data'=>$updatedData));
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(200, $status, "Posted JSON record to path: $path");
+
+    // Check modified data
+    $crawler = $client->request('GET', $path);
+    $status = $client->getResponse()->getStatusCode();
+    $this->assertEquals(200, $status, "Retrieved record with code: $status");
+    // convert data back to JSON, using associative array option.
+    $result = json_decode($client->getResponse()->getContent(), TRUE);
+    $arrayDiff = array_diff_assoc($result, $jsonArray);
+    $this->assertEquals(count($arrayDiff), 0, 'Updated with JSON.');
   }
 
 }
