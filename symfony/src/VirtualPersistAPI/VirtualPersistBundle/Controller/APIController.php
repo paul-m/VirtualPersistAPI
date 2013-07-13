@@ -119,7 +119,7 @@ class APIController extends Controller {
       }
     } catch (\Exception $e) {
     }
-    $response = $this->jsonpCallback($request, $response);
+    //$response = $this->jsonpCallback($request, $response);
     return $this->addDebugInfo($response);
   }
 
