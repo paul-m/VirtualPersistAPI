@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use VirtualPersistAPI\VirtualPersistBundle\Response\vpaJsonResponse;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -110,13 +109,19 @@ class APIController extends Controller {
         if (count($records)) {
           $resultRecords = array('category' => $category);
           foreach ($records as $record) {
+            // Handle the special case of data that is JSON.
+            $data = $record->getData();
+            $jsonData = json_decode($data);
+            if (is_object($jsonData)) {
+              $data = $jsonData;
+            }
             $resultRecords['results'][] = array(
               'key' => $record->getKey(),
-              'data' => $record->getData(),
+              'data' => $data,
               'timestamp' => $record->getTimestamp()->getTimestamp(), // extract unixtime
             );
           }
-          $response = new vpaJsonResponse($resultRecords, 200);
+          $response = new JsonResponse($resultRecords, 200);
         }
       }
     } catch (\Exception $e) {
