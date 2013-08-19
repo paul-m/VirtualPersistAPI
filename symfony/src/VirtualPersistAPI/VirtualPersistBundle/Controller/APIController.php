@@ -110,6 +110,7 @@ class APIController extends Controller {
           $resultRecords = array('category' => $category);
           foreach ($records as $record) {
             // Handle the special case of data that is JSON.
+            // Somehow this is converting some special chars to /u[number].
             $data = $record->getData();
             $jsonData = json_decode($data);
             if (is_object($jsonData)) {
