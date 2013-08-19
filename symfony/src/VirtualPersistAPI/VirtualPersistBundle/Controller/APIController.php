@@ -131,6 +131,38 @@ class APIController extends Controller {
     return $this->addDebugInfo($response);
   }
 
+  /**
+   * @Route("/timestamp/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+   * @Method({"GET"})
+   */
+  public function getTimestampAction(Request $request, $uuid, $category, $key) {
+    // Return 404 by default so no one can brute-force hack the
+    // UUIDs or categories or keys.
+//    $this->requestIsInworld($request);
+    $response = new TextPlainResponse('404: No Such Item.', 404);
+    try {
+      $doctrine = $this->getDoctrine();
+      $user = $doctrine
+        ->getRepository('VirtualPersistBundle:User')
+        ->findOneByUuid($uuid);
+      if ($user && $user->isEnabled()) {
+        $record = $doctrine
+          ->getRepository('VirtualPersistBundle:Record')
+          ->findOneByUserCategoryKey($user, $category, $key);
+        // Did we get a record?
+        if ($record) {
+          $resultRecord = array(
+            'key' => $record->getKey(),
+            'category' => $record->getCategory(),
+            'timestamp' => $record->getTimestamp()->getTimestamp(), // extract unixtime
+          );
+          $response = new JsonResponse($resultRecord, 200);
+        }
+      }
+    } catch (\Exception $e) {
+    }
+    return $this->addDebugInfo($response);
+  }
 
   /**
    * @Route("/{uuid}/{category}/{key}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})

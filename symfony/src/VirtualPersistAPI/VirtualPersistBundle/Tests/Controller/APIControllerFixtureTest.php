@@ -32,6 +32,9 @@ class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixt
         '/api/00000000-0000-0000-0000-000000000000/extantCategory/extantKey',
       ),
       array(
+        '/api/timestamp/00000000-0000-0000-0000-000000000000/extantCategory/extantKey',
+      ),
+      array(
         '/api/categories/00000000-0000-0000-0000-000000000000',
       ),
       array(
