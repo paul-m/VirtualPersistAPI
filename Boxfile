@@ -50,11 +50,11 @@ web1:
 
     before_deploy:
         - cd symfony
-        - "php app/console --env=prod --no-debug cache:clear --no-warmup"
-        - "php app/console --env=prod --no-debug cache:warmup"
-        - "php app/console assetic:dump --env=prod"
-        - "php app/console --env=prod --no-debug doctrine:schema:update --force"
-#        - "php app/console --env=prod --no-debug doctrine:migrations:migrate -n"
+        - php ./app/console --env=prod --no-debug cache:clear --no-warmup
+        - "php ./app/console --env=prod --no-debug cache:warmup"
+        - "php ./app/console assetic:dump --env=prod"
+        - "php ./app/console --env=prod --no-debug doctrine:schema:update --force"
+#        - "php ./app/console --env=prod --no-debug doctrine:migrations:migrate -n"
 
 global:
     env:
