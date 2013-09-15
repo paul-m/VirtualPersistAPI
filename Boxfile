@@ -50,6 +50,7 @@ web1:
 
     before_deploy:
         - "rm -rf symfony/app/cache"
+        - "php symfony/app/console assetic:dump --env=prod"
         - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
         - "php symfony/app/console --env=prod --no-debug cache:warmup"
         - "php symfony/app/console --env=prod --no-debug doctrine:schema:update --force"
