@@ -6,6 +6,9 @@
     },
     "require": {
         "php": ">=5.3.3",
+        "leafo/lessphp": "0.4.0",
+        "twitter/bootstrap": "2.3.*",
+        "jquery/jquery": "1.9.*",
         "symfony/symfony": "2.2.*",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "1.2.*",
@@ -19,10 +22,7 @@
         "doctrine/doctrine-fixtures-bundle": "2.1.*",
         "phpunit/phpunit": "3.7.*",
         "phpunit/dbunit": "1.2.*",
-        "braincrafted/bootstrap-bundle": "dev-master",
-        "leafo/lessphp": "0.4.0",
-        "twitter/bootstrap": "2.3.*",
-        "jquery/jquery": "1.9.*"
+        "braincrafted/bootstrap-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
