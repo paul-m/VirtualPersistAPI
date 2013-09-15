@@ -49,12 +49,12 @@ web1:
         - "echo ' secret: ThisTokenIsNotSoSecretChangeIt' >> symfony/app/config/parameters.yml"
 
     before_deploy:
-        - "rm -rf symfony/app/cache"
-        - "php symfony/app/console assetic:dump --env=prod"
-        - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
-        - "php symfony/app/console --env=prod --no-debug cache:warmup"
-        - "php symfony/app/console --env=prod --no-debug doctrine:schema:update --force"
-#        - "php symfony/app/console --env=prod --no-debug doctrine:migrations:migrate -n"
+        - cd symfony
+        - "php app/console --env=prod --no-debug cache:clear --no-warmup"
+        - "php app/console --env=prod --no-debug cache:warmup"
+        - "php app/console assetic:dump --env=prod"
+        - "php app/console --env=prod --no-debug doctrine:schema:update --force"
+#        - "php app/console --env=prod --no-debug doctrine:migrations:migrate -n"
 
 global:
     env:
