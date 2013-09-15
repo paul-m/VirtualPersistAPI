@@ -1,7 +1,11 @@
 {% extends '::base.html.twig' %}
 {% block body %}
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span2">
+</div>
+<div class="span10">
 <h2>{{ header }}</h2>
-<div class="content">
 <p>This VirtualPersistAPI site has the following users:</p>
 <ul>
     {% for user in users %}
@@ -14,6 +18,8 @@
         <li>{{ category['category']|e }}</li>
     {% endfor %}
 </ul>
+</div>
+</div>
 </div>
 {% endblock %}
 

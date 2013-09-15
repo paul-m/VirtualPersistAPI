@@ -18,7 +18,10 @@
         "doctrine/data-fixtures": "1.0.*@dev",
         "doctrine/doctrine-fixtures-bundle": "2.1.*",
         "phpunit/phpunit": "3.7.*",
-        "phpunit/dbunit": "1.2.*"
+        "phpunit/dbunit": "1.2.*",
+        "braincrafted/bootstrap-bundle": "dev-master",
+        "leafo/lessphp": "0.4.0",
+        "twitter/bootstrap": "2.3.*"
     },
     "scripts": {
         "post-install-cmd": [
