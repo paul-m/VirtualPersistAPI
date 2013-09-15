@@ -49,8 +49,8 @@ web1:
         - "echo ' secret: ThisTokenIsNotSoSecretChangeIt' >> symfony/app/config/parameters.yml"
 
     before_deploy:
-#        - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
-#        - "php symfony/app/console --env=prod --no-debug cache:warmup"
+        - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
+        - "php symfony/app/console --env=prod --no-debug cache:warmup"
 #        - "php symfony/app/console --env=prod --no-debug doctrine:schema:update --force"
 #        - "php symfony/app/console --env=prod --no-debug doctrine:migrations:migrate -n"
 
