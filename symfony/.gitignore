@@ -2,6 +2,14 @@ web/bundles/
 web/js/
 app/bootstrap.php.cache
 app/logs/*
+
+#trying to work around caching error
+!app/
+app/*
+!app/cache/
+app/cache/*
+!app/cache/prod
+
 build/
 vendor
 composer.phar
