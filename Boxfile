@@ -33,6 +33,7 @@ web1:
     after_build:
         - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
         - 'php symfony/composer.phar install -d="symfony" --no-progress --no-dev'
+        - 'rm -rf symfony/app/cache/prod'
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
         - "echo 'parameters:' >> symfony/app/config/parameters.yml"
         - "echo ' database_driver: pdo_mysql' >> symfony/app/config/parameters.yml"
@@ -49,7 +50,6 @@ web1:
         - "echo ' secret: ThisTokenIsNotSoSecretChangeIt' >> symfony/app/config/parameters.yml"
 
     before_deploy:
-        - "rm -rf symfony/app/cache/prod"
         - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
         - "php symfony/app/console --env=prod --no-debug cache:warmup"
 #        - "php symfony/app/console --env=prod --no-debug doctrine:schema:update --force"
