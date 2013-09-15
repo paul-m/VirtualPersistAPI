@@ -10,7 +10,7 @@ before_script:
   - ./composer.phar --dev --no-progress install
   - php app/console doctrine:database:create --env=test
   - php app/console doctrine:schema:create --env=test
-  - php app/console clear:cache --env=test
+  - php app/console cache:clear --env=test
   - php app/console assetic:dump --env=test
 
 script: ./bin/phpunit -c ./app
