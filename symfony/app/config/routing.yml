@@ -2,7 +2,6 @@ virtual_persist_api:
     resource: "@VirtualPersistBundle/Controller/"
     type:     annotation
 
-
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
 # This route should be enabled with caution as it can open a security vulnerability
@@ -11,3 +10,11 @@ virtual_persist_api:
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
+
+account_register:
+   pattern:  /register
+   defaults: { _controller: VirtualPersistBundle:Account:register }
+
+account_create:
+   pattern:  /register/create
+   defaults: { _controller: VirtualPersistBundle:Account:create }

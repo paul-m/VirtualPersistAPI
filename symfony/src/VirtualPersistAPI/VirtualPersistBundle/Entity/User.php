@@ -1,8 +1,11 @@
 <?php
 namespace VirtualPersistAPI\VirtualPersistBundle\Entity;
 
+//use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 //use Symfony\Component\Security\Core\User\EquatableInterface;
 
@@ -20,8 +23,9 @@ use Doctrine\Common\Collections\ArrayCollection;
         name="user_uuid",columns={"uuid"}
       )
     })
+ * @UniqueEntity(fields="email", message="Email already taken.")
  */
-class User { //implements AdvancedUserInterface, \Serializable {
+class User implements AdvancedUserInterface, \Serializable {
 
   /**
    * @ORM\Id
@@ -32,6 +36,8 @@ class User { //implements AdvancedUserInterface, \Serializable {
 
   /**
    * @ORM\Column(type="string", length=255)
+   * @Assert\NotBlank()
+   * @Assert\Length(max = 4096)
    */
   protected $password;
 
@@ -42,6 +48,8 @@ class User { //implements AdvancedUserInterface, \Serializable {
 
   /**
    * @ORM\Column(type="string", length=255)
+   * @Assert\NotBlank()
+   * @Assert\Email()
    */
   protected $email;
 
@@ -190,6 +198,13 @@ class User { //implements AdvancedUserInterface, \Serializable {
      */
     public function eraseCredentials()
     {
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getRoles() {
+      
     }
 
     /**
