@@ -18,3 +18,13 @@ account_register:
 account_create:
    pattern:  /register/create
    defaults: { _controller: VirtualPersistBundle:Account:create }
+
+login:
+    pattern: /login
+    defaults: { _controller: VirtualPersistBundle:Account:login }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout

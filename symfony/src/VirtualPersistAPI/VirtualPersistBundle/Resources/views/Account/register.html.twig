@@ -1,5 +1,14 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span2">
+</div>
+<div class="span10">
 <form action="{{ path('account_create')}}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
 
     <input type="submit" />
 </form>
+</div>
+{% endblock %}

@@ -7,10 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * _ORM\Table(name="Group")
- * _ORM\Entity()
+ * @ORM\Table(name="Role")
+ * @ORM\Entity()
  */
-class Group { //implements RoleInterface {
+class Role implements RoleInterface {
 
     /**
      * @ORM\Column(name="id", type="integer")
@@ -20,12 +20,7 @@ class Group { //implements RoleInterface {
     private $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=30)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(name="role", type="string", length=20, unique=true)
+     * @ORM\Column(name="role", type="string", length=255, unique=true)
      */
     private $role;
 
@@ -52,29 +47,6 @@ class Group { //implements RoleInterface {
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Group
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**

@@ -16,6 +16,8 @@ use VirtualPersistAPI\VirtualPersistBundle\DataFixtures\ORM\LoadAPIControllerTes
  * is good.
  *
  * @TODO: test authentication.
+ * @todo: Re-enable this test. Turned it off because I don't fully understand
+ *        user auth in symfony.
  */
 class APIControllerFixturePathTest extends AppFixtureTestCase implements AppFixtureTestCaseInterface {
 
