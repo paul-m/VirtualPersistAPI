@@ -29,9 +29,9 @@ security:
                 path: /logout
                 target: /
             remember_me:
-                key: MiPassphrase
+                key: rememberme_secret.......
                 lifetime: 1800
-                path: /.*
+                path: /
                 domain: ~
             security: true
             anonymous: true

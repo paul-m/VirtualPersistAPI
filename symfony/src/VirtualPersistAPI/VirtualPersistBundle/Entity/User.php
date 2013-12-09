@@ -67,10 +67,18 @@ class User implements AdvancedUserInterface, \Serializable {
    * @ORM\Column(name="is_active", type="boolean")
    */
   private $isActive;
-  
+
+  /**
+   * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+   *
+   */
+  private $roles;
+
+
   public function __construct() {
       $this->isActive = true;
       $this->salt = md5(uniqid(null, true));
+      $this->roles = new ArrayCollection();
   }
 
   public function getIsActive() {
@@ -201,10 +209,11 @@ class User implements AdvancedUserInterface, \Serializable {
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
-    public function getRoles() {
-      
+    public function getRoles()
+    {
+        return $this->roles->toArray();
     }
 
     /**

@@ -57,10 +57,14 @@ class AccountController extends Controller
         $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
         $user->setPassword($password);
 
+        $repository = $this->getDoctrine()
+            ->getRepository('VirtualPersistBundle:Role');
+        $role = $repository->findByRole('USER_DEFAULT');
+
         $em->persist($user);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('account_register'), 301);
+        return $this->redirect($this->generateUrl('login'), 301);
     }
 
     return $this->render(

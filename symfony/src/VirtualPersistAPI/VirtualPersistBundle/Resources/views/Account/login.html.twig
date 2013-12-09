@@ -13,7 +13,11 @@
     <label for="username">User:</label>
     <input id="username" type="text" name="_username" value="{{ last_username }}" />
     <label for="password">Password:</label>
-    <input id="password" type="password" name="_password" /> <input type="submit" name="login" />
+    <input id="password" type="password" name="_password" />
+    <br>
+    <input type="checkbox" id="remember_me" name="_remember_me" checked />
+    <label for="remember_me">Keep me logged in</label>
+    <input type="submit" name="login" />
 </form>
 </div>
 {% endblock %}

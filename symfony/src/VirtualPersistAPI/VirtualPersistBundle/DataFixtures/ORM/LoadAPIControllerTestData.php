@@ -103,11 +103,14 @@ class LoadAPIControllerTestData extends AbstractFixture
     // Have to keep a reference to all the user objects
     // or else they can't be flushed all at once.
     $items = array();
+
+    $user = new User();
+
     foreach ($data['User'] as $item) {
       $user = new User();
       $user->setUuid($item['uuid'])
-        ->setPassword($item['password'])
         ->setUsername($item['username'])
+        ->setPassword($item['password'])
         ->setEmail($item['email'])
         ->setIsActive($item['is_active']);
       $this->addReference($user->getUuid(), $user);
