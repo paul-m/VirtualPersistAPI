@@ -10,9 +10,11 @@ VirtualPersistAPI (VPA) is a RESTful-ish http-based API for storing arbitrary da
 
 The data is identified in a three-tier hierarchy: The user's UUID, a category, and a key. The category and key are arbitrary.
 
-The API includes a way to query for categories per UUID, and keys per category.
+Restated: You can make requests like this: `http://example.com/api/[uuid]/[category]/[key]` and get back the data. Or POST data to a URL like that and set the data.
 
-There's a more detailed API spec document here: https://github.com/paul-m/VirtualPersistAPI/blob/master/spec/VirtualPersistAPI.md
+The API also includes a way to query for categories per UUID, and keys per category, and to gather all data per category.
+
+See the more detailed API spec document here: https://github.com/paul-m/VirtualPersistAPI/blob/master/spec/VirtualPersistAPI.md
 
 Why?
 ----
