@@ -15,7 +15,7 @@ web1:
     default_gateway: app.php
     index_list: [app.php]
 
-    php_version: 5.3.10
+    php_version: 5.3.23
     php_extensions:
      - apc
      - intl
@@ -34,7 +34,6 @@ web1:
     after_build:
         - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
         - 'php symfony/composer.phar install -d="symfony" --no-progress --no-dev'
-#        - 'rm -rf symfony/app/cache/prod'
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
         - "echo 'parameters:' >> symfony/app/config/parameters.yml"
         - "echo ' database_driver: pdo_mysql' >> symfony/app/config/parameters.yml"
