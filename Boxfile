@@ -29,7 +29,7 @@ web1:
     php_magic_quotes_gpc: "0"
     php_register_globals: "0"
     php_session_autostart: "0"
-    php_date_timezone: America/Detroit
+    php_date_timezone: America/Los_Angeles
 
     after_build:
         - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
@@ -51,7 +51,8 @@ web1:
         - "echo ' secret: ThisTokenIsNotSoSecretChangeIt' >> symfony/app/config/parameters.yml"
 
     before_deploy:
-        - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
+        - "rm -rf symfony/app/cache"
+#        - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
         - "php symfony/app/console --env=prod --no-debug cache:warmup"
         - "php symfony/app/console --env=prod --no-debug doctrine:schema:update --force"
 #        - "php symfony/app/console --env=prod --no-debug doctrine:migrations:migrate -n"
