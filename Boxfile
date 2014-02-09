@@ -32,8 +32,8 @@ web1:
     php_date_timezone: America/Los_Angeles
 
     after_build:
-#        - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
-#        - 'php symfony/composer.phar install -d="symfony" --no-progress --no-dev'
+        - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
+        - 'php symfony/composer.phar install -d="symfony" --no-progress --no-dev'
 #        - 'rm -rf symfony/app/cache/prod'
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
         - "echo 'parameters:' >> symfony/app/config/parameters.yml"
