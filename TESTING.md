@@ -1,9 +1,26 @@
 VirtualPersistAPI Testing Notes
 ===
 
+Where?
+---
+
 Unit and functional tests are located in the bundle /Tests directory. So: `symfony/src/VirtualPersistAPI/Bundle/VirtualPeristAPIBundle/Tests`.
 
-Run them by installing dependencies through Composer with the --dev flag, and then `./bin/phpunit -c app`
 
-See `.travis.yml` for continuous integration through GitHub.
+How?
+---
 
+To run the tests manually:
+
+	cd ./symfony
+	curl -s https://getcomposer.org/installer | php
+	./composer.phar --dev --no-progress install
+	php app/console doctrine:database:create --env=test
+	php app/console doctrine:schema:create --env=test
+	php app/console cache:clear --env=test
+	php app/console assetic:dump --env=test
+	./bin/phpunit -c ./app
+
+Once you've run through this set of commands, you don't have to re-install Composer or pull down the dependencies every time.
+
+This set of commands is copied from `.travis.yml`, which enables continuous integration through Travis CI and GitHub. If you decide to fork this project, you can enable Travis CI and use this feature yourself.
