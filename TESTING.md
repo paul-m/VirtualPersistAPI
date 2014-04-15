@@ -13,13 +13,25 @@ How?
 To run the tests manually:
 
 	cd ./symfony
+
+Install Composer:
+
 	curl -s https://getcomposer.org/installer | php
+
+Install dependencies:
+
 	./composer.phar --dev --no-progress install
+
+Generate the fixture and assets:
+
 	php app/console doctrine:database:create --env=test
 	php app/console doctrine:schema:create --env=test
 	php app/console cache:clear --env=test
 	php app/console assetic:dump --env=test
-	./bin/phpunit -c ./app
+
+Run the test:
+
+	./bin/phpunit -c app
 
 Once you've run through this set of commands, you don't have to re-install Composer or pull down the dependencies every time.
 

@@ -38,7 +38,7 @@ class APIControllerLogTest extends AppFixtureTestCase implements AppFixtureTestC
    */
   public function testWriteLogEntity() {
     $doctrine = $this->getContainer()->get('doctrine');
-    $entityManager = $doctrine->getEntityManager();
+    $entityManager = $doctrine->getManager();
 
     $user = $doctrine
       ->getRepository('VirtualPersistBundle:User')

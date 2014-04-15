@@ -16,7 +16,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 //            new JMS\AopBundle\JMSAopBundle(),
 //            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
+//            new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
             new VirtualPersistAPI\VirtualPersistBundle\VirtualPersistBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
         );

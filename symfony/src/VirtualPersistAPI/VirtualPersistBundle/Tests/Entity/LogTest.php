@@ -16,7 +16,7 @@ class LogEntityTest extends AppFixtureTestCase implements AppFixtureTestCaseInte
    */
   public function testWriteLogEntity() {
     $doctrine = $this->getContainer()->get('doctrine');
-    $entityManager = $doctrine->getEntityManager();
+    $entityManager = $doctrine->getManager();
 
     $user = $doctrine
       ->getRepository('VirtualPersistBundle:User')

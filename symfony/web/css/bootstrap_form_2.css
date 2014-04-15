@@ -1,0 +1,6 @@
+.form-horizontal input + input {
+  margin-left: 1em;
+}
+.form-horizontal ul .btn {
+  margin-bottom: 10px;
+}

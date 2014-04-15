@@ -199,7 +199,7 @@ class APIController extends Controller {
   public function postAction(Request $request, $uuid, $category, $key) {
     $response = new TextPlainResponse('Huh?', 503);
     $doctrine = $this->getDoctrine();
-    $em = $doctrine->getEntityManager();
+    $em = $doctrine->getManager();
     $conn = $em->getConnection();
     $recordRepository = $doctrine->getRepository('VirtualPersistBundle:Record');
 
@@ -270,7 +270,7 @@ class APIController extends Controller {
         ->findByUserCategoryKey($user, $category, $key);
       // Did we get any records?
       if (count($records)) {
-        $entityManager = $doctrine->getEntityManager();
+        $entityManager = $doctrine->getManager();
         foreach($records as $record) {
           // Tell ORM to remove.
           $entityManager->remove($record);
