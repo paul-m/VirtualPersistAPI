@@ -48,7 +48,7 @@ web1:
         - "echo ' mailer_password: ~' >> symfony/app/config/parameters.yml"
         - "echo ' locale: en' >> symfony/app/config/parameters.yml"
         - "echo ' secret: ThisTokenIsNotSoSecretChangeIt' >> symfony/app/config/parameters.yml"
-        - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
+        - "rm -rf symfony/app/cache/prod/*"
 
     before_deploy:
         - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
