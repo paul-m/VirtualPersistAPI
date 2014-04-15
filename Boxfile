@@ -33,7 +33,7 @@ web1:
 
     after_build:
         - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
-        - 'php symfony/composer.phar install -d="symfony" --no-progress --no-dev'
+        - 'php symfony/composer.phar install -d="symfony" --no-progress --no-dev --prefer-source'
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
         - "echo 'parameters:' >> symfony/app/config/parameters.yml"
         - "echo ' database_driver: pdo_mysql' >> symfony/app/config/parameters.yml"
