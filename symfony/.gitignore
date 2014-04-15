@@ -5,6 +5,7 @@ app/logs/*
 app/cache/
 
 build/
+bin
 vendor
 composer.phar
 *~
