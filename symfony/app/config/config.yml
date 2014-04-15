@@ -19,7 +19,8 @@ framework:
     trusted_proxies: ~
     trusted_hosts:   [ localhost, vpa.gopagoda.com ]
     session:         ~
-    http_method_override:   true
+    kernel:
+        http_method_override:   true
 
 # Twig Configuration
 twig:
