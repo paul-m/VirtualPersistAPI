@@ -3,7 +3,7 @@ db1:
     type: mysql
 
 web1:
-    name: symfony_web
+    name: symfony_web2
     shared_writable_dirs:
      - symfony/app/cache
      - symfony/app/cache/prod
