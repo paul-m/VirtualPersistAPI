@@ -3,7 +3,7 @@ db1:
     type: mysql
 
 web1:
-    name: symfony_web2
+    name: symfony_web
     shared_writable_dirs:
      - symfony/app/cache
      - symfony/app/cache/prod
@@ -37,11 +37,11 @@ web1:
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
         - "echo 'parameters:' >> symfony/app/config/parameters.yml"
         - "echo ' database_driver: pdo_mysql' >> symfony/app/config/parameters.yml"
-        - "echo ' database_host: ' $DB1_HOST >> symfony/app/config/parameters.yml"
+        - "echo ' database_host: ' $SYMFONY_DB_HOST >> symfony/app/config/parameters.yml"
         - "echo ' database_port: 3306' >> symfony/app/config/parameters.yml"
-        - "echo ' database_name: ' $DB1_NAME >> symfony/app/config/parameters.yml"
-        - "echo ' database_user: ' $DB1_USER >> symfony/app/config/parameters.yml"
-        - "echo ' database_password: ' $DB1_PASS >> symfony/app/config/parameters.yml"
+        - "echo ' database_name: ' $SYMFONY_DB_NAME >> symfony/app/config/parameters.yml"
+        - "echo ' database_user: ' $SYMFONY_DB_USER >> symfony/app/config/parameters.yml"
+        - "echo ' database_password: ' $SYMFONYDB_PASS >> symfony/app/config/parameters.yml"
         - "echo ' mailer_transport: smtp' >> symfony/app/config/parameters.yml"
         - "echo ' mailer_host: localhost' >> symfony/app/config/parameters.yml"
         - "echo ' mailer_user: ~' >> symfony/app/config/parameters.yml"
