@@ -35,19 +35,7 @@ web1:
         - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
         - 'php symfony/composer.phar install -d="symfony" --no-progress --no-dev --prefer-source'
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
-        - "echo 'parameters:' >> symfony/app/config/parameters.yml"
-        - "echo ' database_driver: pdo_mysql' >> symfony/app/config/parameters.yml"
-        - "echo ' database_host: ' $SYMFONY_DB_HOST >> symfony/app/config/parameters.yml"
-        - "echo ' database_port: 3306' >> symfony/app/config/parameters.yml"
-        - "echo ' database_name: ' $SYMFONY_DB_NAME >> symfony/app/config/parameters.yml"
-        - "echo ' database_user: ' $SYMFONY_DB_USER >> symfony/app/config/parameters.yml"
-        - "echo ' database_password: ' $SYMFONY_DB_PASS >> symfony/app/config/parameters.yml"
-        - "echo ' mailer_transport: smtp' >> symfony/app/config/parameters.yml"
-        - "echo ' mailer_host: localhost' >> symfony/app/config/parameters.yml"
-        - "echo ' mailer_user: ~' >> symfony/app/config/parameters.yml"
-        - "echo ' mailer_password: ~' >> symfony/app/config/parameters.yml"
-        - "echo ' locale: en' >> symfony/app/config/parameters.yml"
-        - "echo ' secret: ThisTokenIsNotSoSecretChangeIt' >> symfony/app/config/parameters.yml"
+        - php ./scripts/set_pagoda_parameters.php
 
     before_deploy:
         - "rm -rf symfony/app/cache/prod/*"
