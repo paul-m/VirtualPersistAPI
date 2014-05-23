@@ -41,7 +41,7 @@ web1:
         - "echo ' database_port: 3306' >> symfony/app/config/parameters.yml"
         - "echo ' database_name: ' $SYMFONY_DB_NAME >> symfony/app/config/parameters.yml"
         - "echo ' database_user: ' $SYMFONY_DB_USER >> symfony/app/config/parameters.yml"
-        - "echo ' database_password: ' $SYMFONYDB_PASS >> symfony/app/config/parameters.yml"
+        - "echo ' database_password: ' $SYMFONY_DB_PASS >> symfony/app/config/parameters.yml"
         - "echo ' mailer_transport: smtp' >> symfony/app/config/parameters.yml"
         - "echo ' mailer_host: localhost' >> symfony/app/config/parameters.yml"
         - "echo ' mailer_user: ~' >> symfony/app/config/parameters.yml"
