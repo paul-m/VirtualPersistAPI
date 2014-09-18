@@ -1,4 +1,5 @@
 <?php
+
 namespace VirtualPersistAPI\VirtualPersistBundle\Controller;
 
 use Doctrine\DBAL\Connection;
@@ -7,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\User;
@@ -29,7 +29,7 @@ class APIController extends Controller {
       'X-SecondLife-Object-Key', 'X-SecondLife-Region', 'X-SecondLife-OwnerName',
       'X-SecondLife-Owner-Key');
     $headerBag = $request->headers;
-    foreach($headersWeLike as $query) {
+    foreach ($headersWeLike as $query) {
       if ($headerBag->has($query)) {
         $result[$query] = $headerBag->get($query, '');
       }
@@ -79,7 +79,8 @@ class APIController extends Controller {
    */
   public function addDebugInfo(Response $response) {
     $debug = $this->getRequest()->query->get('debug');
-    if (!$debug) $debug = $this->getRequest()->request->get('debug');
+    if (!$debug)
+      $debug = $this->getRequest()->request->get('debug');
     if ($debug) {
       $response->headers->set('X-VPA-Debug', 'debuggy!', TRUE);
     }
@@ -125,7 +126,9 @@ class APIController extends Controller {
           $response = new JsonResponse($resultRecords, 200);
         }
       }
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
+
     }
     $response = $this->jsonpCallback($request, $response);
     return $this->addDebugInfo($response);
@@ -159,7 +162,9 @@ class APIController extends Controller {
           $response = new JsonResponse($resultRecord, 200);
         }
       }
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
+
     }
     return $this->addDebugInfo($response);
   }
@@ -187,7 +192,9 @@ class APIController extends Controller {
           $response = new TextPlainResponse($record->getData(), 200);
         }
       }
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
+
     }
     return $this->addDebugInfo($response);
   }
@@ -217,7 +224,8 @@ class APIController extends Controller {
           $em->persist($record);
           $em->flush();
           $conn->commit();
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
           $conn->rollback();
           $em->close();
           throw $e;
@@ -239,7 +247,8 @@ class APIController extends Controller {
           $em->persist($record);
           $em->flush();
           $conn->commit();
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
           $conn->rollback();
           $em->close();
           throw $e;
@@ -271,7 +280,7 @@ class APIController extends Controller {
       // Did we get any records?
       if (count($records)) {
         $entityManager = $doctrine->getManager();
-        foreach($records as $record) {
+        foreach ($records as $record) {
           // Tell ORM to remove.
           $entityManager->remove($record);
         }
@@ -310,7 +319,9 @@ class APIController extends Controller {
           $response = new JsonResponse($keyArray, 200);
         }
       }
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
+
     }
     return $this->addDebugInfo($response);
   }
@@ -340,7 +351,9 @@ class APIController extends Controller {
           $response = new JsonResponse($categoryArray, 200);
         }
       }
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
+
     }
     return $this->addDebugInfo($response);
   }
@@ -359,5 +372,50 @@ class APIController extends Controller {
     return new Response('User? LOSER!', 404);
   }
 
-}
+  /**
+   * Add user arrival/departure records.
+   *
+   * @Route("/{uuid}/visitor/{type}", requirements={"uuid" = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"})
+   * @Method({"GET"})
+   */
+  public function postVisitors(Request $request, $uuid, $category) {
+    // Return 404 by default.
+    $response = new TextPlainResponse('404: No Such Item.', 404);
+    try {
+      $doctrine = $this->getDoctrine();
+      $user = $doctrine
+        ->getRepository('VirtualPersistBundle:User')
+        ->findOneByUuid($uuid);
+      if ($user) { // && $user->isEnabled()) {
+        $records = $doctrine
+          ->getRepository('VirtualPersistBundle:Record')
+          ->findByUserCategorySince($user, $category, $this->requestSince($request, 0));
+        // Did we get a record?
+        if (count($records)) {
+          $resultRecords = array('category' => $category);
+          foreach ($records as $record) {
+            // Handle the special case of data that is JSON.
+            // Somehow this is converting some special chars to /u[number].
+            $data = $record->getData();
+            $jsonData = json_decode($data);
+            if (is_object($jsonData)) {
+              $data = $jsonData;
+            }
+            $resultRecords['results'][] = array(
+              'key' => $record->getKey(),
+              'data' => $data,
+              'timestamp' => $record->getTimestamp()->getTimestamp(), // extract unixtime
+            );
+          }
+          $response = new JsonResponse($resultRecords, 200);
+        }
+      }
+    }
+    catch (\Exception $e) {
 
+    }
+    $response = $this->jsonpCallback($request, $response);
+    return $this->addDebugInfo($response);
+  }
+
+}

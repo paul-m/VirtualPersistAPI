@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Log;
 use VirtualPersistAPI\VirtualPersistBundle\Entity\Record;
 
@@ -25,17 +24,17 @@ class DefaultController extends Controller {
       'categories' => array(),
     );
 //    try {
-      $userRepo = $this->getDoctrine()
-        ->getRepository('VirtualPersistBundle:User');
-      $recordRepo = $this->getDoctrine()
-        ->getRepository('VirtualPersistBundle:Record');
-  
-      $users = $userRepo->getAll();
-      $categories = $recordRepo->uniqueCategories();
-      $resultArray['users'] = $users;
-      $resultArray['categories'] = $categories;
+    $userRepo = $this->getDoctrine()
+      ->getRepository('VirtualPersistBundle:User');
+    $recordRepo = $this->getDoctrine()
+      ->getRepository('VirtualPersistBundle:Record');
+
+    $users = $userRepo->getAll();
+    $categories = $recordRepo->uniqueCategories();
+    $resultArray['users'] = $users;
+    $resultArray['categories'] = $categories;
 //    } catch (\Exception $e) {
- //   }
+    //   }
     return $resultArray;
   }
 
@@ -69,7 +68,7 @@ class DefaultController extends Controller {
     $resultArray['logs'] = array(new Log());
     return $resultArray;
   }
-  
+
   /**
    * @Route("/region/{region}")
    * @Template()
@@ -99,7 +98,8 @@ class DefaultController extends Controller {
     $records = $doctrine
       ->getRepository('VirtualPersistBundle:Record')
       ->findByCategoryKeySince('region_traffic', $region, $since);
-    if ($records) $resultArray['records'] = $records;
+    if ($records)
+      $resultArray['records'] = $records;
     return $resultArray;
   }
 
@@ -120,9 +120,9 @@ class DefaultController extends Controller {
     $records = $doctrine
       ->getRepository('VirtualPersistBundle:Record')
       ->findByCategoryKeySince('lea_prim_use', $region, $since);
-    if ($records) $resultArray['records'] = $records;
+    if ($records)
+      $resultArray['records'] = $records;
     return $resultArray;
   }
 
 }
-

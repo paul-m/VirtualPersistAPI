@@ -28,6 +28,8 @@ The API
 | GET | `[endpoint]/user/[uuid]` | Query for user data. |
 | POST | `[endpoint]/user/[uuid]` | Add user. |
 | DELETE | `[endpoint]/user/[uuid]` | Remove user. |
+| POST | `[endpoint]/[uuid]/visitor/arrival` | Add users who have arrived. |
+| POST | `[endpoint]/[uuid]/visitor/departure` | Add users who have departed. |
 
 #### The Description:
 
