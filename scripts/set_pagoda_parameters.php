@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../symfony/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Yaml\Dumper;
 
@@ -26,4 +26,4 @@ $yaml = $dumper->dump($parameters, 2);
 
 echo $yaml;
 
-file_put_contents(__DIR__ . '/../symfony/app/config/parameters.yml', $yaml);
+file_put_contents(__DIR__ . '/../app/config/parameters.yml', $yaml);
