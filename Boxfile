@@ -45,6 +45,7 @@ web1:
       - "php app/console --env=prod --no-debug cache:clear --no-warmup"
       - "php app/console --env=prod --no-debug cache:warmup"
       - "php app/console --env=prod --no-debug doctrine:schema:update --force"
+      - "php app/console --env=prod --no-debug doctrine:fixture:load --fixtures src/VirtualPersistAPI/VirtualPersistBundle/DataFixtures/ORMSolo --append"
 #      - "php app/console --env=prod --no-debug doctrine:migrations:migrate -n"
 
 global:
