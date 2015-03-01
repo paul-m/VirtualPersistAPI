@@ -42,7 +42,6 @@ If you want to build VPA locally...
 
 This project is managed through Composer. If you want to get it running locally, you should use commands like these:
 
-	cd symfony/
 	curl -sS https://getcomposer.org/installer | php
 	./composer.phar install
 
@@ -53,7 +52,7 @@ How? Part 2: Settings
 
 Having installed everything, you can now set up VPA to use your database.
 
-Open the file `symfony/app/config/parameters.yml`. This is a YAML file containing database credentials. You'll see settings like this:
+Open the file `app/config/parameters.yml`. This is a YAML file containing database credentials. You'll see settings like this:
 
 	database_host:     localhost
 	database_port:     3306
@@ -82,7 +81,7 @@ And now we're done with Part 3.
 How? Part 4: The Docroot
 ---
 
-Since we're using Symfony2, we need to set the docroot of the web server to `symfony/web`. The variety of ways to do this is beyond the scope of this document, so look at the documentation for your web server.
+Since we're using Symfony2, we need to set the docroot of the web server to `web`. The variety of ways to do this is beyond the scope of this document, so look at the documentation for your web server.
 
 How? Part 5: Ping The Thing
 ---

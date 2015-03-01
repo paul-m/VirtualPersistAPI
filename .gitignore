@@ -1,2 +1,6 @@
 .vagrant
 symfony/vpa.sqlite
+vpa.sqlite
+vendor/
+*.DS_Store*
+app/cache/*

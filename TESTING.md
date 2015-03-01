@@ -12,8 +12,6 @@ How?
 
 To run the tests manually:
 
-	cd ./symfony
-
 Install Composer:
 
 	curl -s https://getcomposer.org/installer | php
@@ -35,4 +33,4 @@ Run the test:
 
 Once you've run through this set of commands, you don't have to re-install Composer or pull down the dependencies every time.
 
-This set of commands is copied from `.travis.yml`, which enables continuous integration through Travis CI and GitHub. If you decide to fork this project, you can enable Travis CI and use this feature yourself.
+This set of commands is duplicated in `.travis.yml`, which enables continuous integration through Travis CI and GitHub. If you decide to fork this project, you can enable Travis CI and use this feature yourself.
