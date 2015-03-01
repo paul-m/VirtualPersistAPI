@@ -16,7 +16,7 @@ framework:
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
-    trusted_hosts:   [ localhost, vpa.gopagoda.com ]
+    trusted_hosts:   [ localhost, vpa.gopagoda.io ]
     session:         ~
     http_method_override:   true
 
