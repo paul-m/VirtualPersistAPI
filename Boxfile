@@ -50,3 +50,4 @@ web1:
 global:
   env:
     - USE_INTL_ICU_DATA_VERSION: true
+    - VPA_ON_PAGODABOX: true
