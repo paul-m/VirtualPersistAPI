@@ -1,21 +1,21 @@
-db1:
-    name: symfony_db
-    type: mysql
+database1:
+  type: mysql
+  name: symfony_db
+  version: 5.6
 
 web1:
     name: symfony_web
-    shared_writable_dirs:
+    type: php
+    version: 5.3
+    stability: production
+    httpd_document_root: symfony/web
+    httpd_index_list: [app.php]
+    network_dirs:
      - symfony/app/cache
      - symfony/app/cache/prod
      - symfony/app/cache/prod_old
      - symfony/app/logs
      - symfony/app/sessions
-
-    document_root: symfony/web
-    default_gateway: app.php
-    index_list: [app.php]
-
-    php_version: 5.3.23
     php_extensions:
      - apc
      - intl
@@ -24,27 +24,32 @@ web1:
      - mysql
      - pdo_mysql
      - zip
-
-    php_short_open_tag: "0"
-    php_magic_quotes_gpc: "0"
+     - json
+    php_expose_php: "Off"
     php_register_globals: "0"
     php_session_autostart: "0"
+    php_short_open_tag: "0"
     php_date_timezone: America/Los_Angeles
 
-    after_build:
-        - 'curl -s https://getcomposer.org/installer | php -- --install-dir="symfony" --quiet'
-        - 'php symfony/composer.phar install -d="symfony" --no-progress --no-dev --prefer-source'
+#    php_session_save_path: "tcp://${CACHE1_HOST}:${CACHE1_PORT}"
+
+#    php_magic_quotes_gpc: "0"
+
+    build:
+      exec:
+        - 'composer install -d="symfony" --no-progress --no-dev --prefer-source'
+      after_exec:
         - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
-        - php ./scripts/set_pagoda_parameters.php
+      lib_dir: symfony/vendor
 
     before_deploy:
-        - "rm -rf symfony/app/cache/prod/*"
-        - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
-        - "php symfony/app/console --env=prod --no-debug cache:warmup"
-        - "php symfony/app/console --env=prod --no-debug doctrine:schema:update --force"
-#        - "php symfony/app/console --env=prod --no-debug doctrine:migrations:migrate -n"
+      - php ./scripts/set_pagoda_parameters.php
+      - "rm -rf symfony/app/cache/prod/*"
+      - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
+      - "php symfony/app/console --env=prod --no-debug cache:warmup"
+      - "php symfony/app/console --env=prod --no-debug doctrine:schema:update --force"
+#      - "php symfony/app/console --env=prod --no-debug doctrine:migrations:migrate -n"
 
 global:
-    env:
-        - USE_INTL_ICU_DATA_VERSION: true
-
+  env:
+    - USE_INTL_ICU_DATA_VERSION: true
