@@ -8,7 +8,7 @@ web1:
     type: php
     version: 5.3
     stability: production
-    httpd_document_root: symfony/web
+    httpd_document_root: web
     httpd_index_list: [app.php]
     network_dirs:
      - symfony/app/cache
@@ -36,19 +36,16 @@ web1:
 #    php_magic_quotes_gpc: "0"
 
     build:
-      exec:
-        - 'composer install -d="symfony" --no-progress --no-dev --prefer-source'
       after_exec:
-        - "php symfony/app/console --env=prod --no-debug assetic:dump -n"
-      lib_dir: symfony/vendor
+        - "php app/console --env=prod --no-debug assetic:dump -n"
 
     before_deploy:
       - php ./scripts/set_pagoda_parameters.php
-      - "rm -rf symfony/app/cache/prod/*"
-      - "php symfony/app/console --env=prod --no-debug cache:clear --no-warmup"
-      - "php symfony/app/console --env=prod --no-debug cache:warmup"
-      - "php symfony/app/console --env=prod --no-debug doctrine:schema:update --force"
-#      - "php symfony/app/console --env=prod --no-debug doctrine:migrations:migrate -n"
+      - "rm -rf app/cache/prod/*"
+      - "php app/console --env=prod --no-debug cache:clear --no-warmup"
+      - "php app/console --env=prod --no-debug cache:warmup"
+      - "php app/console --env=prod --no-debug doctrine:schema:update --force"
+#      - "php app/console --env=prod --no-debug doctrine:migrations:migrate -n"
 
 global:
   env:
