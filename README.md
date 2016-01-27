@@ -14,7 +14,8 @@ Restated: You can make requests like this: `http://example.com/api/[uuid]/[categ
 
 The API also includes a way to query for categories per UUID, and keys per category, and to gather all data per category.
 
-See the more detailed API spec document here: https://github.com/paul-m/VirtualPersistAPI/blob/master/spec/VirtualPersistAPI.md
+See the more detailed API spec document here: https://github.com/paul-m/VirtualPersistAPI/blob/master/misc/spec/VirtualPersistAPI.md
+
 
 Why?
 ----
